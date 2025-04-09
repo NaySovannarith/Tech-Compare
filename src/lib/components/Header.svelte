@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Search, Heart, Bell, User } from 'lucide-svelte';
+  import { goto } from '$app/navigation';
 
   let searchQuery = '';
   let showProductDropdown = false;
@@ -10,6 +11,8 @@
   let productRef: HTMLElement;
   let accessoryRef: HTMLElement;
   let brandRef: HTMLElement;
+  const goToCompares = () => goto('/compares');
+  const goToLogin = () => goto('/login')
 
   const toggleProductDropdown = () => {
     showProductDropdown = !showProductDropdown;
@@ -57,7 +60,8 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      <img src="/logo.svg" alt="Logo" class="h-6" />
+      
+      <a href="/" class="hover:underline">Duuuuu.</a>
       
       
     </div>
@@ -77,7 +81,7 @@
     <div class="flex items-center gap-4"> <!-- Remove flex-col to keep them in the same row -->
       <Heart class="w-5 h-5" />
       <Bell class="w-5 h-5" /> 
-      <button class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition">
+      <button on:click={goToLogin}  class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition">
         <User class="w-4 h-4" />
         Login
       </button>
@@ -88,7 +92,6 @@
      
     </div>
   </div>
-
   <div class="border-t border-white border-opacity-20">
     <nav class="flex items-center justify-between px-6 py-2 text-sm font-medium">
       <!-- Container for links with centered content -->
@@ -137,12 +140,16 @@
   
       <!-- Compare button on the far right -->
       <div class="flex items-center ml-auto"> <!-- ml-auto pushes Compare button to the right -->
-        <button class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
+        <button  on:click={goToCompares} class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
+         
+
           Compare
         </button>
       </div>
     </nav>
   </div>
+  
+  
   
   
 </header>
