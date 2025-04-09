@@ -79,9 +79,12 @@
 
     <!-- Icons & Login -->
     <div class="flex items-center gap-4"> <!-- Remove flex-col to keep them in the same row -->
-      <Heart class="w-5 h-5" />
+      <div class="w-5 h-5 cursor-pointer hover:text-red-500 transition" onclick={() => goto('/wishlists')}>
+        <Heart class="w-full h-full" />
+      </div>
+      
       <Bell class="w-5 h-5" /> 
-      <button on:click={goToLogin}  class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition">
+      <button onclick={goToLogin}  class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition">
         <User class="w-4 h-4" />
         Login
       </button>
@@ -98,7 +101,7 @@
       <div class="flex items-center space-x-12 flex-grow justify-center"> <!-- Centering the links with flex-grow and justify-center -->
         <div class="relative" bind:this={productRef}>
           <span class="text-lg">Product</span>
-          <button on:click={toggleProductDropdown} class="text-xs focus:outline-none">▼</button>
+          <button onclick={toggleProductDropdown} class="text-xs focus:outline-none">▼</button>
           {#if showProductDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/iphone">iPhone</a></li>
@@ -112,7 +115,7 @@
   
         <div class="relative" bind:this={accessoryRef}>
           <span class="text-lg">Accessories</span>
-          <button on:click={toggleAccessoryDropdown} class="text-xs focus:outline-none">▼</button>
+          <button onclick={toggleAccessoryDropdown} class="text-xs focus:outline-none">▼</button>
           {#if showAccessoryDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/case">Phone Case</a></li>
@@ -124,7 +127,7 @@
   
         <div class="relative" bind:this={brandRef}>
           <span class="text-lg">Brand</span>
-          <button on:click={toggleBrandDropdown} class="text-xs focus:outline-none">▼</button>
+          <button onclick={toggleBrandDropdown} class="text-xs focus:outline-none">▼</button>
           {#if showBrandDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brand/iphone">iPhone</a></li>
@@ -140,7 +143,7 @@
   
       <!-- Compare button on the far right -->
       <div class="flex items-center ml-auto"> <!-- ml-auto pushes Compare button to the right -->
-        <button  on:click={goToCompares} class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
+        <button  onclick={goToCompares} class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
          
 
           Compare
