@@ -60,10 +60,10 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      
+
       <a href="/" class="hover:underline">Duuuuu.</a>
-      
-      
+
+
     </div>
 
     <!-- Search -->
@@ -85,11 +85,11 @@
         <User class="w-4 h-4" />
         Login
       </button>
-    
-    
+
+
 
       <!-- Compare button under Login -->
-     
+
     </div>
   </div>
   <div class="border-t border-white border-opacity-20">
@@ -109,7 +109,7 @@
             </ul>
           {/if}
         </div>
-  
+
         <div class="relative" bind:this={accessoryRef}>
           <span class="text-lg">Accessories</span>
           <button on:click={toggleAccessoryDropdown} class="text-xs focus:outline-none">▼</button>
@@ -121,7 +121,7 @@
             </ul>
           {/if}
         </div>
-  
+
         <div class="relative" bind:this={brandRef}>
           <span class="text-lg">Brand</span>
           <button on:click={toggleBrandDropdown} class="text-xs focus:outline-none">▼</button>
@@ -133,23 +133,23 @@
             </ul>
           {/if}
         </div>
-  
+
         <a class="hover:underline text-lg" href="/contact">Contact us</a> 
       </div>
-      
-  
+
+
       <!-- Compare button on the far right -->
       <div class="flex items-center ml-auto"> <!-- ml-auto pushes Compare button to the right -->
         <button  on:click={goToCompares} class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
-         
+
 
           Compare
         </button>
       </div>
     </nav>
   </div>
-  
-  
+
+
   
   
 </header>
