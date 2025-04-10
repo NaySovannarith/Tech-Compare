@@ -60,10 +60,10 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      
+
       <a href="/" class="hover:underline">Duuuuu.</a>
-      
-      
+
+
     </div>
 
     <!-- Search -->
@@ -88,11 +88,11 @@
         <User class="w-4 h-4" />
         Login
       </button>
-    
-    
+
+
 
       <!-- Compare button under Login -->
-     
+
     </div>
   </div>
   <div class="border-t border-white border-opacity-20">
@@ -100,47 +100,56 @@
       <!-- Container for links with centered content -->
       <div class="flex items-center space-x-12 flex-grow justify-center"> <!-- Centering the links with flex-grow and justify-center -->
         <div class="relative" bind:this={productRef}>
-          <span class="text-lg">Product</span>
-          <button onclick={toggleProductDropdown} class="text-xs focus:outline-none">▼</button>
+          <span class="text-lg">Products</span>
+          <button onclick={toggleBrandDropdown} 
+                    onmouseenter ={toggleProductDropdown}
+      class="text-xs focus:outline-none">▼</button>
+          
           {#if showProductDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/iphone">iPhone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/samsung">Samsung</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/oppo">Oppo</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/huawei">Huawei</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/products/xiaomi">Xiaomi</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablets">Tablet</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Computer</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">Tv</a></li>
             </ul>
           {/if}
         </div>
-  
+        
+
         <div class="relative" bind:this={accessoryRef}>
           <span class="text-lg">Accessories</span>
-          <button onclick={toggleAccessoryDropdown} class="text-xs focus:outline-none">▼</button>
+          <button onclick={toggleAccessoryDropdown} 
+          onmouseenter ={toggleProductDropdown}
+          class="text-xs focus:outline-none">▼</button>
           {#if showAccessoryDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/case">Phone Case</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/charger">Charger</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/earbuds">Earbuds</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/cameras">Camera</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/earphones">Earphone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/headphones">Headphone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/powerbanks">Smartwatch</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/smartwatches">Powerbank</a></li>
             </ul>
           {/if}
         </div>
-  
+
         <div class="relative" bind:this={brandRef}>
           <span class="text-lg">Brand</span>
-          <button onclick={toggleBrandDropdown} class="text-xs focus:outline-none">▼</button>
+          <button onclick={toggleBrandDropdown} 
+                    onmouseenter ={toggleProductDropdown}
+      class="text-xs focus:outline-none">▼</button>
           {#if showBrandDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brand/iphone">iPhone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brand/samsung">Samsung</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brand/google">Google</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/iphone">iPhone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/samsung">Samsung</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/google">Google</a></li>
             </ul>
           {/if}
         </div>
-  
+
         <a class="hover:underline text-lg" href="/contact">Contact us</a> 
       </div>
-      
-  
+
+
       <!-- Compare button on the far right -->
       <div class="flex items-center ml-auto"> <!-- ml-auto pushes Compare button to the right -->
         <button  onclick={goToCompares} class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition mt-2">
@@ -151,8 +160,8 @@
       </div>
     </nav>
   </div>
-  
-  
+
+
   
   
 </header>
