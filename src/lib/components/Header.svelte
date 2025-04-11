@@ -86,8 +86,8 @@
         Login
       </button>
     
-    
 
+      
       <!-- Compare button under Login -->
      
     </div>
