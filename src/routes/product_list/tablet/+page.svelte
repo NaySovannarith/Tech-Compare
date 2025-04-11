@@ -8,7 +8,7 @@
     {
       title: 'Apple iPad Pro 12.9"',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+Pro+12.9',
+      image: '/images/tablet/Apple iPad Pro 12.9.jpg ',
       storage: '128GB',
       memory: '8GB',
       price: 1090
@@ -16,7 +16,7 @@
     {
       title: 'Samsung Galaxy Tab S10 Ultra',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S10+Ultra',
+      image: '/images/tablet/ipad1.jpg',
       storage: '256GB',
       memory: '12GB',
       price: 1190
@@ -24,7 +24,7 @@
     {
       title: 'Samsung Galaxy Tab S10+',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S10+Plus',
+      image: '/images/tablet/Samsung Galaxy Tab S10+.jpg',
       storage: '256GB',
       memory: '12GB',
       price: 990
@@ -32,7 +32,7 @@
     {
       title: 'Samsung Galaxy Tab S10',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S10',
+      image: '/images/tablet/Apple iPad Pro 11.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 790
@@ -40,7 +40,7 @@
     {
       title: 'Apple iPad Pro 11"',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+Pro+11',
+      image: '/images/tablet/Apple iPad Pro 11+.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 890
@@ -48,7 +48,7 @@
     {
       title: 'Apple iPad Pro 11" (2021)',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+Pro+11+2021',
+      image: '/images/tablet/Apple iPad Pro 11 2021.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 790
@@ -56,7 +56,7 @@
     {
       title: 'Samsung Galaxy Tab S9 Ultra',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S9+Ultra',
+      image: '/images/tablet/Samsung Galaxy Tab S9 Ultra.jpg',
       storage: '512GB',
       memory: '12GB',
       price: 1790
@@ -64,7 +64,7 @@
     {
       title: 'Samsung Galaxy Tab S9+',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S9+Plus',
+      image: '/images/tablet/Samsung Galaxy Tab S9+.jpg',
       storage: '256GB',
       memory: '12GB',
       price: 990
@@ -72,7 +72,7 @@
     {
       title: 'Samsung Galaxy Tab S9',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Galaxy+Tab+S9',
+      image: '/images/tablet/Samsung Galaxy Tab S9.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 790
@@ -80,7 +80,7 @@
     {
       title: 'Apple iPad Air 5th Gen',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+Air+5th+Gen',
+      image: '/images/tablet/Apple iPad Air 5th Gen.jpg',
       storage: '64GB',
       memory: '8GB',
       price: 690
@@ -88,7 +88,7 @@
     {
       title: 'Apple iPad 10th Gen',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+10th+Gen',
+      image: '/images/tablet/Apple iPad 10th Gen.jpg',
       storage: '64GB',
       memory: '4GB',
       price: 490
@@ -96,7 +96,7 @@
     {
       title: 'Apple iPad Mini 6th Gen',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+Mini+6th+Gen',
+      image: '/images/tablet/Apple iPad Mini 6th Gen.jpg',
       storage: '64GB',
       memory: '4GB',
       price: 590
@@ -104,7 +104,7 @@
     {
       title: 'Apple iPad 9th Gen',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+9th+Gen',
+      image: '/images/tablet/Apple iPad 9th Gen.jpg',
       storage: '64GB',
       memory: '3GB',
       price: 390
@@ -112,7 +112,7 @@
     {
       title: 'Apple iPad 8th Gen',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPad+8th+Gen',
+      image: '/images/tablet/Samsung Galaxy Tab S10+.jpg',
       storage: '32GB',
       memory: '3GB',
       price: 290
