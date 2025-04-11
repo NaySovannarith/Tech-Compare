@@ -1,7 +1,8 @@
 <script>
     let searchQuery = '';
     let compareItems = [searchQuery];
-    let isCompareSheet = false;
+    // let isCompareSheet = false;
+    let activeView = 'list'; // default view
 
 
     function handleSearch() {
@@ -12,21 +13,21 @@
       searchQuery = '';
     }
   }
-  /**
-   * @param {string} view
-   */
-  function toggleView(view) {
-    isCompareSheet = view === 'sheet'; // Set active view based on the clicked button
+
+  // @ts-ignore
+  function switchView(list) {
+    activeView = list;
   }
+
   </script>
-  
-  <div class="bg-[#00332e] mt-[150] min-h-screen text-white items-center justify-between shadow-md">
+
+
     <!-- Top Section -->
     <div class="p-6 max-w-6xl mx-auto">
       <!-- Title -->
-      <h1 class="text-2xl font-bold mb-4">Compare</h1>
+      <h1 class="text-2xl text-white font-bold mb-4">Compare</h1>
   
-      <!-- Search Bar -->
+      <!-- Search Bar --> 
       <div class="flex items-center mb-6">
         <div class="relative flex-grow">
           <span class="absolute left-4 top-1/2 -translate-y-1/2 text-black font-bold">+</span>
@@ -50,7 +51,7 @@
       <p class="mb-3 font-medium text-gray-300">Add to compare</p>
   
       <!-- Pills -->
-      <div class="flex flex-wrap gap-3">
+      <div class="flex text-white flex-wrap gap-3">
         {#each Array(15) as _, i}
           <div class="bg-[#1d4d43] px-4 py-2 rounded-full flex items-center space-x-2 cursor-pointer hover:bg-[#2b6659]">
             <span class="text-xl font-bold">+</span>
@@ -61,13 +62,25 @@
     </div>
   
     <!-- Bottom Section -->
-    <div class="bg-[#CDCACA] text-black px-6 py-10 mt-10 rounded-t-3xl">
-      <div class="max-w-6xl mx-auto">
+    <div class="w-full bg-[#CDCACA] text-[#00332e] py-10">
+      <div class="max-w-6xl mx-auto px-6 h-screen">
         <!-- Tabs -->
         <div class="flex justify-center mb-4">
-          <div class="bg-gray rounded-full inline-flex p-1 shadow-inner">
-            <button class="px-4 py-1 font-semibold rounded-full bg-black text-white">Compare List</button>
-            <button class="px-4 py-1 font-semibold rounded-full text-black">Compare Sheet</button>
+          <div class="bg-[#CDCACA] border-10 border-[#CDCACA] rounded-lg inline-flex p-0 shadow-2xl hover:bg-[#CDCACA] hover:text-white rounded-md px-4 py-2 transition">
+            <button
+            class={`px-4 py-1 font-semibold rounded-lg transition 
+                    ${activeView === 'list' ? 'bg-white text-[#00332e]' : 'text-[#00332e]'}`}
+            on:click={() => switchView('list')}
+          >
+            Compare List
+          </button>
+          <button
+          class={`px-4 py-1 font-semibold rounded-lg transition 
+                  ${activeView === 'sheet' ? 'bg-white text-[#00332e]' : 'text-black'}`}
+          on:click={() => switchView('sheet')}
+        >
+          Compare Sheet
+        </button>
           </div>
         </div>
   
@@ -78,25 +91,25 @@
         <!-- Comparison List -->
         <div class="space-y-6">
           {#each Array(5) as _, i}
-            <div class="bg-white rounded-lg shadow-md p-4 flex items-center justify-between">
+            <div class="bg-white rounded-lg text-[#00332e]shadow-md p-4 flex items-center justify-between">
               <!-- Left Phone -->
               <div class="flex items-center space-x-4">
                 <img src="https://via.placeholder.com/50" alt="Phone 1" />
                 <div>
                   <p class="font-bold">Phone 14 Pro</p>
-                  <p class="text-sm text-gray-500">Global . 8GB . 256GB</p>
+                  <p class="text-sm text-[#00332e]">Global . 8GB . 256GB</p>
                 </div>
               </div>
   
               <!-- VS -->
-              <div class="font-bold text-gray-700 text-xl">vs</div>
+              <div class="font-bold text-[#00332e] text-xl">vs</div>
   
               <!-- Right Phone -->
               <div class="flex items-center space-x-4">
                 <img src="https://via.placeholder.com/50" alt="Phone 2" />
                 <div>
                   <p class="font-bold">Google Pixel 7 Pro</p>
-                  <p class="text-sm text-gray-500">Global . 8GB . 256GB</p>
+                  <p class="text-sm text-[#00332e]">Global . 8GB . 256GB</p>
                 </div>
               </div>
             </div>
@@ -104,5 +117,3 @@
         </div>
       </div>
     </div>
-  </div>
-  

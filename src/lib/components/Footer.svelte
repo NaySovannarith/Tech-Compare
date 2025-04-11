@@ -1,4 +1,5 @@
-<footer class="bg-[#00332e] text-white px-8 py-10 rounded-t-3xl">
+<div class="bg-[#00332e]">
+<footer class=" w-full bg-[#00332e] text-white py-10 rounded-t-3xl">
     <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
       <!-- Brand -->
       <div>
@@ -70,4 +71,5 @@
       </p>
     </div>
   </footer>
+  </div>
   
