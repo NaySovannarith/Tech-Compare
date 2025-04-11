@@ -20,13 +20,10 @@
   }
 
   </script>
-<<<<<<< HEAD
+
   
-  <div class="bg-[#00332e] mt-[150px] min-h-screen text-white items-center justify-between shadow-md">
-=======
+  <div class="bg-[#00332e] mt-[150px] min-h-screen text-white items-center justify-between shadow-md"></div>
 
-
->>>>>>> phumin
     <!-- Top Section -->
     <div class="p-6 max-w-6xl mx-auto">
       <!-- Title -->
