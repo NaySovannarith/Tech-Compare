@@ -44,7 +44,7 @@
 	}
 </script>
 	
-    <div class="flex items-center justify-between mb-4 px-4">		
+    <div class=" mt-[100px] flex items-center justify-between mb-4 px-4">		
 		
        <button
 		on:click={goBack}
