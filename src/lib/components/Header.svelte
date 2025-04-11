@@ -13,7 +13,7 @@
   let brandRef: HTMLElement;
 
   const goToCompares = () => goto('/compares');
-  const goToLogin = () => goto('/login');
+  const goToProflies = () => goto('/profiles');
 
   const toggleProductDropdown = () => {
     showProductDropdown = !showProductDropdown;
@@ -91,7 +91,7 @@
       <Bell class="w-5 h-5" aria-label="Notifications" />
 
       <button
-        on:click={goToLogin}
+        on:click={goToProflies}
         class="flex items-center gap-2 border border-white rounded-full px-4 py-1 hover:bg-white hover:text-[#00332e] transition"
         aria-label="Login"
       >
@@ -168,6 +168,9 @@
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/iphone">iPhone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/samsung">Samsung</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/google">Google</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/huawei">huawei</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/vivo">Vivo</a></li>
+
             </ul>
           {/if}
         </div>
