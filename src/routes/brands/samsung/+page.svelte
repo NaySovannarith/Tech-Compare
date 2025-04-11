@@ -4,81 +4,145 @@
   let minPrice = 0;
   let maxPrice = 5000;
 
-  const iphoneProducts = [
+  const samsungProducts = [
     {
-      title: 'iPhone 16 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
+      title: 'Samsung Galaxy S24 Ultra',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Ultra',
+      storage: '256GB',
+      memory: '12GB',
+      price: 1190
+    },
+    {
+      title: 'Samsung Galaxy S24+',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Plus',
+      storage: '256GB',
+      memory: '8GB',
+      price: 990
+    },
+    {
+      title: 'Samsung Galaxy S24',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24',
       storage: '128GB',
       memory: '8GB',
       price: 790
     },
     {
-      title: 'iPhone 15 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
-      storage: '128GB',
-      memory: '6GB',
-      price: 690
+      title: 'Samsung Galaxy Z Fold 5',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Fold+5',
+      storage: '512GB',
+      memory: '12GB',
+      price: 1790
     },
     {
-      title: 'iPhone 12 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone12',
+      title: 'Samsung Galaxy Z Flip 5',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Flip+5',
+      storage: '256GB',
+      memory: '8GB',
+      price: 990
+    },
+    {
+      title: 'Samsung Galaxy A54',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A54',
       storage: '128GB',
       memory: '6GB',
-      price: 690
+      price: 490
     }
-      ,
-      {
-          title: 'iPhone 11 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
-          storage: '128GB',
-          memory: '4GB',
-          price: 590
-      },
-      {
-          title: 'iPhone SE series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
-          storage: '64GB',
-          memory: '3GB',
-          price: 490
-      },
-      {
-          title: 'iPhone 13 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
-          storage: '128GB',
-          memory: '6GB',
-          price: 690
-      },
-      {
-          title: 'iPhone 14 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
-          storage: '128GB',
-          memory: '6GB',
-          price: 790
-      }
-      ,
-      {
-          title: 'iPhone 14 Pro series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
-          storage: '128GB',
-          memory: '6GB',
-          price: 990
-      },
-      {
-          title: 'iPhone 14 Pro Max series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
-          storage: '128GB',
-          memory: '6GB',
-          price: 1090
-      }
+    ,
+    {
+      title: 'Samsung Galaxy A34',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A34',
+      storage: '128GB',
+      memory: '6GB',
+      price: 390
+    },
+    {
+      title: 'Samsung Galaxy M54',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M54',
+      storage: '128GB',
+      memory: '8GB',
+      price: 490
+    },
+    {
+      title: 'Samsung Galaxy M34',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M34',
+      storage: '128GB',
+      memory: '6GB',
+      price: 390
+    },
+    {
+      title: 'Samsung Galaxy F54',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F54',
+      storage: '128GB',
+      memory: '8GB',
+      price: 490
+    },
+    {
+      title: 'Samsung Galaxy F34',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F34',
+      storage: '128GB',
+      memory: '6GB',
+      price: 390
+    }
+    ,
+    {
+      title: 'Samsung Galaxy A14',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A14',
+      storage: '128GB',
+      memory: '4GB',
+      price: 290
+    },
+    {
+      title: 'Samsung Galaxy M14',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M14',
+      storage: '128GB',
+      memory: '4GB',
+      price: 290
+    },
+    {
+      title: 'Samsung Galaxy F14',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F14',
+      storage: '128GB',
+      memory: '4GB',
+      price: 290
+    },
+    {
+      title: 'Samsung Galaxy A04s',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A04s',
+      storage: '64GB',
+      memory: '4GB',
+      price: 190
+    },
+    {
+      title: 'Samsung Galaxy M04',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M04',
+      storage: '64GB',
+      memory: '4GB',
+      price: 190
+    },
+    {
+      title: 'Samsung Galaxy F04',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F04',
+      storage: '64GB',
+      memory: '4GB',
+      price: 190
+    }
       
   ];
 
@@ -101,7 +165,7 @@
 
   <!-- Products -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
-      {#each iphoneProducts as product}
+      {#each samsungProducts as product}
         <ProductCard
           title={product.title}
           brand={product.brand}
@@ -111,7 +175,7 @@
           price={product.price}
         />
       {/each}
-      {#each iphoneProducts as product}
+      {#each samsungProducts as product}
         <ProductCard
           title={product.title}
           brand={product.brand}

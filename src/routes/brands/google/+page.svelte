@@ -4,82 +4,71 @@
   let minPrice = 0;
   let maxPrice = 5000;
 
-  const iphoneProducts = [
+  const googleProducts = [
     {
-      title: 'iPhone 16 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
+      title: 'google Pixel 8 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+8',
       storage: '128GB',
       memory: '8GB',
       price: 790
     },
     {
-      title: 'iPhone 15 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
+      title: 'google Pixel 7 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+7',
       storage: '128GB',
-      memory: '6GB',
+      memory: '8GB',
       price: 690
     },
     {
-      title: 'iPhone 12 series',
-      brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone12',
+      title: 'google Pixel 6 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+6',
       storage: '128GB',
-      memory: '6GB',
-      price: 690
+      memory: '8GB',
+      price: 590
+    },
+    {
+      title: 'google Pixel 5 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+5',
+      storage: '128GB',
+      memory: '8GB',
+      price: 490
+    },
+    {
+      title: 'google Pixel 4 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+4',
+      storage: '128GB',
+      memory: '8GB',
+      price: 390
+    },
+    {
+      title: 'google Pixel 3 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+3',
+      storage: '128GB',
+      memory: '8GB',
+      price: 290
+    },
+    {
+      title: 'google Pixel 2 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+2',
+      storage: '128GB',
+      memory: '8GB',
+      price: 190
+    },
+    {
+      title: 'google Pixel 1 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+1',
+      storage: '128GB',
+      memory: '8GB',
+      price: 90
     }
-      ,
-      {
-          title: 'iPhone 11 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
-          storage: '128GB',
-          memory: '4GB',
-          price: 590
-      },
-      {
-          title: 'iPhone SE series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
-          storage: '64GB',
-          memory: '3GB',
-          price: 490
-      },
-      {
-          title: 'iPhone 13 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
-          storage: '128GB',
-          memory: '6GB',
-          price: 690
-      },
-      {
-          title: 'iPhone 14 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
-          storage: '128GB',
-          memory: '6GB',
-          price: 790
-      }
-      ,
-      {
-          title: 'iPhone 14 Pro series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
-          storage: '128GB',
-          memory: '6GB',
-          price: 990
-      },
-      {
-          title: 'iPhone 14 Pro Max series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
-          storage: '128GB',
-          memory: '6GB',
-          price: 1090
-      }
-      
   ];
 
 </script>
@@ -101,7 +90,7 @@
 
   <!-- Products -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
-      {#each iphoneProducts as product}
+      {#each googleProducts as product}
         <ProductCard
           title={product.title}
           brand={product.brand}
@@ -111,7 +100,7 @@
           price={product.price}
         />
       {/each}
-      {#each iphoneProducts as product}
+      {#each googleProducts as product}
         <ProductCard
           title={product.title}
           brand={product.brand}
