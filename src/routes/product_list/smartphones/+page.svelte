@@ -14,6 +14,79 @@
       price: 790
     },
     {
+      title: 'Samsung Galaxy M14',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M14',
+      storage: '128GB',
+      memory: '4GB',
+      price: 290
+    },
+    {
+      title: 'Samsung Galaxy S24 Ultra',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Ultra',
+      storage: '256GB',
+      memory: '12GB',
+      price: 1190
+    },
+    {
+      title: 'Samsung Galaxy S24+',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Plus',
+      storage: '256GB',
+      memory: '8GB',
+      price: 990
+    },
+    {
+      title: 'Samsung Galaxy S24',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24',
+      storage: '128GB',
+      memory: '8GB',
+      price: 790
+    },
+    {
+      title: 'Samsung Galaxy Z Fold 5',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Fold+5',
+      storage: '512GB',
+      memory: '12GB',
+      price: 1790
+    },
+    {
+      title: 'Samsung Galaxy Z Flip 5',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Flip+5',
+      storage: '256GB',
+      memory: '8GB',
+      price: 990
+    },
+    {
+      title: 'Samsung Galaxy A54',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A54',
+      storage: '128GB',
+      memory: '6GB',
+      price: 490
+    },
+    {
+      title: 'Samsung Galaxy A34',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A34',
+      storage: '128GB',
+      memory: '6GB',
+      price: 390
+    },
+    {
+      title: 'Samsung Galaxy A14',
+      brand: 'Samsung',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A14',
+      storage: '128GB',
+      memory: '4GB',
+      price: 290
+    },
+
+    {
       title: 'iPhone 15 series',
       brand: 'Apple',
       image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
@@ -63,6 +136,32 @@
           price: 790
       }
       ,
+      {
+            title: 'vivo Y100 Pro',
+            brand: 'Vivo',
+            image: 'https://dummyimage.com/150x200/ccc/000&text=Y100+Pro',
+            storage: '128GB',
+            memory: '8GB',
+            price: 290
+        },
+        
+      {
+      title: 'google Pixel 3 series',
+      brand: 'Google',
+      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+3',
+      storage: '128GB',
+      memory: '8GB',
+      price: 290
+    },
+
+      {
+          title: 'iPhone 14 Plus series',
+          brand: 'Apple',
+          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Plus',
+          storage: '128GB',
+          memory: '6GB',
+          price: 890
+      },
       {
           title: 'iPhone 14 Pro series',
           brand: 'Apple',
