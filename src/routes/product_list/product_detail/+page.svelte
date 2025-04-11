@@ -30,61 +30,12 @@
         price: 690
       }
         ,
-        {
-            title: 'iPhone 11 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
-            storage: '128GB',
-            memory: '4GB',
-            price: 590
-        },
-        {
-            title: 'iPhone SE series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
-            storage: '64GB',
-            memory: '3GB',
-            price: 490
-        },
-        {
-            title: 'iPhone 13 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
-            storage: '128GB',
-            memory: '6GB',
-            price: 690
-        },
-        {
-            title: 'iPhone 14 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
-            storage: '128GB',
-            memory: '6GB',
-            price: 790
-        }
-        ,
-        {
-            title: 'iPhone 14 Pro series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
-            storage: '128GB',
-            memory: '6GB',
-            price: 990
-        },
-        {
-            title: 'iPhone 14 Pro Max series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
-            storage: '128GB',
-            memory: '6GB',
-            price: 1090
-        }
         
     ];
 
   </script>
   
-  <div class="mt-[80px] px-6 py-4 space-y-6">
+  <div class="px-6 py-4 space-y-6">
     <!-- Price Range -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-lg font-semibold mb-2">Price range</h2>

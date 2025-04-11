@@ -1,4 +1,6 @@
 <script>
+  import { goto } from '$app/navigation';
+  import { Heart } from 'lucide-svelte';
   export let title;
   export let brand;
   export let image;
@@ -26,11 +28,26 @@
       </div>
     </div>
 
-    <button
-      class="mt-4 self-start px-5 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] flex items-center gap-2 transition"
+    <!-- More Detail Button + Heart -->
+    <div class="flex items-center justify-between mt-4">
+      <a
+  href={`/product_list/product_detail`}
+  class="mt-4 self-start px-5 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] flex items-center gap-2 transition"
+>
+  More Detail
+  <span>→</span>
+</a>
+
+      <!-- Heart Icon -->
+      <button
+      type="button"
+      on:click={() => goto('/wishlists')}
+      class="w-5 h-5 cursor-pointer hover:text-red-500 transition"
+      aria-label="Wishlists"
     >
-      More Detail
-      <span>→</span>
+      <Heart class="w-full h-full" />
     </button>
+    
+    </div>
   </div>
 </div>
