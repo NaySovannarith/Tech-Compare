@@ -8,7 +8,7 @@
     {
       title: 'Samsung Galaxy S24 Ultra',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Ultra',
+      image: '/samsung/Samsung Galaxy S24 Ultra.jpg',
       storage: '256GB',
       memory: '12GB',
       price: 1190
@@ -16,7 +16,7 @@
     {
       title: 'Samsung Galaxy S24+',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24+Plus',
+      image: '/samsung/Samsung Galaxy S24+.jpg',
       storage: '256GB',
       memory: '8GB',
       price: 990
@@ -24,7 +24,7 @@
     {
       title: 'Samsung Galaxy S24',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+S24',
+      image: '/samsung/Samsung Galaxy S24.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 790
@@ -32,7 +32,7 @@
     {
       title: 'Samsung Galaxy Z Fold 5',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Fold+5',
+      image: '/samsung/Samsung Galaxy Z Fold 5.jpg',
       storage: '512GB',
       memory: '12GB',
       price: 1790
@@ -40,7 +40,7 @@
     {
       title: 'Samsung Galaxy Z Flip 5',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+Z+Flip+5',
+      image: '/samsung/Samsung Galaxy Z Flip 5.jpg',
       storage: '256GB',
       memory: '8GB',
       price: 990
@@ -48,7 +48,7 @@
     {
       title: 'Samsung Galaxy A54',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A54',
+      image: '/samsung/Samsung Galaxy A54.jpg',
       storage: '128GB',
       memory: '6GB',
       price: 490
@@ -57,7 +57,7 @@
     {
       title: 'Samsung Galaxy A34',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A34',
+      image: '/samsung/Samsung Galaxy A34.jpg',
       storage: '128GB',
       memory: '6GB',
       price: 390
@@ -65,7 +65,7 @@
     {
       title: 'Samsung Galaxy M54',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M54',
+      image: '/samsung/Samsung Galaxy M54.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 490
@@ -73,7 +73,7 @@
     {
       title: 'Samsung Galaxy M34',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M34',
+      image: '/samsung/Samsung Galaxy M34.jpg',
       storage: '128GB',
       memory: '6GB',
       price: 390
@@ -81,7 +81,7 @@
     {
       title: 'Samsung Galaxy F54',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F54',
+      image: '/samsung/Samsung Galaxy F54.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 490
@@ -89,7 +89,7 @@
     {
       title: 'Samsung Galaxy F34',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F34',
+      image: '/samsung/Samsung Galaxy F34.jpg',
       storage: '128GB',
       memory: '6GB',
       price: 390
@@ -98,7 +98,7 @@
     {
       title: 'Samsung Galaxy A14',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A14',
+      image: '/samsung/Samsung Galaxy A14.jpg',
       storage: '128GB',
       memory: '4GB',
       price: 290
@@ -106,7 +106,7 @@
     {
       title: 'Samsung Galaxy M14',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M14',
+      image: '/samsung/Samsung Galaxy M14.jpg',
       storage: '128GB',
       memory: '4GB',
       price: 290
@@ -114,7 +114,7 @@
     {
       title: 'Samsung Galaxy F14',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F14',
+      image: '/samsung/Samsung Galaxy F14.jpg',
       storage: '128GB',
       memory: '4GB',
       price: 290
@@ -122,7 +122,7 @@
     {
       title: 'Samsung Galaxy A04s',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+A04s',
+      image: '/samsung/Samsung Galaxy A04s.jpg',
       storage: '64GB',
       memory: '4GB',
       price: 190
@@ -130,7 +130,7 @@
     {
       title: 'Samsung Galaxy M04',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+M04',
+      image: '/samsung/Samsung Galaxy M04.jpg',
       storage: '64GB',
       memory: '4GB',
       price: 190
@@ -138,7 +138,7 @@
     {
       title: 'Samsung Galaxy F04',
       brand: 'Samsung',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Samsung+F04',
+      image: '/samsung/Samsung Galaxy F04.jpg',
       storage: '64GB',
       memory: '4GB',
       price: 190

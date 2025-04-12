@@ -8,11 +8,11 @@
 
   <Header />
   
-  <main class="min-h-screen p-4 bg-[#00332e]">
+  <main class="min-h-screen p-4 bg-grey-50">
 
     <slot />
     
-    
+  
   </main>
   
   <Footer />

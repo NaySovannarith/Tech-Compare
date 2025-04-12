@@ -8,7 +8,7 @@
       {
         title: 'iPhone 16 series',
         brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
+        image: '/iphones/iPhone 16.jpg',
         storage: '128GB',
         memory: '8GB',
         price: 790
@@ -16,7 +16,7 @@
       {
         title: 'iPhone 15 series',
         brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
+        image: '/iphones/iphone 15.jpg',
         storage: '128GB',
         memory: '6GB',
         price: 690
@@ -24,7 +24,7 @@
       {
         title: 'iPhone 12 series',
         brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone12',
+        image: '/iphones/iphone 12.jpg',
         storage: '128GB',
         memory: '6GB',
         price: 690
@@ -33,7 +33,7 @@
         {
             title: 'iPhone 11 series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
+            image: '/iphones/iPhone 11.jpg',
             storage: '128GB',
             memory: '4GB',
             price: 590
@@ -41,7 +41,7 @@
         {
             title: 'iPhone SE series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
+            image: '/iphones/iPhone SE.jpg',
             storage: '64GB',
             memory: '3GB',
             price: 490
@@ -49,7 +49,7 @@
         {
             title: 'iPhone 13 series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
+            image: '/iphones/iPhone 13.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 690
@@ -57,7 +57,7 @@
         {
             title: 'iPhone 14 series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
+            image: '/iphones/iPhone 14.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 790
@@ -66,7 +66,7 @@
         {
             title: 'iPhone 14 Pro series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
+            image: '/iphones/iPhone 14 Pro.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 990
@@ -74,7 +74,7 @@
         {
             title: 'iPhone 14 Pro Max series',
             brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
+            image: '/iphones/iPhone 14 Pro Max.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 1090

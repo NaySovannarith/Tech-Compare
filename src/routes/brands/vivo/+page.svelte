@@ -8,7 +8,7 @@
       {
         title: 'vivo X90 Pro',
         brand: 'Vivo',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=X90+Pro',
+        image: '/vivo/vivo X90 Pro.jpg',
         storage: '256GB',
         memory: '12GB',
         price: 990
@@ -16,7 +16,7 @@
         {
             title: 'vivo X90',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=X90',
+            image: '/vivo/vivo X90.jpg',
             storage: '256GB',
             memory: '8GB',
             price: 790
@@ -24,7 +24,7 @@
         {
             title: 'vivo V27 Pro',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=V27+Pro',
+            image: '/vivo/vivo V27 Pro.jpg',
             storage: '256GB',
             memory: '8GB',
             price: 690
@@ -32,7 +32,7 @@
         {
             title: 'vivo V27',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=V27',
+            image: '/vivo/vivo V27.jpg',
             storage: '128GB',
             memory: '8GB',
             price: 590
@@ -40,7 +40,7 @@
         {
             title: 'vivo V25 Pro',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=V25+Pro',
+            image: '/vivo/vivo V25 Pro.jpg',
             storage: '256GB',
             memory: '8GB',
             price: 490
@@ -48,7 +48,7 @@
         {
             title: 'vivo V25',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=V25',
+            image: '/vivo/vivo V25.jpg',
             storage: '128GB',
             memory: '8GB',
             price: 390
@@ -56,7 +56,7 @@
         {
             title: 'vivo Y100 Pro',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y100+Pro',
+            image: '/vivo/vivo Y100 Pro.jpg',
             storage: '128GB',
             memory: '8GB',
             price: 290
@@ -64,7 +64,7 @@
         {
             title: 'vivo Y100',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y100',
+            image: '/vivo/vivo Y100.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 290
@@ -72,7 +72,7 @@
         {
             title: 'vivo Y200',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y200',
+            image: '/vivo/vivo Y200.jpg',
             storage: '128GB',
             memory: '8GB',
             price: 290
@@ -80,7 +80,7 @@
         {
             title: 'vivo Y100e',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y100e',
+            image: '/vivo/vivo Y100e.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 290
@@ -89,7 +89,7 @@
         {
             title: 'vivo Y200e',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y200e',
+            image: '/vivo/vivo Y200e.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 290
@@ -97,7 +97,7 @@
         {
             title: 'vivo Y100i',
             brand: 'Vivo',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=Y100i',
+            image: '/vivo/vivo Y100i.jpg',
             storage: '128GB',
             memory: '6GB',
             price: 290

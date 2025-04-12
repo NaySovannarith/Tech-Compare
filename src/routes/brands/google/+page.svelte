@@ -8,7 +8,7 @@
     {
       title: 'google Pixel 8 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+8',
+      image: '/google/google Pixel 8.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 790
@@ -16,7 +16,7 @@
     {
       title: 'google Pixel 7 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+7',
+      image: '/google/google Pixel 7.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 690
@@ -24,7 +24,7 @@
     {
       title: 'google Pixel 6 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+6',
+      image: '/google/google Pixel 6.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 590
@@ -32,7 +32,7 @@
     {
       title: 'google Pixel 5 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+5',
+      image: '/google/google Pixel 5.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 490
@@ -40,7 +40,7 @@
     {
       title: 'google Pixel 4 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+4',
+      image: '/google/google Pixel 4.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 390
@@ -48,7 +48,7 @@
     {
       title: 'google Pixel 3 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+3',
+      image: '/google/google Pixel 3.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 290
@@ -56,7 +56,7 @@
     {
       title: 'google Pixel 2 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+2',
+      image: '/google/google Pixel 2.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 190
@@ -64,7 +64,7 @@
     {
       title: 'google Pixel 1 series',
       brand: 'Google',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=Pixel+1',
+      image: '/google/google Pixel 1.jpg',
       storage: '128GB',
       memory: '8GB',
       price: 90

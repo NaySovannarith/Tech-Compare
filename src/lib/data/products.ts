@@ -1,5 +1,6 @@
 export const products = [
   {
+    
     title: 'iPhone 13 Series',
     brand: 'Apple',
     image: '/images/iphone13.jpg',
@@ -8,6 +9,7 @@ export const products = [
     price: 380
   },
   {
+    
     title: 'iPhone 13 Series',
     brand: 'Apple',
     image: '/images/iphone13.jpg',
@@ -16,6 +18,7 @@ export const products = [
     price: 380
   },
   {
+    
     title: 'iPhone 13 Series',
     brand: 'Apple',
     image: '/images/iphone13.jpg',
@@ -24,6 +27,7 @@ export const products = [
     price: 380
   },
   {
+    
     title: 'iPhone 13 Series',
     brand: 'Apple',
     image: '/images/iphone13.jpg',

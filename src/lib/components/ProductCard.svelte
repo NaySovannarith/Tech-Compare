@@ -1,12 +1,42 @@
 <script>
+// @ts-nocheck
+
   import { goto } from '$app/navigation';
-  import { Heart } from 'lucide-svelte';
+  import { addToWishlist, wishlist } from '$lib/wishlist/wishlist';
+  import { Heart, HeartOff } from 'lucide-svelte';
+  import { get } from 'svelte/store';
+
   export let title;
   export let brand;
   export let image;
   export let storage;
   export let memory;
   export let price;
+
+  const id = `${title}-${storage}-${memory}`; // or pass `id` directly from ProductGrid
+
+  const product = {
+    id,
+    title,
+    brand,
+    image,
+    storage,
+    memory,
+    price,
+    thumbnail: image,
+    description: `${storage} Storage / ${memory} RAM`,
+  };
+
+  // Reactive: check if product is already in wishlist
+  $: isWishlisted = $wishlist.some(item => item.id === id);
+
+  function toggleWishlist() {
+    if (!isWishlisted) {
+      addToWishlist(product);
+    } else {
+      wishlist.update(items => items.filter(item => item.id !== id));
+    }
+  }
 </script>
 
 <div class="flex bg-[#f5f5f5] rounded-2xl shadow-lg overflow-hidden w-full h-64">
@@ -30,22 +60,27 @@
 
     <!-- More Detail Button + Heart -->
     <div class="flex items-center justify-between mt-4">
-      <a
-  href={`/product_list/product_detail`}
+
+      <a href="/product_list/product_detail"
   class="mt-4 self-start px-5 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] flex items-center gap-2 transition"
 >
   More Detail
   <span>→</span>
 </a>
 
+
       <!-- Heart Icon -->
       <button
       type="button"
-      on:click={() => goto('/wishlists')}
-      class="w-5 h-5 cursor-pointer hover:text-red-500 transition"
+      on:click={toggleWishlist}
+      class="w-5 h-5 cursor-pointer transition"
       aria-label="Wishlists"
     >
-      <Heart class="w-full h-full" />
+      {#if isWishlisted}
+        <Heart class="w-full h-full text-red-500" />
+      {:else}
+        <Heart class="w-full h-full text-gray-400 hover:text-red-500" />
+      {/if}
     </button>
     
     </div>
