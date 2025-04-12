@@ -121,7 +121,7 @@
           {#if showProductDropdown}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablets">Tablet</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablet">Tablet</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Computer</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">Tv</a></li>
             </ul>
