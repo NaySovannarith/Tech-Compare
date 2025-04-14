@@ -1,5 +1,5 @@
 <script>
-  import { brands } from '$lib/data/brands';
+  import { brands } from '$lib/data/logo';
 </script>
 
 <div class="bg-white rounded-t-2xl p-6 flex flex-wrap justify-center gap-x-10 gap-y-6 shadow">
