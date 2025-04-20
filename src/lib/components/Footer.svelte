@@ -1,10 +1,41 @@
+<script>
+  import { Facebook, Twitter, Instagram, Linkedin, } from 'lucide-svelte';
+</script>
+
 <footer class="bg-[#00332e] text-white px-8 py-10 rounded-t-3xl">
     <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-      <!-- Brand -->
-      <div>
-        <h2 class="text-2xl font-bold mb-2">DUUUU</h2>
-        <p class="mb-4">FOLLOW US</p>
-      </div>
+   <!-- Brand -->
+<div class="text-center">
+  <h2 class="text-2xl font-bold mb-2">DUUUU</h2>
+  <p class="mb-4">FOLLOW US</p>
+  
+  <!-- Centered Icons -->
+  <div class="flex justify-center gap-4">
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <Facebook class="w-5 h-5 hover:text-blue-400 transition" />
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+      <Twitter class="w-5 h-5 hover:text-sky-400 transition" />
+    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+      <Instagram class="w-5 h-5 hover:text-pink-400 transition" />
+    </a>
+    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+      <Linkedin class="w-5 h-5 hover:text-blue-500 transition" />
+    </a>
+    <a href="https://t.me/yourchannel" target="_blank" aria-label="Telegram">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 fill-current text-gray-300 hover:text-blue-400 transition"
+        viewBox="0 0 24 24"
+      >
+        <path d="M9.975 15.525 9.6 19.2c.525 0 .75-.225 1.05-.525l2.55-2.475 5.325 3.9c.975.525 1.65.225 1.875-.9l3.375-15.6h.001c.3-1.35-.45-1.875-1.425-1.5L1.65 9.675c-1.35.525-1.35 1.275-.225 1.575l4.125 1.275L18.15 5.55c.6-.375 1.2-.15.75.225L9.975 15.525Z"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
   
       <!-- Categories -->
       <div>

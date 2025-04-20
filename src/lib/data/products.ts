@@ -10,29 +10,29 @@ export const products = [
   },
   {
     
-    title: 'iPhone 13 Series',
+    title: 'iPhone 16 Series',
     brand: 'Apple',
-    image: '/images/iphone13.jpg',
-    storage: '128GB',
+    image: '/iphones/iPhone 16.jpg',
+    storage: '256GB',
     memory: '8GB',
-    price: 380
+    price: 720
   },
   {
     
-    title: 'iPhone 13 Series',
+    title: 'iPhone 14 Series',
     brand: 'Apple',
-    image: '/images/iphone13.jpg',
+    image: '/iphones/iPhone 14.jpg',
     storage: '128GB',
     memory: '8GB',
-    price: 380
+    price: 480
   },
   {
     
-    title: 'iPhone 13 Series',
+    title: 'iPhone 15 Series',
     brand: 'Apple',
-    image: '/images/iphone13.jpg',
+    image: '/iphones/iphone 15.jpg',
     storage: '128GB',
     memory: '8GB',
-    price: 380
+    price: 560
   }
 ];

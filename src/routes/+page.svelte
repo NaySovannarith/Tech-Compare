@@ -5,18 +5,26 @@
 </script>
 
 <!-- Horizontally scrollable image section -->
-<div class="w-full overflow-x-auto hide-scrollbar mt-[80px]"> <!-- Add margin-top to push the images down -->
-  <div class="flex px-4 py-6 relative w-max">
-    <!-- Left hidden image -->
-    <img src="/images/11.png" alt="Phone 1" class="h-[400px] w-[1000px] object-cover flex-shrink-0 transform -translate-x-[25%]" />
-    
-    <!-- Center image (middle image stays visible) -->
-    <img src="/images/side.jpg" alt="Phone 2" class="h-[400px] w-[1000px] object-cover flex-shrink-0" />
-    
-    <!-- Right hidden image -->
-    <img src="/images/16.png" alt="Phone 3" class="h-[400px] w-[1000px] object-cover flex-shrink-0 transform translate-x-[25%]" />
+<div class="w-full overflow-x-auto hide-scrollbar mt-[80px]">
+  <div class="flex gap-4 px-4 py-6 w-max">
+    <img
+      src="/images/computer.jpg"
+      alt="Phone 1"
+      class="h-[400px] w-auto object-cover flex-shrink-0"
+    />
+    <img
+      src="/images/side.jpg"
+      alt="Phone 2"
+      class="h-[400px] w-auto object-cover flex-shrink-0"
+    />
+    <img
+      src="/images/vs.jpg"
+      alt="Phone 3"
+      class="h-[400px] w-auto object-cover flex-shrink-0"
+    />
   </div>
 </div>
+
 
 <!-- Product Grid -->
 <div class="min-h-screen bg-[#e3eadd] p-6">
