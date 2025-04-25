@@ -1,27 +1,13 @@
 <script lang="ts">
     import ProductCard from '$lib/components/CameraCard.svelte';
     import { Battery } from 'lucide-svelte';
+    import CameraCard from '$lib/components/CameraCard.svelte';
   
     let minPrice = 0;
     let maxPrice = 5000;
   
     const camerasAccessories = [
-      {
-        title: 'iPhone 16 series',
-        brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
-        storage: '128GB',
-        memory: '8GB',
-        price: 790
-      },
-      {
-        title: 'iPhone 15 series',
-        brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
-        storage: '128GB',
-        memory: '6GB',
-        price: 690
-      },
+
 
       {
         title: 'Nikon Z400 series',
@@ -135,7 +121,7 @@
     <!-- Products -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
         {#each camerasAccessories as product}
-          <ProductCard
+          <CameraCard
             title={product.title}
             brand={product.brand}
             image={product.image}
@@ -145,7 +131,7 @@
           />
         {/each}
         {#each camerasAccessories as product}
-          <ProductCard
+          <CameraCard
           title={product.title}
           brand={product.brand}
           image={product.image}

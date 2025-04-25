@@ -2,6 +2,7 @@
     import ProductCard from '$lib/components/EarbudsCard.svelte';
     import { Battery, Bluetooth } from 'lucide-svelte';
 
+
     let minPrice = 0;
     let maxPrice = 5000;
   
