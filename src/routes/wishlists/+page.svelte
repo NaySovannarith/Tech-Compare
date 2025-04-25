@@ -50,7 +50,7 @@
 			</div>
 
 			<div class="w-1/4 flex flex-col items-center justify-center text-center">
-				<p class="text-sm text-gray-500 line-through">${(product.price + 10).toFixed(2)}</p>
+				<!-- <p class="text-sm text-gray-500 line-through">${(product.price + 10).toFixed(2)}</p> -->
 				<p class="text-green-600 font-bold text-lg">${product.price.toFixed(2)}</p>
 			  </div>
 			
@@ -59,7 +59,15 @@
 			<div class="w-1/4 flex flex-col items-end justify-center text-right gap-1">
 				<p class="text-green-600 text-sm">In Stock</p>
 				<p class="text-xs text-gray-500">Added on: May 16, 2022</p>
-				<button class="text-sm text-blue-600 hover:underline">Add to cart</button>
+				<button
+				class="text-sm text-blue-600 hover:underline"
+				on:click={() => goto(`/reviews/${encodeURIComponent(product.title)}`)}
+			  >
+				Leave a Review
+			  </button>
+			  
+				  
+				  
 				<br />
 				
 					<button
