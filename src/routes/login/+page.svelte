@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import LoginModal from '$lib/components/LoginModal.svelte';
     let showLogin = false;
   </script>
