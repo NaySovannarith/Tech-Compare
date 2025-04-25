@@ -8,7 +8,7 @@
       {
         title: 'iPhone 16 series',
         brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
+        image: '/camera/Nikon Z800.jpg',
         storage: '128GB',
         memory: '8GB',
         price: 790
@@ -16,7 +16,7 @@
       {
         title: 'iPhone 15 series',
         brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
+        image: '/camera/Sony α7S III.jpg',
         storage: '128GB',
         memory: '6GB',
         price: 690
