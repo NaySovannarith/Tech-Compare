@@ -17,3 +17,4 @@ export const brands = [
   { name: 'Acer', logo: '/images/acer.jpg' },
   { name: 'Dell', logo: '/images/dell.png' },
 ];
+ 
