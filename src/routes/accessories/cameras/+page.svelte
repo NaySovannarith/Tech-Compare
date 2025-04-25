@@ -1,14 +1,15 @@
 <script lang="ts">
-    import ProductCard from '$lib/components/ProductCard.svelte';
+    import ProductCard from '$lib/components/CameraCard.svelte';
+    import { Battery } from 'lucide-svelte';
   
     let minPrice = 0;
     let maxPrice = 5000;
   
-    const iphoneProducts = [
+    const camerasAccessories = [
       {
         title: 'iPhone 16 series',
         brand: 'Apple',
-        image: '/camera/Nikon Z800.jpg',
+        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
         storage: '128GB',
         memory: '8GB',
         price: 790
@@ -16,70 +17,102 @@
       {
         title: 'iPhone 15 series',
         brand: 'Apple',
-        image: '/camera/Sony α7S III.jpg',
+        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
         storage: '128GB',
         memory: '6GB',
         price: 690
       },
+
       {
-        title: 'iPhone 12 series',
-        brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone12',
-        storage: '128GB',
-        memory: '6GB',
+        title: 'Nikon Z400 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '1200mAh',
+        price: 590
+      },
+      {
+        title: 'Nikon Z200 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '1000mAh',
+        price: 490
+      },
+      {
+        title: 'Nikon Z100 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '800mAh',
+        price: 390
+      },
+      {
+        title: 'Nikon Z50 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '600mAh',
+        price: 290
+      },
+
+      {
+        title: 'Nikon Z600 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '1500mAh',
         price: 690
-      }
-        ,
-        {
-            title: 'iPhone 11 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
-            storage: '128GB',
-            memory: '4GB',
-            price: 590
-        },
-        {
-            title: 'iPhone SE series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
-            storage: '64GB',
-            memory: '3GB',
-            price: 490
-        },
-        {
-            title: 'iPhone 13 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
-            storage: '128GB',
-            memory: '6GB',
-            price: 690
-        },
-        {
-            title: 'iPhone 14 series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
-            storage: '128GB',
-            memory: '6GB',
-            price: 790
-        }
-        ,
-        {
-            title: 'iPhone 14 Pro series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
-            storage: '128GB',
-            memory: '6GB',
-            price: 990
-        },
-        {
-            title: 'iPhone 14 Pro Max series',
-            brand: 'Apple',
-            image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
-            storage: '128GB',
-            memory: '6GB',
-            price: 1090
-        }
-        
+      },
+      {
+        title: 'Nikon Z400 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '1200mAh',
+        price: 590
+      },
+      {
+        title: 'Nikon Z200 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '1000mAh',
+        price: 490
+      },
+      {
+        title: 'Nikon Z100 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '800mAh',
+        price: 390
+      },
+      {
+        title: 'Nikon Z50 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '600mAh',
+        price: 290
+      },
+      {
+        title: 'Nikon Z30 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '500mAh',
+        price: 190
+      },
+      {
+        title: 'Nikon Z10 series',
+        brand: 'Nikon',
+        image: '/camera/',
+        resulution: '4K',
+        battery: '400mAh',
+        price: 90
+      },
+  
     ];
 
   </script>
@@ -101,24 +134,24 @@
   
     <!-- Products -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
-        {#each iphoneProducts as product}
+        {#each camerasAccessories as product}
           <ProductCard
             title={product.title}
             brand={product.brand}
             image={product.image}
-            storage={product.storage}
-            memory={product.memory}
+            resulution={product.resulution}
+            battery={product.battery}
             price={product.price}
           />
         {/each}
-        {#each iphoneProducts as product}
+        {#each camerasAccessories as product}
           <ProductCard
-            title={product.title}
-            brand={product.brand}
-            image={product.image}
-            storage={product.storage}
-            memory={product.memory}
-            price={product.price}
+          title={product.title}
+          brand={product.brand}
+          image={product.image}
+          resulution={product.resulution}
+          battery={product.battery}
+          price={product.price}
           />
         {/each}
       </div>
