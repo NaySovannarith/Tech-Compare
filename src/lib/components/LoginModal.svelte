@@ -1,4 +1,7 @@
 <script>
+    import { goto } from "$app/navigation";
+
+  
   let email = "";
   let password = "";
   let showPassword = false;
