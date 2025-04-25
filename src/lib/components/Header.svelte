@@ -13,7 +13,7 @@
   let brandRef: HTMLElement;
 
   const goToCompares = () => goto('/compares');
-  const goToProflies = () => goto('/profiles');
+  const goToProflies = () => goto('/login');
 
   const toggleProductDropdown = () => {
     showProductDropdown = !showProductDropdown;
