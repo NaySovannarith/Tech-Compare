@@ -7,67 +7,19 @@
   
     const camerasAccessories = [
       {
-        title: 'Nikon Z800 series',
-        brand: 'Nikon',
-        image: '/camera/',
-        resulution: '8K',
-        battery: '2000mAh',
-        price: 890
+        title: 'iPhone 16 series',
+        brand: 'Apple',
+        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
+        storage: '128GB',
+        memory: '8GB',
+        price: 790
       },
       {
-        title: 'Sony α7S III',
-        brand: 'Sony',
-        image: '/camera/',
-        resulution: '4K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Sony α7R IV',
-        brand: 'Sony',
-        image: '/camera/',
-        resulution: '4K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Canon EOS R5',
-        brand: 'Canon',
-        image: '/camera/',
-        resulution: '8K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Canon EOS R6',
-        brand: 'Canon',
-        image: '/camera/',
-        resulution: '4K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Nikon Z9 series',
-        brand: 'Nikon',
-        image: '/camera/',
-        resulution: '8K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Nikon Z7 series',
-        brand: 'Nikon',
-        image: '/camera/',
-        resulution: '4K',
-        battery: '2000mAh',
-        price: 890
-      },
-      {
-        title: 'Nikon Z600 series',
-        brand: 'Nikon',
-        image: '/camera/',
-        resulution: '4K',
-        battery: '1500mAh',
+        title: 'iPhone 15 series',
+        brand: 'Apple',
+        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
+        storage: '128GB',
+        memory: '6GB',
         price: 690
       },
 
