@@ -6,7 +6,7 @@ export const brands = [
   { name: 'Huawei', logo: '/images/huawei.jpg' },
   { name: 'Google', logo: '/images/google.jpg' },
   { name: 'Asus', logo: '/images/asus.jpg' },
-  { name: 'Nokia', logo: '/images/nokia.jpg' },
+  { name: 'Nokia', logo: '/images/nokia.png' },
   { name: 'Xiaomi', logo: '/images/xiaomi.jpg' },
   { name: 'Tecno', logo: '/images/techno.jpg' },
   { name: 'Sony', logo: '/images/sony.png' },
@@ -17,3 +17,4 @@ export const brands = [
   { name: 'Acer', logo: '/images/acer.jpg' },
   { name: 'Dell', logo: '/images/dell.png' },
 ];
+ 
