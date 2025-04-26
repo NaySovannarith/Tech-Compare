@@ -11,19 +11,19 @@
   
   <!-- Centered Icons -->
   <div class="flex justify-center gap-4">
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+    <a href="https://www.facebook.com/share/1BWTh5H4SM/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
       <Facebook class="w-5 h-5 hover:text-blue-400 transition" />
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
       <Twitter class="w-5 h-5 hover:text-sky-400 transition" />
     </a>
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+    <a href="https://www.instagram.com/_saturo24_?igsh=MTRocjg1MWNlaGgybg==" target="_blank" aria-label="Instagram">
       <Instagram class="w-5 h-5 hover:text-pink-400 transition" />
     </a>
-    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+    <a href="https://www.threads.net/@_saturo24_?igshid=NTc4MTIwNjQ2YQ==" target="_blank" aria-label="LinkedIn">
       <Linkedin class="w-5 h-5 hover:text-blue-500 transition" />
     </a>
-    <a href="https://t.me/yourchannel" target="_blank" aria-label="Telegram">
+    <a href="https://t.me/Ismeelyn" target="_blank" aria-label="Telegram">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-5 h-5 fill-current text-gray-300 hover:text-blue-400 transition"

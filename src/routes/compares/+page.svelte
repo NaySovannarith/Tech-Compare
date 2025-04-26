@@ -103,7 +103,7 @@
       <div class="max-w-6xl mx-auto px-6 h-screen">
         <!-- Tabs -->
         <div class="flex justify-center mb-4">
-          <div class="bg-[#CDCACA] shadow-2xl-inner rounded-lg border-5 inline-flex p-2  hover:text-white rounded-md px-1/2 py-1/2 transition">
+          <div class="bg-[#CDCACA] shadow-2xl-inner rounded-lg border-5 inline-flex p-2  hover:text-white px-1/2 py-1/2 transition">
             <button
             class={`px-4 py-1 font-semibold shadow-lg rounded-lg hover:bg-[#6B9071] transition 
                     ${activeView === 'list' ? 'bg-[#00332e] text-white' : 'text-[#00332e]'}`}

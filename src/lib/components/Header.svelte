@@ -4,9 +4,7 @@
   import { goto } from '$app/navigation';
 
   let searchQuery = '';
-  let showProductDropdown = false;
-  let showAccessoryDropdown = false;
-  let showBrandDropdown = false;
+  let activeDropdown: 'product' | 'accessory' | 'brand' | null = null;
 
   let productRef: HTMLElement;
   let accessoryRef: HTMLElement;
@@ -15,28 +13,8 @@
   const goToCompares = () => goto('/compares');
   const goToProflies = () => goto('/profiles');
 
-  const toggleProductDropdown = () => {
-    showProductDropdown = !showProductDropdown;
-    showAccessoryDropdown = false;
-    showBrandDropdown = false;
-  };
-
-  const toggleAccessoryDropdown = () => {
-    showAccessoryDropdown = !showAccessoryDropdown;
-    showProductDropdown = false;
-    showBrandDropdown = false;
-  };
-
-  const toggleBrandDropdown = () => {
-    showBrandDropdown = !showBrandDropdown;
-    showProductDropdown = false;
-    showAccessoryDropdown = false;
-  };
-
-  const closeDropdowns = () => {
-    showProductDropdown = false;
-    showAccessoryDropdown = false;
-    showBrandDropdown = false;
+  const toggleDropdown = (type: 'product' | 'accessory' | 'brand') => {
+    activeDropdown = activeDropdown === type ? null : type;
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -46,7 +24,7 @@
       accessoryRef && !accessoryRef.contains(target) &&
       brandRef && !brandRef.contains(target)
     ) {
-      closeDropdowns();
+      activeDropdown = null;
     }
   };
 
@@ -78,7 +56,6 @@
 
     <!-- Icons & Login -->
     <div class="flex items-center gap-4">
-      <!-- Wishlist icon wrapped in a button for accessibility -->
       <button
         type="button"
         on:click={() => goto('/wishlists')}
@@ -104,44 +81,44 @@
   <!-- Navigation Bar -->
   <div class="border-t border-white border-opacity-20">
     <nav class="flex items-center justify-between px-6 py-2 text-sm font-medium">
-      <!-- Centered Links -->
       <div class="flex items-center space-x-12 flex-grow justify-center">
+        
         <!-- Products -->
         <div class="relative" bind:this={productRef}>
-          <span class="text-lg">Products</span>
           <button
-            on:click={toggleProductDropdown}
-            class="text-xs focus:outline-none"
+            on:click={() => toggleDropdown('product')}
+            class={`flex items-center gap-1 px-1.5 py-0.5 text-sm font-medium rounded-md transition 
+              ${activeDropdown === 'product' ? 'bg-white text-[#00332e]' : 'text-white hover:bg-[#6B9071]'}`}
             aria-haspopup="true"
-            aria-expanded={showProductDropdown}
+            aria-expanded={activeDropdown === 'product'}
           >
-            ▼
+            Products ▼
           </button>
 
-          {#if showProductDropdown}
-            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
+          {#if activeDropdown === 'product'}
+            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablet">Tablet</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Computer</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">Tv</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">TV</a></li>
             </ul>
           {/if}
         </div>
 
         <!-- Accessories -->
         <div class="relative" bind:this={accessoryRef}>
-          <span class="text-lg">Accessories</span>
           <button
-            on:click={toggleAccessoryDropdown}
-            class="text-xs focus:outline-none"
+            on:click={() => toggleDropdown('accessory')}
+            class={`flex items-center gap-1 px-2 py-0.5 text-sm font-medium rounded-md transition 
+              ${activeDropdown === 'accessory' ? 'bg-white text-[#00332e]' : 'text-white hover:bg-[#6B9071]'}`}
             aria-haspopup="true"
-            aria-expanded={showAccessoryDropdown}
+            aria-expanded={activeDropdown === 'accessory'}
           >
-            ▼
+            Accessories ▼
           </button>
 
-          {#if showAccessoryDropdown}
-            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
+          {#if activeDropdown === 'accessory'}
+            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/cameras">Camera</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/earphones">Earphone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/headphones">Headphone</a></li>
@@ -153,29 +130,29 @@
 
         <!-- Brands -->
         <div class="relative" bind:this={brandRef}>
-          <span class="text-lg">Brand</span>
           <button
-            on:click={toggleBrandDropdown}
-            class="text-xs focus:outline-none"
+            on:click={() => toggleDropdown('brand')}
+            class={`flex items-center gap-1 px-2 py-0.5 text-sm font-medium rounded-md transition 
+              ${activeDropdown === 'brand' ? 'bg-white text-[#00332e]' : 'text-white hover:bg-[#6B9071]'}`}
             aria-haspopup="true"
-            aria-expanded={showBrandDropdown}
+            aria-expanded={activeDropdown === 'brand'}
           >
-            ▼
+            Brand ▼
           </button>
 
-          {#if showBrandDropdown}
-            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
+          {#if activeDropdown === 'brand'}
+            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/iphone">iPhone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/samsung">Samsung</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/google">Google</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/huawei">huawei</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/huawei">Huawei</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/vivo">Vivo</a></li>
-
             </ul>
           {/if}
         </div>
 
-        <a class="hover:underline text-lg" href="/contact">Contact us</a>
+        <!-- Contact -->
+        <a class="hover:underline text-sm" href="/contact">Contact us</a>
       </div>
 
       <!-- Compare Button -->
