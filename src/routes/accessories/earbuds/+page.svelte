@@ -10,7 +10,7 @@
       {
         title: 'EarFun Free Pro 3 Brown Black',
         brand: 'EarFun',
-        image: '/Earbuds/',
+        image: '/earbud/EarFun Free Pro 3 Brown Black.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '30 hours',
         price: 79
@@ -18,7 +18,7 @@
       {
         title: 'Sony WF-1000XM4',
         brand: 'Sony',
-        image: '/Earbuds/',
+        image: '/earbud/Sony_WF-1000XM4-removebg-preview.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '32 hours',
         price: 279
@@ -26,7 +26,7 @@
       {
         title: 'Sony WF-C500',
         brand: 'Sony',
-        image: '/Earbuds/',
+        image: '/earbud/Sony WF-C500.jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '20 hours',
         price: 149
@@ -34,7 +34,7 @@
       {
         title: 'EarFun Free Pro 3 White',
         brand: 'EarFun',
-        image: '/Earbuds/',
+        image: '/earbud/EarFun Free Pro 3 White.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '30 hours',
         price: 79
@@ -42,7 +42,7 @@
       {
         title: 'JBL Tune 230NC TWS',
         brand: 'JBL',
-        image: '/Earbuds/',
+        image: '/earbud/JBL Tune 230NC TWS.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '40 hours',
         price: 99
@@ -50,7 +50,7 @@
       {
         title: 'JBL Tune 130NC TWS',
         brand: 'JBL',
-        image: '/Earbuds/',
+        image: '/earbud/EarFun Free Pro 3 Brown Black.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '40 hours',
         price: 99
@@ -58,7 +58,7 @@
       {
         title: 'Apple AirPods Pro (2nd generation)',
         brand: 'Apple',
-        image: '/Earbuds/',
+        image: '/earbud/Apple AirPods Pro (2nd generation).jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '30 hours',
         price: 249
@@ -66,7 +66,7 @@
       {
         title: 'Apple AirPods (3rd generation)',
         brand: 'Apple',
-        image: '/Earbuds/',
+        image: '/earbud/Apple AirPods (3rd generation).jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '30 hours',
         price: 199
@@ -74,7 +74,7 @@
       {
         title: 'Samsung Galaxy Buds2 Pro',
         brand: 'Samsung',
-        image: '/Earbuds/',
+        image: '/earbud/Samsung Galaxy Buds2 Pro.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '30 hours',
         price: 229
@@ -82,7 +82,7 @@
       {
         title: 'Samsung Galaxy Buds Live',
         brand: 'Samsung',
-        image: '/Earbuds/',
+        image: '/earbud/Samsung Galaxy Buds Live.jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '29 hours',
         price: 169
@@ -91,7 +91,7 @@
       {
         title: 'Anker Soundcore Liberty 4',
         brand: 'Anker',
-        image: '/Earbuds/',
+        image: '/earbud/Anker Soundcore Liberty 4.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '28 hours',
         price: 149
@@ -99,7 +99,7 @@
       {
         title: 'Anker Soundcore Life P3i',
         brand: 'Anker',
-        image: '/Earbuds/',
+        image: '/earbud/Anker_Soundcore_Life_P3i-removebg-preview.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '36 hours',
         price: 79
@@ -107,7 +107,7 @@
       {
         title: 'Beats Fit Pro',
         brand: 'Beats',
-        image: '/Earbuds/',
+        image: '/earbud/Beats Fit Pro.jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '30 hours',
         price: 199
@@ -115,7 +115,7 @@
       {
         title: 'Beats Studio Buds+',
         brand: 'Beats',
-        image: '/Earbuds/',
+        image: '/earbud/Beats Studio Buds+.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '36 hours',
         price: 199
@@ -123,7 +123,7 @@
       {
         title: 'Google Pixel Buds Pro',
         brand: 'Google',
-        image: '/Earbuds/',
+        image: '/earbud/Google Pixel Buds Pro.jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '31 hours',
         price: 199
@@ -131,7 +131,7 @@
       {
         title: 'Google Pixel Buds A-Series',
         brand: 'Google',
-        image: '/Earbuds/',
+        image: '/earbud/Google Pixel Buds A-Series.jpg',
         bluetooth: 'Bluetooth 5.0',
         battery: '24 hours',
         price: 99
@@ -139,7 +139,7 @@
       {
         title: 'OnePlus Buds Pro 2',
         brand: 'OnePlus',
-        image: '/Earbuds/',
+        image: '/earbud/OnePlus Buds Pro 2.jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '38 hours',
         price: 179
@@ -147,7 +147,7 @@
       {
         title: 'OnePlus Buds Z2',
         brand: 'OnePlus',
-        image: '/Earbuds/',
+        image: '/earbud/OnePlus Buds Z2.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '38 hours',
         price: 99
@@ -155,7 +155,7 @@
       {
         title: 'Nothing Ear (2)',
         brand: 'Nothing',
-        image: '/Earbuds/',
+        image: '/earbud/Nothing Ear (2).jpg',
         bluetooth: 'Bluetooth 5.3',
         battery: '36 hours',
         price: 149
@@ -163,7 +163,7 @@
       {
         title: 'Nothing Ear (1)',
         brand: 'Nothing',
-        image: '/Earbuds/',
+        image: '/earbud/Nothing Ear (1).jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '34 hours',
         price: 99
@@ -171,7 +171,7 @@
       {
         title: 'Huawei FreeBuds Pro 2',
         brand: 'Huawei',
-        image: '/Earbuds/',
+        image: '/earbud/Huawei FreeBuds Pro 2.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '30 hours',
         price: 199
@@ -179,7 +179,7 @@
       {
         title: 'Huawei FreeBuds SE 2',
         brand: 'Huawei',
-        image: '/Earbuds/',
+        image: '/earbud/Huawei FreeBuds SE 2.jpg',
         bluetooth: 'Bluetooth 5.2',
         battery: '36 hours',
         price: 79

@@ -7,15 +7,13 @@
 		history.length > 1 ? history.back() : goto('/');
 	}
 
-	
-
 	// Remove item by ID
 	function removeFromWishlist(id: string) {
 		wishlist.update(items => items.filter(product => product.id !== id));
 	}
 </script>
 	
-    <div class=" mt-[100px] flex items-center justify-between mb-4 px-4 ">		
+    <div class=" mt-[100px] flex items-center justify-between mb-4 px-4">		
 		
        <button
 		on:click={goBack}
@@ -65,9 +63,7 @@
 			  >
 				Leave a Review
 			  </button>
-			  
-				  
-				  
+				
 				<br />
 				
 					<button
