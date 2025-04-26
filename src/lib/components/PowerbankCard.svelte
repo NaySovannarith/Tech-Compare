@@ -5,26 +5,27 @@
       import { addToWishlist, wishlist } from '$lib/wishlist/wishlist';
       import { Heart, HeartOff } from 'lucide-svelte';
       import { get } from 'svelte/store';
+      
     
       export let title;
       export let brand;
       export let image;
-      export let resulution;
+      export let wattage;
       export let battery;
       export let price;
     
-      const id = `${title}-${resulution}-${battery}`; // or pass `id` directly from ProductGrid
+      const id = `${title}-${wattage}-${battery}`; // or pass `id` directly from ProductGrid
     
       const product = {
         id,
         title,
         brand,
         image,
-        resulution,
+        wattage,
         battery,
         price,
         thumbnail: image,
-        description: `${resulution} Resulution / ${battery} Battery`,
+        description: `${wattage} Wattage / ${battery} Battery`,
       };
     
       // Reactive: check if product is already in wishlist
@@ -49,11 +50,11 @@
       <div class="w-1/2 p-6 flex flex-col justify-between">
         <div>
           <p class="text-sm font-semibold text-gray-500">{brand.toUpperCase()}</p>
-          <h2 class="text-xl font-semibold">{title}</h2>
+          <h2 class="text-lg font-semibold">{title}</h2>
     
           <div class="mt-3 space-y-2 text-base">
-            <p class="flex justify-between"><span>Resulution</span> <span class="font-semibold">{resulution}</span></p>
             <p class="flex justify-between"><span>Battery</span> <span class="font-semibold">{battery}</span></p>
+            <p class="flex justify-between"><span>Wattage</span> <span class="font-semibold">{wattage}</span></p>
             <p class="flex justify-between"><span>Price</span> <span class="font-semibold">{price}$</span></p>
           </div>
         </div>
