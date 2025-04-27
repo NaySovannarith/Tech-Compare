@@ -69,13 +69,17 @@
 
         <!-- Heart Icon aligned with More Detail Button -->
         <button
-          type="button"
-          on:click={() => goto('/wishlists')}
-          class="w-5 h-5 cursor-pointer hover:text-red-500 transition ml-4"
-          aria-label="Wishlists"
-        >
-          <Heart class="w-full h-full" />
-        </button>
+        type="button"
+        on:click={toggleWishlist}
+        class="w-5 h-5 cursor-pointer transition"
+        aria-label="Wishlists"
+      >
+        {#if isWishlisted}
+          <Heart class="w-full h-full text-red-500" />
+        {:else}
+          <Heart class="w-full h-full text-gray-400 hover:text-red-500" />
+        {/if}
+      </button>
       </div>
     </div>
   </div>

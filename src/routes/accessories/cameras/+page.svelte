@@ -1,32 +1,18 @@
 <script lang="ts">
     import ProductCard from '$lib/components/CameraCard.svelte';
     import { Battery } from 'lucide-svelte';
+    
   
     let minPrice = 0;
     let maxPrice = 5000;
   
     const camerasAccessories = [
-      {
-        title: 'iPhone 16 series',
-        brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
-        storage: '128GB',
-        memory: '8GB',
-        price: 790
-      },
-      {
-        title: 'iPhone 15 series',
-        brand: 'Apple',
-        image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
-        storage: '128GB',
-        memory: '6GB',
-        price: 690
-      },
+
 
       {
         title: 'Nikon Z400 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z400.jpg',
         resulution: '4K',
         battery: '1200mAh',
         price: 590
@@ -34,7 +20,7 @@
       {
         title: 'Nikon Z200 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z200.jpg',
         resulution: '4K',
         battery: '1000mAh',
         price: 490
@@ -42,7 +28,7 @@
       {
         title: 'Nikon Z100 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z100.jpg',
         resulution: '4K',
         battery: '800mAh',
         price: 390
@@ -50,7 +36,7 @@
       {
         title: 'Nikon Z50 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z50.jpg',
         resulution: '4K',
         battery: '600mAh',
         price: 290
@@ -59,7 +45,7 @@
       {
         title: 'Nikon Z600 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z600.jpg',
         resulution: '4K',
         battery: '1500mAh',
         price: 690
@@ -67,7 +53,7 @@
       {
         title: 'Nikon Z400 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z400.jpg',
         resulution: '4K',
         battery: '1200mAh',
         price: 590
@@ -75,7 +61,7 @@
       {
         title: 'Nikon Z200 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z200.jpg',
         resulution: '4K',
         battery: '1000mAh',
         price: 490
@@ -83,7 +69,7 @@
       {
         title: 'Nikon Z100 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z100.jpg',
         resulution: '4K',
         battery: '800mAh',
         price: 390
@@ -91,7 +77,7 @@
       {
         title: 'Nikon Z50 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z50.jpg',
         resulution: '4K',
         battery: '600mAh',
         price: 290
@@ -99,7 +85,7 @@
       {
         title: 'Nikon Z30 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z30.jpg',
         resulution: '4K',
         battery: '500mAh',
         price: 190
@@ -107,7 +93,7 @@
       {
         title: 'Nikon Z10 series',
         brand: 'Nikon',
-        image: '/camera/',
+        image: '/camera/Nikon Z10.jpg',
         resulution: '4K',
         battery: '400mAh',
         price: 90

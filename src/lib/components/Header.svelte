@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { Search, Heart, Bell, User } from 'lucide-svelte';
   import { goto } from '$app/navigation';
+  import { wishlist } from '$lib/wishlist/wishlist';
 
   let searchQuery = '';
   let activeDropdown: 'product' | 'accessory' | 'brand' | null = null;
@@ -54,16 +55,24 @@
       <Search class="absolute right-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" />
     </div>
 
-    <!-- Icons & Login -->
-    <div class="flex items-center gap-4">
-      <button
-        type="button"
-        on:click={() => goto('/wishlists')}
-        class="w-5 h-5 cursor-pointer hover:text-red-500 transition"
-        aria-label="Wishlists"
-      >
-        <Heart class="w-full h-full" />
-      </button>
+    <!-- Inside Icons & Login section -->
+<div class="flex items-center gap-4">
+  <!-- Wishlist button with badge -->
+  <div class="relative">
+    <button
+      type="button"
+      on:click={() => goto('/wishlists')}
+      class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
+      aria-label="Wishlists"
+    >
+      <Heart class="w-full h-full" />
+      {#if $wishlist.length > 0}
+        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
+          {$wishlist.length}
+        </span>
+      {/if}
+    </button>
+  </div>
 
       <Bell class="w-5 h-5" aria-label="Notifications" />
 
