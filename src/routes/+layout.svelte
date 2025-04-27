@@ -8,7 +8,7 @@
 
   <Header />
   
-  <main class="min-h-screen p-4 bg-grey-50">
+  <main class="min-h-screen p-4 bg-grey-50 text-black">
 
     <slot />
     
