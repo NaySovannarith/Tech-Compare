@@ -1,5 +1,6 @@
 <script lang="ts">
   import ProductCard from '$lib/components/ProductCard.svelte';
+  
 
   let minPrice = 0;
   let maxPrice = 5000;

@@ -7,7 +7,7 @@
     <img 
       src={logo} 
       alt={name} 
-      class="h-6 sm:h-8 object-contain"
+      class="h-8 sm:h-12 object-contain"
     />
   {/each}
 </div>
