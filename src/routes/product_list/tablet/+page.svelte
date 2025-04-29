@@ -122,7 +122,7 @@
 
 </script>
 
-<div class="mt-[80px] px-6 py-4 space-y-6">
+<div class="mt-[100px] px-6 py-4 space-y-6">
   <!-- Price Range -->
   <div class="bg-white rounded-lg shadow p-4 text-center">
     <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -149,15 +149,6 @@
           price={product.price}
         />
       {/each}
-      {#each iphoneProducts as product}
-        <ProductCard
-          title={product.title}
-          brand={product.brand}
-          image={product.image}
-          storage={product.storage}
-          memory={product.memory}
-          price={product.price}
-        />
-      {/each}
+      
     </div>
 </div>

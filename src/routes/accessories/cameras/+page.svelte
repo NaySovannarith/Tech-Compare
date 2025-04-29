@@ -98,12 +98,36 @@
         battery: '400mAh',
         price: 90
       },
+      {
+        title: 'Nikon Z1 series',
+        brand: 'Nikon',
+        image: '/camera/Nikon Z1 series.png',
+        resulution: '4K',
+        battery: '300mAh',
+        price: 90
+      },
+      {
+        title: 'Nikon Z2 series',
+        brand: 'Nikon',
+        image: '/camera/Nikon Z2.png',
+        resulution: '4K',
+        battery: '200mAh',
+        price: 90
+      },
+      {
+        title: 'Nikon Z3 series',
+        brand: 'Nikon',
+        image: '/camera/Nikon Z3.png',
+        resulution: '4K',
+        battery: '100mAh',
+        price: 90
+      },
   
     ];
 
   </script>
   
-  <div class="mt-[80px] px-6 py-4 space-y-6">
+  <div class="mt-[100 px] px-6 py-4 space-y-6">
     <!-- Price Range -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -130,16 +154,7 @@
             price={product.price}
           />
         {/each}
-        {#each camerasAccessories as product}
-          <ProductCard
-          title={product.title}
-          brand={product.brand}
-          image={product.image}
-          resulution={product.resulution}
-          battery={product.battery}
-          price={product.price}
-          />
-        {/each}
+        
       </div>
   </div>
   
