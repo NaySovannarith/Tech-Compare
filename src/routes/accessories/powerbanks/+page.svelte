@@ -75,7 +75,7 @@
         {
             title: 'Zendure SuperMini  ',
             brand: 'Zendure',
-            image: '/powerbank/Zendure SuperMini .jpg',
+            image: '/powerbank/Zendure SuperMini.jpg',
             wattage: '18W',
             battery: '10,000mAh',
             price: 39.99
@@ -89,7 +89,7 @@
             price: 29.99
         },
         {
-            title: 'Mophie Powerstation Wireless XL',
+            title: 'Mophie Powerstation Wireless  ',
             brand: 'Mophie',
             image: '/powerbank/Mophie Powerstation Wireless XL.jpg',
             wattage: '10W',
@@ -117,7 +117,7 @@
   
   </script>
   
-  <div class="mt-[80px] px-6 py-4 space-y-6">
+  <div class="mt-[100px] px-6 py-4 space-y-6">
     <!-- Price Range -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -144,16 +144,7 @@
             price={product.price}
           />
         {/each}
-        {#each powerbankAccessories as product}
-          <ProductCard
-          title={product.title}
-          brand={product.brand}
-          image={product.image}	
-          battery={product.battery}
-          wattage={product.wattage}
-          price={product.price}
-          />
-        {/each}
+      
       </div>
   </div>
   
