@@ -6,7 +6,7 @@
   let password = "";
   let showPassword = false;
 
-  const gotologin = () => goto('/profiles');
+  const gotologin = () => goto('/');
   function togglePasswordVisibility() {
     showPassword = !showPassword;
   }

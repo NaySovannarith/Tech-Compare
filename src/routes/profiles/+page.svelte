@@ -1,580 +1,261 @@
 <script>
-  import { Trash2, X, Camera, Check, X as XIcon } from 'lucide-svelte';
-  
-  // User information
+  // @ts-nocheck
+  import { wishlist } from '$lib/wishlist/wishlist';
+  import Empty from '$lib/components/wishlist/Empty.svelte';
+
   let userInfo = {
-    fullName: "Jane Doe",
+    name: "Jane Doe",
     email: "jane.doe@example.com",
     phone: "+1 (555) 123-4567",
-    birthday: "01/15/1990",
+    birthday: "1990-01-15",
     address: "123 Main Street, Anytown, USA",
-    profilePicture: "/placeholder.svg?height=150&width=150"
+    avatar: "/placeholder.svg?height=200&width=200"
   };
   
-  // Wishlist items
-  let wishlistItems = [
-    { id: 1, name: "Wireless Headphones", price: 129.99, image: "/placeholder.svg" },
-    { id: 2, name: "Smart Watch", price: 249.99, image: "/placeholder.svg" },
-    { id: 3, name: "Laptop Backpack", price: 79.99, image: "/placeholder.svg" }
-  ];
-  
-  // Recent searches
+  let editableUserInfo = { ...userInfo }; // Initialize editableUserInfo to reflect userInfo
   let recentSearches = [
-    { term: "wireless earbuds", date: "2023-11-10" },
-    { term: "fitness tracker", date: "2023-11-08" },
-    { term: "portable charger", date: "2023-11-05" },
-    { term: "bluetooth speaker", date: "2023-11-01" }
+    { id: 1, term: "wireless earbuds", date: "2023-11-10" },
+    { id: 2, term: "fitness tracker", date: "2023-11-08" },
+    { id: 3, term: "portable charger", date: "2023-11-05" }
   ];
   
-  // Edit mode state
-  let editMode = false;
-  let editedUserInfo = { ...userInfo };
+  let isEditing = false;
   
-  // Function to toggle edit mode
-  function toggleEditMode() {
-    if (editMode) {
-      // Cancel editing
-      editMode = false;
-      editedUserInfo = { ...userInfo };
-    } else {
-      // Start editing
-      editMode = true;
-      editedUserInfo = { ...userInfo };
-    }
+  function toggleEdit() {
+    isEditing = !isEditing;
   }
   
-  // Function to save changes
-  function saveChanges() {
-    userInfo = { ...editedUserInfo };
-    editMode = false;
+  function saveUserInfo() {
+    userInfo = { ...editableUserInfo }; // Update userInfo with edited values
+    toggleEdit(); // Close the edit mode
   }
   
-  // Function to handle profile picture change
-  function handleProfilePictureChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        editedUserInfo.profilePicture = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
+  function logout() {
+    alert("Logout functionality would go here");
   }
   
-  // Function to remove item from wishlist
-  function removeWishlistItem(id) {
-    wishlistItems = wishlistItems.filter(item => item.id !== id);
-  }
-  
-  // Function to remove search term
-  function removeSearchTerm(term) {
-    recentSearches = recentSearches.filter(search => search.term !== term);
-  }
-  
-  // Function to clear all search terms
   function clearAllSearches() {
     recentSearches = [];
   }
-</script>
-
-<!-- Main container with extra padding to avoid navigation overlap -->
-<div class="safe-area-container">
-  <div class="profile-container">
-    <header class="profile-header">
-      <h1>My Profile</h1>
-    </header>
-    <div class="profile-content">
-      <!-- User Information Section -->
-      <section class="user-info-section">
-        <div class="section-header">
-          <h2>User Information</h2>
-          {#if editMode}
-            <div class="edit-actions">
-              <button class="save-button" on:click={saveChanges}>
-                <Check size={16} />
-                Save
-              </button>
-              <button class="cancel-button" on:click={toggleEditMode}>
-                <XIcon size={16} />
-                Cancel
-              </button>
-            </div>
-          {:else}
-            <button class="edit-button" on:click={toggleEditMode}>
-              Edit
+  
+  function removeFromWishlist(productId) {
+    wishlist.update(items => items.filter(product => product.id !== productId));
+  }
+  
+  function clearRecentSearch(searchId) {
+    recentSearches = recentSearches.filter(search => search.id !== searchId);
+  }
+  function handleProfilePictureChange(event) {
+    const file = event.target.files[0];
+    if (file)  {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        editableUserInfo.profilePicture = e.target.result; // Set the new image in editableUserInfo
+      };
+      reader.readAsDataURL(file); // Read the file as a Data URL
+    }
+  }
+  </script>
+  
+  <!-- Main container -->
+  <div class="max-w-5xl mx-auto p-4 bg-white mt-16">
+    <h1 class="text-3xl font-bold mb-4 mt-16">My Profile</h1>
+  
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Left column -->
+      <div class="lg:col-span-2">
+        <div class="border rounded-lg shadow-sm overflow-hidden">
+          <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-lg font-semibold">Personal Information</h2>
+            <button
+              on:click={toggleEdit}
+              class="px-3 py-1 rounded-lg text-sm bg-blue-600 text-white"
+            >
+              {isEditing ? 'Cancel' : 'Edit'}
             </button>
-          {/if}
-        </div>
-        
-        <!-- Profile Picture -->
-        <div class="profile-picture-container">
-          <div class="profile-picture">
-            <img src={editMode ? editedUserInfo.profilePicture : userInfo.profilePicture} alt="P" />
-            {#if editMode}
-              <label class="change-picture" for="profile-picture-input">
-                <Camera size={20} />
-                <span>Change</span>x
-                <input 
-                  type="file" 
-                  id="profile-picture-input" 
-                  accept="image/*" 
-                  on:change={handleProfilePictureChange} 
-                  hidden
+          </div>
+  
+          <div class="p-4">
+            <div class="flex flex-col items-center mb-6">
+              <!-- Profile picture section -->
+              <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200 mb-2">
+                <!-- Display the profile picture from editableUserInfo -->
+                <img src={editableUserInfo.profilePicture} alt="User avatar" class="w-full h-full object-cover" />
+              </div>
+              {#if isEditing}
+                <!-- Show file input for changing the profile picture when in edit mode -->
+                <input
+                  type="file"
+                  accept="image/*"
+                  on:change={handleProfilePictureChange}
+                  class="mt-4"
                 />
-              </label>
+              {/if}
+              <h3 class="font-medium">{editableUserInfo.name}</h3>
+              <p class="text-sm text-gray-500">{editableUserInfo.email}</p>
+            </div>
+  
+            <form on:submit|preventDefault={saveUserInfo} class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    bind:value={editableUserInfo.name} 
+                    disabled={!isEditing}
+                    class="w-full p-3 border rounded-lg {!isEditing ? 'bg-gray-50' : 'bg-white'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+                </div>
+                
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    bind:value={editableUserInfo.email} 
+                    disabled={!isEditing}
+                    class="w-full p-3 border rounded-lg {!isEditing ? 'bg-gray-50' : 'bg-white'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+                </div>
+                
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    bind:value={editableUserInfo.phone} 
+                    disabled={!isEditing}
+                    class="w-full p-3 border rounded-lg {!isEditing ? 'bg-gray-50' : 'bg-white'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+                </div>
+                
+                <div>
+                  <label for="birthday" class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
+                  <input 
+                    type="date" 
+                    id="birthday" 
+                    bind:value={editableUserInfo.birthday} 
+                    disabled={!isEditing}
+                    class="w-full p-3 border rounded-lg {!isEditing ? 'bg-gray-50' : 'bg-white'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+                </div>
+              </div>
+  
+              {#if isEditing}
+                <div class="flex justify-end mt-4">
+                  <button class="px-4 py-2 bg-green-600 text-white rounded-lg">
+                    Save Changes
+                  </button>
+                </div>
+              {/if}
+            </form>
+          </div>
+  
+          <!-- Logout -->
+          <div class="mt-6">
+            <button
+              on:click={logout}
+              class="w-full py-3 bg-red-50 text-red-600 border border-red-200 rounded-lg hover:bg-red-100 flex items-center justify-center gap-2 font-medium"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right column -->
+      <div class="lg:col-span-1">
+        <!-- Wishlist -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+          <div class="p-6 border-b">
+            <h2 class="text-xl font-semibold text-gray-800">Wishlist</h2>
+            <p class="text-gray-500 text-sm mt-1">Items you've saved for later</p>
+          </div>
+  
+          <div class="p-6">
+            {#if $wishlist && $wishlist.length > 0}
+              <ul class="space-y-4">
+                {#each $wishlist as product (product.id)}
+                  <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                    <div class="flex items-center">
+                      <div class="w-12 h-12 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
+                        <img src={product.thumbnail || "/placeholder.svg"} alt={product.title} class="w-full h-full object-cover" />
+                      </div>
+                      <div class="ml-3">
+                        <p class="font-medium text-gray-800 line-clamp-1">{product.title}</p>
+                        <p class="text-sm text-green-600 font-semibold">${product.price.toFixed(2)}</p>
+                      </div>
+                    </div>
+                    <button 
+                      on:click={() => removeFromWishlist(product.id)}
+                      class="text-gray-400 hover:text-red-500 transition-colors p-1.5 rounded-full hover:bg-red-50"
+                      aria-label="Remove from wishlist"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </li>
+                {/each}
+              </ul>
+            {:else}
+              <p class="text-center py-4 text-gray-500">Your wishlist is empty</p>
             {/if}
           </div>
         </div>
-        
-        <div class="info-grid">
-          <div class="info-group">
-            <label for="fullName">Full Name</label>
-            <input 
-              type="text" 
-              id="fullName" 
-              bind:value={editedUserInfo.fullName} 
-              readonly={!editMode} 
-              class:editable={editMode}
-            />
-          </div>
-          
-          <div class="info-group">
-            <label for="email">Email Address</label>
-            <input 
-              type="email" 
-              id="email" 
-              bind:value={editedUserInfo.email} 
-              readonly={!editMode}
-              class:editable={editMode}
-            />
-          </div>
-          
-          <div class="info-group">
-            <label for="phone">Phone Number</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              bind:value={editedUserInfo.phone} 
-              readonly={!editMode}
-              class:editable={editMode}
-            />
-          </div>
-          
-          <div class="info-group">
-            <label for="birthday">Birthday</label>
-            <input 
-              type="text" 
-              id="birthday" 
-              bind:value={editedUserInfo.birthday} 
-              readonly={!editMode}
-              class:editable={editMode}
-            />
-          </div>
-          
-          <div class="info-group full-width">
-            <label for="address">Address</label>
-            <textarea 
-              id="address" 
-              bind:value={editedUserInfo.address} 
-              readonly={!editMode}
-              class:editable={editMode}
-            ></textarea>
-          </div>
-        </div>
-      </section>
-      
-      <!-- User Activity Section -->
-      <section class="user-activity-section">
-        <h2>User Activity</h2>
-        
-        <!-- Saved Wishlist -->
-        <div class="activity-group">
-          <h3>Saved Wishlist</h3>
-          
-          <ul class="wishlist">
-            {#each wishlistItems as item (item.id)}
-              <li class="wishlist-item">
-                <div class="item-image">
-                  <img src={item.image || "/placeholder.svg"} alt={item.name} />
-                </div>
-                <div class="item-details">
-                  <span class="item-name">{item.name}</span>
-                  <span class="item-price">${item.price.toFixed(2)}</span>
-                </div>
-                <button class="remove-button" on:click={() => removeWishlistItem(item.id)}>
-                  <Trash2 size={18} />
-                </button>
-              </li>
-            {/each}
-          </ul>
-        </div>
-        
+  
         <!-- Recent Searches -->
-        <div class="activity-group">
-          <div class="section-header">
-            <h3>Recent Searches</h3>
-            <button class="clear-button" on:click={clearAllSearches}>Clear All</button>
+        <div class="border rounded-lg shadow-sm overflow-hidden">
+          <div class="flex justify-between items-center p-4 border-b">
+            <div>
+              <h2 class="text-lg font-semibold">User Activity</h2>
+              <p class="text-sm text-gray-500">Recent Searches</p>
+            </div>
+            {#if recentSearches.length > 0}
+              <button on:click={clearAllSearches} class="text-sm text-blue-600">
+                Clear All
+              </button>
+            {/if}
           </div>
-          
-          <ul class="searches">
-            {#each recentSearches as search (search.term)}
-              <li class="search-item">
-                <div class="search-details">
-                  <span class="search-term">"{search.term}"</span>
-                  <span class="search-date">{search.date}</span>
-                </div>
-                <button class="remove-search" on:click={() => removeSearchTerm(search.term)}>
-                  <X size={16} />
-                </button>
-              </li>
-            {/each}
-          </ul>
+  
+          <div class="p-6">
+            {#if recentSearches.length > 0}
+              <ul class="space-y-3">
+                {#each recentSearches as search}
+                  <li class="flex justify-between items-center hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                    <div>
+                      <p class="font-medium text-gray-800">"{search.term}"</p>
+                      <p class="text-xs text-gray-500 mt-0.5">{search.date}</p>
+                    </div>
+                    <button 
+                      on:click={() => clearRecentSearch(search.id)}
+                      class="text-gray-400 hover:text-gray-600 p-1.5 rounded-full hover:bg-gray-100"
+                      aria-label="Clear search"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </li>
+                {/each}
+              </ul>
+            {:else}
+              <div class="text-center py-4">
+                <p class="text-gray-500 italic">No recent searches</p>
+              </div>
+            {/if}
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   </div>
-</div>
-
-<style>
-  /* Global styles */
-  :global(body) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-  }
   
-  /* Safe area container to prevent navigation overlap */
-  .safe-area-container {
-    /* Add padding to account for fixed navigation */
-    padding-top: 60px; /* Adjust this value based on your navigation height */
-    min-height: 100vh;
-    width: 100%;
-  }
+  <style>
+  /* Add custom styles here if needed */
+  </style>
   
-  /* Container */
-  .profile-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  /* Header */
-  .profile-header {
-    padding: 2rem 0;
-    border-bottom: 1px solid #eaeaea;
-    margin-bottom: 0.2rem;
-  }
-  
-  h1 {
-    color: #21a880;
-    margin: 1;
-    font-size: 2rem;
-  }
-  
-  /* Profile content */
-  .profile-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding-bottom: 3rem; /* Add padding at the bottom for better spacing */
-  }
-  
-  @media (min-width: 768px) {
-    .profile-content {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  /* Section styling */
-  section {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    height: fit-content; /* Prevent sections from stretching */
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  h2 {
-    color: #6b21a8;
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    color: #333;
-    margin: 0 0 1rem 0;
-    font-size: 1.2rem;
-  }
-  
-  /* Profile Picture */
-  .profile-picture-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .profile-picture {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .change-picture {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .change-picture:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  /* User info section */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  @media (min-width: 640px) {
-    .info-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  .info-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .full-width {
-    grid-column: 1 / -1;
-  }
-  
-  label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-  }
-  
-  input, textarea {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-  }
-  
-  .editable {
-    background-color: white;
-    border-color: #21a880;
-  }
-  
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-  
-  /* Buttons */
-  .edit-button, .save-button, .cancel-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .edit-button {
-    background-color: #21a880;
-    color: white;
-  }
-  
-  .edit-button:hover {
-    background-color: #581c87;
-  }
-  
-  .edit-actions {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .save-button {
-    background-color: #16a34a;
-    color: white;
-  }
-  
-  .save-button:hover {
-    background-color: #15803d;
-  }
-  
-  .cancel-button {
-    background-color: #ef4444;
-    color: white;
-  }
-  
-  .cancel-button:hover {
-    background-color: #dc2626;
-  }
-  
-  .clear-button {
-    background: none;
-    border: none;
-    color: #6b21a8;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  .clear-button:hover {
-    text-decoration: underline;
-  }
-  
-  /* Wishlist */
-  .wishlist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .wishlist-item {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .wishlist-item:last-child {
-    border-bottom: none;
-  }
-  
-  .item-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 1rem;
-  }
-  
-  .item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-  
-  .item-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .item-name {
-    font-weight: 600;
-  }
-  
-  .item-price {
-    color: #666;
-  }
-  
-  .remove-button {
-    background: none;
-    border: none;
-    color: #ef4444;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  /* Recent searches */
-  .searches {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .search-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .search-item:last-child {
-    border-bottom: none;
-  }
-  
-  .search-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .search-term {
-    font-weight: 500;
-  }
-  
-  .search-date {
-    font-size: 0.8rem;
-    color: #666;
-  }
-  
-  .remove-search {
-    background: none;
-    border: none;
-    color: #666;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  .activity-group {
-    margin-bottom: 2rem;
-  }
-  
-  .activity-group:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Ensure content is visible on mobile devices */
-  @media (max-width: 640px) {
-    .safe-area-container {
-      padding-top: 70px; /* Slightly more padding on mobile */
-    }
-    
-    .profile-header {
-      margin-bottom: 1rem;
-    }
-    
-    section {
-      padding: 1rem;
-    }
-  }
-</style>
