@@ -10,7 +10,7 @@
     function togglePasswordVisibility() {
       showPassword = !showPassword;
     }
-
+    const gotoregister = () => goto('/profiles');
     function goBack() {
     history.length > 1 ? history.back() : goto('/');
   }
@@ -96,7 +96,7 @@
   
         <!-- Register Button -->
         <button
-          on:click={register}
+          on:click={gotoregister}
           class="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition"
         >
           Register Now
