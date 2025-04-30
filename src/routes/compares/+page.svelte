@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // @ts-nocheck
 
   import CompareSearch from '$lib/components/compares/compareSearch.svelte';
@@ -6,10 +6,10 @@
   import CompareList from '$lib/components/compares/compareList.svelte';
   import CompareSheet from '$lib/components/compares/compareSheet.svelte';
 
-  /**
-   * @type {any[]}
-   */
-  let productsToCompare = []; // This will hold the products selected for comparison
+  import { compareSheet } from '$lib/data/stores';
+  import type { Product } from '$lib/data/stores';
+
+  // This will hold the products selected for comparison
 
   // You'll need a mechanism to share the 'productsToCompare' state
   // between CompareSearch and CompareSheet. Svelte stores or Context API
@@ -20,10 +20,13 @@
   /**
    * @param {{ id: any; }} product
    */
-  function handleAddToCompare(product) {
-    if (!productsToCompare.find(item => item.id === product.id)) {
-      productsToCompare = [...productsToCompare, product];
-    }
+  function handleAddToCompare(product: Product) {
+    compareSheet.update((list) => {
+      if (!list.find((item) => item.id ===product.id)) {
+        return [...list, produdct];
+      }
+      return list;
+    });
   }
 
   // In a real app, you might use a Svelte store to manage the compare list

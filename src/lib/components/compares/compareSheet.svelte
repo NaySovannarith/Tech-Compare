@@ -1,116 +1,175 @@
-<script>
-// @ts-nocheck
+<script lang="ts">
+  import { compareSheet, compareHistory } from '$lib/data/stores';
+  import { get } from 'svelte/store';
 
-    // This will receive the list of products to compare from CompareSearch
-    /**
-   * @type {any[]}
-   */
-     export let compareItems = [];
-  
-    // In a real application, you would fetch detailed information for these products
-    // based on their IDs. For now, we'll just display their names.
-    const productDetails = {
-      'sample1': { name: 'iPhone 16 Pro Max', display: '6.9 inch', camera: '48MP' },
-      'sample2': { name: 'Samsung Galaxy S25 Ultra', display: '6.8 inch', camera: '200MP' },
-      'sample3': { name: 'Google Pixel 9 Pro', display: '6.7 inch', camera: '50MP' },
-      // ... more product details
-    };
-  
-    /**
-   * @param {{ id: any; }} product
-   */
-    function removeFromCompare(product) {
-      compareItems = compareItems.filter(item => item.id !== product.id);
-      // You might want to notify other components about this change
+  function handleCompare() {
+    const current = get(compareSheet);
+    if (current.length > 1) {
+      compareHistory.update((history) => [
+        ...history,
+        {
+          id: Date.now(),
+          products: current.map((p) => p.name)
+        }
+      ]);
+      compareSheet.set([]); // Clear after comparing
     }
-  </script>
-  
-  <div class="compare-sheet">
-    <h2>Compare Products</h2>
-    {#if compareItems.length > 0}
-      <div class="product-grid">
-        <div class="product-header"></div>
-        {#each compareItems as item}
-          <div class="product-name">
-            {productDetails[item.id]?.name || item.name}
-            <button class="remove-button" on:click={() => removeFromCompare(item)}>Remove</button>
-          </div>
-        {/each}
-  
-        <div class="feature-row">
-          <div class="feature-name">Display</div>
-          {#each compareItems as item}
-            <div class="feature-value">{productDetails[item.id]?.display || 'N/A'}</div>
-          {/each}
-        </div>
-  
-        <div class="feature-row">
-          <div class="feature-name">Camera</div>
-          {#each compareItems as item}
-            <div class="feature-value">{productDetails[item.id]?.camera || 'N/A'}</div>
-          {/each}
-        </div>
-  
-        </div>
-    {:else}
-      <p>Add products to compare.</p>
+  }
+
+  function removeFromCompare(id: string | number) {
+    compareSheet.update((list) => list.filter((item) => String(item.id) !== String(id)));
+  }
+</script>
+
+<div class="compare-sheet-container">
+  <h3 class="compare-sheet-header">Compare Sheet ({$compareSheet.length})</h3>
+
+  {#if $compareSheet.length === 0}
+    <p class="compare-sheet-empty">No items to compare</p>
+  {:else}
+    <ul class="compare-sheet-list">
+      {#each $compareSheet as item}
+        <li>
+          <span>{item.name}</span>
+          <button class="remove-button" on:click={() => removeFromCompare(item.id)}>✕</button>
+        </li>
+      {/each}
+    </ul>
+
+    {#if $compareSheet.length > 1}
+      <button class="compare-button" on:click={handleCompare}>Compare Now</button>
     {/if}
-  </div>
-  
-  <style>
-    .compare-sheet {
-      /* Styles for the compare sheet */
-    }
-  
-    .compare-sheet h2 {
-      margin-bottom: 10px;
-    }
-  
-    .product-grid {
-      display: grid;
-      grid-template-columns: auto repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+  {/if}
+</div>
+
+<style>
+  /* Main container styles */
+  .compare-sheet-container {
+    padding: 20px;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 30px auto;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+  }
+
+  .compare-sheet-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Header */
+  .compare-sheet-header {
+    font-size: 22px;
+    font-weight: 700;
+    color: #00332e;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Empty state styling */
+  .compare-sheet-empty {
+    font-size: 16px;
+    color: #6b7280;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* List styles */
+  .compare-sheet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #e5e7eb;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .compare-sheet-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .compare-sheet-list li:hover {
+    background-color: #f3f4f6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transform: translateX(4px);
+  }
+
+  .compare-sheet-list li span {
+    font-size: 16px;
+    color: #374151;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .compare-sheet-list li span:hover {
+    color: #00332e;
+  }
+
+  /* Remove button styling */
+  .remove-button {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 6px;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .remove-button:hover {
+    color: #dc2626;
+    transform: rotate(20deg);
+  }
+
+  /* Compare Now Button */
+  .compare-button {
+    background-color: #00332e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .compare-button:hover {
+    background-color: #045a4f;
+    transform: scale(1.05);
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .compare-sheet-container {
       padding: 15px;
     }
-  
-    .product-header {
-      font-weight: bold;
+
+    .compare-sheet-header {
+      font-size: 18px;
     }
-  
-    .product-name {
-      text-align: center;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border-radius: 4px;
-      position: relative;
+
+    .compare-button {
+      width: 100%;
+      padding: 12px;
     }
-  
-    .remove-button {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      padding: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 0.8em;
-      color: #777;
+  }
+
+  /* Fade In Animation for List */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-  
-    .feature-row {
-      display: grid;
-      grid-template-columns: auto repeat(auto-fit, minmax(150px, 1fr));
-      padding: 8px 0;
-      border-top: 1px solid #eee;
+    to {
+      opacity: 1;
     }
-  
-    .feature-name {
-      font-weight: bold;
-    }
-  
-    .feature-value {
-      text-align: center;
-    }
-  </style>
+  }
+</style>
