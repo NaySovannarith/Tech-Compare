@@ -2,6 +2,8 @@
 	import { goto } from '$app/navigation';
 	import Empty from '$lib/components/wishlist/Empty.svelte';
 	import { wishlist } from '$lib/wishlist/wishlist';
+	import { Heart } from 'lucide-svelte';
+
 
 	function goBack() {
 		history.length > 1 ? history.back() : goto('/');
@@ -9,7 +11,7 @@
 
 	// Remove item by ID
 	function removeFromWishlist(id: string) {
-		wishlist.update(items => items.filter(product => product.id !== id));
+		wishlist.update((items: any[]) => items.filter(product => product.id !== id));
 	}
 </script>
 <div class="  mt-[95px] bg-gray-100 min-h-screen">
@@ -22,11 +24,15 @@
 	
 		← Go Back
 	</button>
-	<h1 class="text-2xl font-bold text-center flex-1 mb-5 mt-6">My Wishlist (Test)</h1>
+	<h1 class="text-2xl font-bold text-center flex-1 mb-5 mt-6">My Wishlist</h1>
 	
 	<div class="w-[112px]"></div>
 	</div>
-	<p class="text-xl  text-center flex-1 mb-8 mt-4"> Save your faverite products with our WishList Feature.</p>
+	<div class="flex justify-center items-center gap-2 text-xl text-center mb-8 mt-4">
+		
+		<span>Save your favorite products with our WishList Feature.</span>
+		<Heart class="text-red-500 animate-pulse w-6 h-6" />
+	</div>
 
 
 <div class="max-w-7xl mx-auto p-4 ">

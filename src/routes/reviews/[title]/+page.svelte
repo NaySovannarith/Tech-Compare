@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { Pencil } from 'lucide-svelte';
 
 	function goBack() {
 		history.length > 1 ? history.back() : goto('/');
@@ -29,7 +30,10 @@
 	}
 </script>
 
-<div class="  mt-[95px] bg-gray-100 min-h-screen p-4">
+<div class="  mt-[95px] bg-gray-100 min-h-screen ">
+
+	<div class="mt-[95px] flex flex-col items-start mb-4 p-4">
+	
 	<!-- Go Back Button -->
 	<button
 	on:click={goBack}
@@ -37,7 +41,15 @@
 >
 	← Go Back
 </button>
+<h1 class="text-2xl font-bold text-center mb-4 mt-2 mx-auto">
+	<span class="inline-flex items-center gap-2">
+		Write your content here
+		<Pencil class="animate-bounce text-blue-600 w-6 h-6" />
+	</span>
+</h1>
 
+
+</div>
 	<div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-5">
 		
 		<!-- Product Info -->
@@ -114,4 +126,5 @@
 			</form>
 		</div>
 	</div>
+	
 </div>
