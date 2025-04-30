@@ -1,10 +1,12 @@
 <script>
-  import { goto } from "$app/navigation";
+    import { goto } from "$app/navigation";
 
+  
   let email = "";
   let password = "";
   let showPassword = false;
 
+  const gotologin = () => goto('/');
   function togglePasswordVisibility() {
     showPassword = !showPassword;
   }
@@ -67,9 +69,11 @@
 
       <!-- Login Button -->
       <button
-        on:click={login}
+        on:click={gotologin}
+        
         class="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition"
       >
+      
         LOGIN
       </button>
 

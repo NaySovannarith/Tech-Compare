@@ -5,28 +5,49 @@
 </script>
 
 <!-- Horizontally scrollable image section -->
-<div class="w-full overflow-x-auto hide-scrollbar mt-[80px]">
+<div class="w-full overflow-x-auto hide-scrollbar mt-[100px]">
   <div class="flex gap-4 px-4 py-6 w-max">
     <img
-      src="/images/computer.jpg"
+      src="/images/product.jpg"
       alt="Phone 1"
-      class="h-[400px] w-auto object-cover flex-shrink-0"
+      class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
     <img
-      src="/images/side.jpg"
+      src="/images/ipad.jpg"
       alt="Phone 2"
-      class="h-[400px] w-auto object-cover flex-shrink-0"
+      class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
+    />
+    <!-- svelte-ignore a11y_media_has_caption -->
+    <video
+    src="/images/vs.mp4"
+    class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
+    autoplay
+    muted
+    loop
+    playsinline
+  ></video>
+  
+    <img
+      src="/images/iphone.jpg"
+      alt="Phone 3"
+      class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
     <img
-      src="/images/vs.jpg"
+      src="/images/tv.jpg"
       alt="Phone 3"
-      class="h-[400px] w-auto object-cover flex-shrink-0"
+      class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
+    />
+    <img
+      src="/images/tablet.jpg"
+      alt="Phone 3"
+      class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
   </div>
 </div>
 
-<!-- Brand section with white background -->
-<div class="bg-white">
+
+<!-- Product Grid -->
+<div class="min-h-screen bg-[#e3eadd] p-6 rounded-t-3xl">
   <BrandBar />
 </div>
 

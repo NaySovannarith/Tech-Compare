@@ -42,7 +42,7 @@
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
       <a href="/" class="hover:underline">
-        <img src="/images/Logo.png" alt="Duuuuu Logo" class="h-24 w-24 object-cover" />
+        <img src="/images/image.png" alt="Duuuuu Logo" class="h-12 w-12 object-cover" />  
       </a>
     </div>
     
@@ -76,8 +76,7 @@
   </button>
 </div>
 
-
-
+      
 
       <button
         on:click={goToProflies}

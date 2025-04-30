@@ -37,12 +37,11 @@
   }
 </script>
 
-<!-- Card container -->
-<div class="flex justify-center items-center w-full py-1">
-  <div class="flex bg-white rounded-2xl shadow-md overflow-hidden w-[36rem] h-[22rem] border border-gray-100 hover:shadow-xl transition duration-300">
-    <!-- Image section -->
-    <div class="w-[40%] p-4 flex items-center justify-center">
-      <img src={image} alt={title} class="h-44 object-contain" />
+<div class="flex justify-center items-center w-full py-2">
+  <div class="flex bg-white rounded-2xl shadow-md overflow-hidden w-[38rem] h-[23rem] border border-gray-100 hover:shadow-2xl transition transform duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-[#FFFFFF] cursor-pointer">
+    <!-- Image -->
+    <div class="w-[40%] p-5 flex items-center justify-center">
+      <img src={image} alt={title} class="h-48 object-contain" />
     </div>
 
     <!-- Text/details section -->
