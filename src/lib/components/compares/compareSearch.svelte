@@ -1,146 +1,150 @@
 <script lang="ts">
+  import { compareSheet } from '$lib/data/stores';
+  import type { Product } from '$lib/data/stores';
+  import { get } from 'svelte/store';
 
-    let searchTerm = '';
-    let compareList: any[] = []; // To store products added for comparison
-  
-    async function handleSearch() {
-      // In a real application, you would fetch data based on the searchTerm
-      // For this example, we'll simulate a search result
-      const searchResults = [
-        { id: 'product1', name: 'Awesome Phone X' },
-        { id: 'product2', name: 'Super Camera Y' },
-        { id: 'product3', name: 'Smart Watch Z' },
-      ].filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
-  
-      // For now, let's just log the results. You'd typically display these to the user.
-      console.log('Search results:', searchResults);
+  let query = '';
+  let error = '';
+
+  const sampleProducts: Product[] = [
+    { id: '1', name: 'iPhone 16 Pro Max' },
+    { id: '2', name: 'Samsung Galaxy S25 Ultra' },
+    { id: '3', name: 'Google Pixel 9 Pro' },
+    { id: '4', name: 'iPhone 14 Pro' },
+    { id: '5', name: 'OnePlus 12' },
+    { id: '6', name: 'iPhone 15 ProMax' }
+  ];
+
+  function addToCompare(product: Product) {
+    const current = get(compareSheet);
+    const alreadyExists = current.some(p => p.id === product.id);
+
+    if (alreadyExists) {
+      error = `"${product.name}" is already added.`;
+      setTimeout(() => (error = ''), 2000); // Clear after 2 seconds
+      return;
     }
+
+    compareSheet.set([...current, product]);
+  }
+
+  $: filtered = sampleProducts.filter(p =>
+    p.name.toLowerCase().includes(query.toLowerCase())
+  );
+</script>
+
+<div class="compare-search">
+  <!-- Compare section title -->
+  <h3 class="section-title">Compare</h3>
   
-    function addToCompare(product: { id: any; name: any; }) {
-      if (!compareList.find(item => item.id === product.id)) {
-        compareList = [...compareList, product];
-        console.log('Added to compare:', product);
-        // In a real app, you might want to notify the CompareSheet component
-      } else {
-        alert(`${product.name} is already in the compare list.`);
-      }
-    }
-  </script>
-  
-  <div class="compare-search">
-    <div class="search-bar">
-      <input type="text" bind:value={searchTerm} placeholder="Write to add">
-      <button on:click={handleSearch}>Compare</button>
-    </div>
-  
-    <div class="add-to-compare">
-      <p>Add to compare</p>
-      <div class="sample-products">
-        <button on:click={() => addToCompare({ id: 'sample1', name: 'iPhone 16 Pro Max' })}>
-          <span class="plus-icon">+</span> iPhone 16 Pro Max
-        </button>
-        <button on:click={() => addToCompare({ id: 'sample2', name: 'Samsung Galaxy S25 Ultra' })}>
-          <span class="plus-icon">+</span> Samsung Galaxy S25 Ultra
-        </button>
-        <button on:click={() => addToCompare({ id: 'sample3', name: 'Google Pixel 9 Pro' })}>
-          <span class="plus-icon">+</span> Google Pixel 9 Pro
-        </button>
-        </div>
-    </div>
+  <input
+    type="text"
+    placeholder="Search to add products"
+    bind:value={query}
+    class="search-input"
+  />
+
+  {#if error}
+    <div class="error-message">{error}</div>
+  {/if}
+
+  <!-- Add to Compare section title -->
+  <h3 class="section-title">Add to Compare</h3>
+
+  <div class="search-results">
+    {#each filtered as product}
+      <button on:click={() => addToCompare(product)} class="search-item-button">
+        + {product.name}
+      </button>
+    {/each}
   </div>
-  
-  <style>
-    .compare-search {
-  background-color: #f4fdfa;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 51, 46, 0.05);
-  margin-bottom: 2rem;
-  border: 1px solid #d1eae4;
-}
+</div>
 
-.search-bar {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
+<style>
+  :root {
+    --primary-color: #00332e; /* Primary color for highlights */
+    --primary-hover: #004d40;
+    --accent-light: #e6f4f1;
+    --accent-bg: #f0fef9;
+    --border-color: #cceee6;
+    --error-color: #d32f2f;
+    --button-hover-bg: #00796b; /* Hover color for buttons */
+  }
 
-.search-bar input {
-  flex: 1;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
+  /* Overall container styling for the search section */
+  .compare-search {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--accent-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 51, 46, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%; /* Make it take up the full width of the parent container */
+  }
 
-.search-bar button {
-  padding: 0.75rem 1.25rem;
-  background-color: #00332e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
+  /* Styling for the section titles (Compare and Add to Compare) */
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
 
-.add-to-compare p {
-  margin: 1rem 0 0.5rem;
-  font-weight: bold;
-}
+  /* Styling for the search input field */
+  .search-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border 0.2s ease;
+    background-color: #fff;
+  }
 
-.sample-products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+  /* Focus state for the search input */
+  .search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
 
-.sample-products button {
-  padding: 0.5rem 1rem;
-  background-color: #e0e0e0;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
+  /* Styling for the search results section */
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
 
-.sample-products button:hover {
-  background-color: #ccc;
-}
+  /* Styling for each button in the search results */
+  .search-item-button {
+    padding: 0.6rem 1.2rem;
+    background-color: var(--accent-light);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease-in-out;
+    color: var(--primary-color);
+    font-weight: 600;
+    min-width: 140px;
+    text-align: center;
+  }
 
-.plus-icon {
-  margin-right: 5px;
-  font-weight: bold;
-}
-.sample-products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 0.5rem;
-}
+  /* Hover effects for search buttons */
+  .search-item-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 51, 46, 0.1);
+  }
 
-.sample-products button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.6rem 1rem;
-  background-color: #e6f4f1;
-  border: 1px solid #a7d6cd;
-  border-radius: 8px;
-  color: #00332e;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
-}
-
-.sample-products button:hover {
-  background-color: #d2ece7;
-  transform: scale(1.02);
-}
-
-.plus-icon {
-  margin-right: 6px;
-  font-weight: bold;
-  color: #007b7b;
-}
-
-
+  /* Error message styling */
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
 </style>
