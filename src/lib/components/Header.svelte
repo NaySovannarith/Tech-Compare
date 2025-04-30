@@ -239,7 +239,7 @@
         </div>
 
         <!-- Contact -->
-        <a class="hover:underline text-sm" href="/contact">Contact us</a>
+        <a class="hover:underline text-sm" href="/contacts">Contact us</a>
       </div>
 
       <!-- Compare Button -->

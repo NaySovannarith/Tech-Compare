@@ -127,7 +127,7 @@
 
   </script>
   
-  <div class="mt-[100 px] px-6 py-4 space-y-6">
+  <div class="mt-[100px] px-6 py-4 space-y-6">
     <!-- Price Range -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-lg font-semibold mb-2">Price range</h2>
