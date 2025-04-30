@@ -8,7 +8,7 @@
   
     const earbudsAccessories = [
       {
-        title: 'EarFun Free Pro 3 Brown Black',
+        title: 'EarFun Free Pro 3 Brown',
         brand: 'EarFun',
         image: '/earbud/EarFun Free Pro 3 Brown Black.jpg',
         bluetooth: 'Bluetooth 5.3',
@@ -56,7 +56,7 @@
         price: 99
       },
       {
-        title: 'Apple AirPods Pro (2nd generation)',
+        title: 'Apple AirPods Pro (2nd gen)',
         brand: 'Apple',
         image: '/earbud/Apple AirPods Pro (2nd generation).jpg',
         bluetooth: 'Bluetooth 5.3',
@@ -64,7 +64,7 @@
         price: 249
       },
       {
-        title: 'Apple AirPods (3rd generation)',
+        title: 'Apple AirPods (3rd gen)',
         brand: 'Apple',
         image: '/earbud/Apple AirPods (3rd generation).jpg',
         bluetooth: 'Bluetooth 5.0',
@@ -190,7 +190,7 @@
 
   </script>
   
-  <div class="mt-[80px] px-6 py-4 space-y-6">
+  <div class="mt-[100px] px-6 py-4 space-y-6">
     <!-- Price Range -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -217,16 +217,7 @@
             price={product.price}
           />
         {/each}
-        {#each earbudsAccessories as product}
-          <ProductCard
-          title={product.title}
-          brand={product.brand}
-          image={product.image}
-          bluetooth={product.bluetooth}
-          battery={product.battery}
-          price={product.price}
-          />
-        {/each}
+       
       </div>
   </div>
   

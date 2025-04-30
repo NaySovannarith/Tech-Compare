@@ -41,7 +41,9 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      <a href="/" class="hover:underline">Duuuuu.</a>
+      <a href="/" class="hover:underline">
+        <img src="/images/image.png" alt="Duuuuu Logo" class="h-12 w-12 object-cover" />  
+      </a>
     </div>
 
     <!-- Search -->
@@ -74,7 +76,7 @@
     </button>
   </div>
 
-      <Bell class="w-5 h-5" aria-label="Notifications" />
+      
 
       <button
         on:click={goToProflies}
@@ -108,7 +110,7 @@
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablet">Tablet</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Computer</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Laptop</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">TV</a></li>
             </ul>
           {/if}
