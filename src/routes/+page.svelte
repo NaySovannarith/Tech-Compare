@@ -25,19 +25,23 @@
   </div>
 </div>
 
-
-<!-- Product Grid -->
-<div class="min-h-screen bg-[#e3eadd] p-6">
+<!-- Brand section with white background -->
+<div class="bg-white">
   <BrandBar />
+</div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
+<!-- Product Grid Section with light green background -->
+<div class="min-h-screen bg-[#e3eadd] px-6 py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
     {#each products as product}
       <ProductCard {...product} />
     {/each}
   </div>
 
   <div class="mt-6 text-center">
-    <button class="bg-white px-4 py-2 rounded-md shadow hover:bg-gray-200">View All Phones</button>
+    <button class="bg-white px-4 py-2 rounded-md shadow hover:bg-gray-200">
+      View All Phones
+    </button>
   </div>
 </div>
 
@@ -47,7 +51,7 @@
     display: none;
   }
   .hide-scrollbar {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;     /* Firefox */
   }
 </style>

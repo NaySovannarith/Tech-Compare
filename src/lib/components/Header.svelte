@@ -41,9 +41,11 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      <a href="/" class="hover:underline">Duuuuu.</a>
+      <a href="/" class="hover:underline">
+        <img src="/images/Logo.png" alt="Duuuuu Logo" class="h-24 w-24 object-cover" />
+      </a>
     </div>
-
+    
     <!-- Search -->
     <div class="flex-1 max-w-xs mx-2 relative">
       <input
@@ -57,24 +59,25 @@
 
     <!-- Inside Icons & Login section -->
 <div class="flex items-center gap-4">
-  <!-- Wishlist button with badge -->
-  <div class="relative">
-    <button
-      type="button"
-      on:click={() => goto('/wishlists')}
-      class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
-      aria-label="Wishlists"
-    >
-      <Heart class="w-full h-full" />
-      {#if $wishlist.length > 0}
-        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
-          {$wishlist.length}
-        </span>
-      {/if}
-    </button>
-  </div>
+ <!-- Wishlist button with badge -->
+<div class="relative">
+  <button
+    type="button"
+    on:click={() => goto('/wishlists')}
+    class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
+    aria-label="Wishlists"
+  >
+    <Heart class="w-full h-full" />
+    {#if $wishlist.length > 0}
+      <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
+        {$wishlist.length}
+      </span>
+    {/if}
+  </button>
+</div>
 
-      <Bell class="w-5 h-5" aria-label="Notifications" />
+
+
 
       <button
         on:click={goToProflies}
