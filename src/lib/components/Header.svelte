@@ -75,7 +75,7 @@
       <div class="relative">
         <button
           type="button"
-          on:click={() => goto('/')}
+          on:click={() => goto('/wishlists')}
           class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
           aria-label="Wishlists"
         >
