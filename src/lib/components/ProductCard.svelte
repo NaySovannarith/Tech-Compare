@@ -4,6 +4,9 @@
   import { addToWishlist, wishlist } from '$lib/wishlist/wishlist';
   import { Heart } from 'lucide-svelte';
   import { get } from 'svelte/store';
+  import WishlistModal from './wishlist/WishlistModal.svelte';
+
+   let showModal = false;
 
   export let title;
   export let brand;
@@ -29,12 +32,15 @@
   $: isWishlisted = $wishlist.some(item => item.id === id);
 
   function toggleWishlist() {
-    if (!isWishlisted) {
-      addToWishlist(product);
-    } else {
-      wishlist.update(items => items.filter(item => item.id !== id));
-    }
+  if (!isWishlisted) {
+    addToWishlist(product);
+    showModal = true; 
+  } else {
+    wishlist.update(items => items.filter(item => item.id !== id));
+    showModal = false; 
   }
+}
+
 </script>
 
 <div class="flex justify-center items-center w-full py-2">
@@ -84,3 +90,7 @@
     </div>
   </div>
 </div>
+
+{#if showModal}
+  <WishlistModal product={product} onClose={() => (showModal = false)} />
+{/if}

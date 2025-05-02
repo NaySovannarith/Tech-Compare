@@ -56,7 +56,8 @@
       />
       <Search class="absolute right-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" />
     </div>
-
+       
+    <!-- wishlist -->
     <!-- Inside Icons & Login section -->
 <div class="flex items-center gap-4">
   <!-- Wishlist button with badge -->

@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="  mt-[95px] bg-gray-100 min-h-screen ">
+<div class="  mt-[105px] bg-gray-100 min-h-screen ">
 
 	<div class="mt-[95px] flex flex-col items-start mb-4 p-4">
 	
@@ -100,6 +100,7 @@
 		<div class="mt-10 border-t pt-6">
 			<h3 class="text-xl font-semibold mb-4">Write a Review</h3>
 			<form class="space-y-4" on:submit|preventDefault={submitReview}>
+				<!-- svelte-ignore a11y_label_has_associated_control -->
 				<label class="block font-semibold">Rating (1-5)</label>
 				<input
 					type="number"
@@ -109,6 +110,7 @@
 					class="w-full border p-2 rounded"
 				/>
 
+				<!-- svelte-ignore a11y_label_has_associated_control -->
 				<label class="block font-semibold">Your Review</label>
 				<textarea
 					bind:value={reviewText}
