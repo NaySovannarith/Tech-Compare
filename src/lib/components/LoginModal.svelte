@@ -1,24 +1,43 @@
-<script>
-    import { goto } from "$app/navigation";
-
+<!-- src/routes/login/+page.svelte -->
+<script lang="ts">
+  import { goto } from "$app/navigation";
+  import { user } from '$lib/data/auth';
   
   let email = "";
   let password = "";
   let showPassword = false;
-
-  const gotologin = () => goto('/');
+  let errorMessage = "";
+  let isLoading = false;
   function togglePasswordVisibility() {
     showPassword = !showPassword;
   }
 
-  function login() {
-    // Replace with actual login logic
-    console.log("Email:", email, "Password:", password);
+  function handleLogin() {
+    if (!email || !password) {
+      errorMessage = "Please enter both email and password";
+      return;
+    }
+    
+    isLoading = true;
+    errorMessage = "";
+    
+    try {
+      // Call the login function from our store
+      user.login(email, password);
+      
+      // Navigate to home page after successful login
+      goto('/');
+    } catch (error) {
+      errorMessage = "Login failed. Please try again.";
+      console.error(error);
+    } finally {
+      isLoading = false;
+    }
   }
+  
   function goBack() {
     history.length > 1 ? history.back() : goto('/');
   }
-  
 </script>
 
 <div class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -31,6 +50,12 @@
 
     <h2 class="text-2xl font-semibold mb-6 text-center">Login</h2>
 
+    {#if errorMessage}
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        {errorMessage}
+      </div>
+    {/if}
+
     <div class="space-y-4">
       <!-- Email Input -->
       <div>
@@ -40,6 +65,7 @@
           bind:value={email}
           class="w-full border rounded px-4 py-2 outline-none focus:ring-2 focus:ring-green-600"
           placeholder="you@example.com"
+          disabled={isLoading}
         />
       </div>
 
@@ -52,11 +78,13 @@
             bind:value={password}
             class="w-full border rounded px-4 py-2 pr-10 outline-none focus:ring-2 focus:ring-green-600"
             placeholder="••••••••"
+            disabled={isLoading}
           />
           <button
             type="button"
             class="absolute inset-y-0 right-2 flex items-center"
             on:click={togglePasswordVisibility}
+            disabled={isLoading}
           >
             {#if showPassword}
               👁️
@@ -69,12 +97,11 @@
 
       <!-- Login Button -->
       <button
-        on:click={gotologin}
-        
-        class="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition"
+        on:click={handleLogin}
+        disabled={isLoading}
+        class="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition disabled:bg-green-600 disabled:cursor-not-allowed"
       >
-      
-        LOGIN
+        {isLoading ? 'LOGGING IN...' : 'LOGIN'}
       </button>
 
       <hr class="my-4" />
@@ -88,14 +115,13 @@
         <button class="w-full bg-blue-600 text-white py-2 rounded flex items-center justify-center">
           <img src="https://www.svgrepo.com/show/157810/facebook.svg" alt="Facebook" class="w-5 h-5 mr-2" />
           <a href="https://www.facebook.com/login.php/"> Sign in with Facebook</a>
-         
         </button>
       </div>
 
       <!-- Links -->
       <div class="text-sm text-center mt-4 space-y-1">
         <p>
-          Don’t have an account? <a href="signup" class="text-green-800 hover:underline">Register</a>
+          Don't have an account? <a href="signup" class="text-green-800 hover:underline">Register</a>
         </p>
         <p>
           Forget Password? <a href="#" class="text-green-800 hover:underline">Reset Password</a>
