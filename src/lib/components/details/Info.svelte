@@ -25,7 +25,7 @@
     id,
     title,
     brand,
-    image,
+    image:"/iphones/iPhone 16.jpg",
     storage,
     memory,
     price,
@@ -36,11 +36,7 @@
   $: isWishlisted = $wishlist.some(item => item.id === id);
 
   function toggleWishlist() {
-    if (isWishlisted) {
-      removeFromWishlist(id);
-    } else {
-      addToWishlist(product);
-    }
+    isWishlisted ? removeFromWishlist(id) : addToWishlist(product);
   }
 
   const specs = [
@@ -53,12 +49,32 @@
     { icon: Database, label: "Storage", value: "128GB, 256GB, 512GB" },
   ];
 
-  const actions = [
-    { icon: "/details/wishlist.png", label: "Wishlist" },
-    { icon: "/details/review.png", label: "Review" },
-    { icon: "/details/compare.png", label: "Compare" },
-    { icon: "/details/buy.png", label: "Buy" },
-    { icon: Share, label: "Share" }
+  $: actions = [
+    {
+      icon: isWishlisted ? '/details/wishlist.png' : '/details/wishlist.png',
+      label: isWishlisted ? 'Wishlisted' : 'Wishlist',
+      click: toggleWishlist
+    },
+    {
+      icon: '/details/review.png',
+      label: 'Review',
+      click: () => goto('/reviews')
+    },
+    {
+      icon: '/details/compare.png',
+      label: 'Compare',
+      click: () => goto('/compares')
+    },
+    {
+      icon: '/details/buy.png',
+      label: 'Buy',
+      click: () => goto('/buy')
+    },
+    {
+      icon: '/details/share.png',
+      label: 'Share',
+      click: () => navigator.share?.({ title, url: window.location.href })
+    }
   ];
 </script>
 
@@ -69,7 +85,7 @@
     </div>
 
     <div class="right">
-      <h1>{product.title}</h1>
+      <h1>{product.title} iphone16</h1>
       <hr />
       <div class="spec-grid">
         {#each specs as spec}
@@ -98,12 +114,7 @@
         {#each actions as action (action.label)}
           <div
             class="action"
-            on:click={() => {
-              if (action.label === 'Wishlist') toggleWishlist();
-              else if (action.label === 'Review') goto('/reviews');
-              else if (action.label === 'Compare') goto('/compares');
-              else if (action.label === 'Buy') goto('/buy');
-            }}
+            on:click={action.click}
             style="cursor: pointer;"
           >
             <div class="icon-circle">
@@ -258,6 +269,11 @@
     align-items: center;
   }
 
+  .icon-circle img {
+    width: 24px;
+    height: 24px;
+  }
+
   .icon-circle svg {
     color: #194640;
   }
@@ -265,4 +281,23 @@
   .action:hover span {
     text-decoration: underline;
   }
+
+  .left img {
+  max-height: 800px; /* increased height */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transform: scale(1.6); /* optional scale for emphasis */
+}
+
+.right h1 {
+  font-size: 36px;       /* Make it larger */
+  font-weight: 800;      /* Extra bold */
+  margin-bottom: 15px;
+  color: #222;           /* Optional: for clarity */
+  text-transform: uppercase; /* Optional: all caps */
+  text-shadow: 3px 4px 5px rgba(6, 95, 172, 0.2);
+}
+
 </style>
