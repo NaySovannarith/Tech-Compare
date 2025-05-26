@@ -39,7 +39,7 @@
       }
     </script>
     
-    <div class="flex bg-[#f5f5f5] rounded-2xl shadow-lg overflow-hidden w-full h-64">
+    <div class="flex bg-[#f5f5f5] hover:bg-[#e0e0e0] transition transform hover:-translate-y-2 hover:scale-105 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden w-full h-64 cursor-pointer">
       <!-- Image -->
       <div class="w-1/2 p-6 flex items-center justify-center bg-white">
         <img src={image} alt={title} class="h-48 object-contain" />
@@ -49,7 +49,7 @@
       <div class="w-1/2 p-6 flex flex-col justify-between">
         <div>
           <p class="text-sm font-semibold text-gray-500">{brand.toUpperCase()}</p>
-          <h2 class="text-2xl font-semibold">{title}</h2>
+          <h2 class="text-xl font-semibold">{title}</h2>
     
           <div class="mt-3 space-y-2 text-base">
             <p class="flex justify-between"><span>Resulution</span> <span class="font-semibold">{resulution}</span></p>

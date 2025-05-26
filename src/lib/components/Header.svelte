@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { Search, Heart, Bell, User } from 'lucide-svelte';
   import { goto } from '$app/navigation';
+  import { wishlist } from '$lib/wishlist/wishlist';
 
   let searchQuery = '';
   let activeDropdown: 'product' | 'accessory' | 'brand' | null = null;
@@ -11,7 +12,7 @@
   let brandRef: HTMLElement;
 
   const goToCompares = () => goto('/compares');
-  const goToProflies = () => goto('/profiles');
+  const goToProflies = () => goto('/login');
 
   const toggleDropdown = (type: 'product' | 'accessory' | 'brand') => {
     activeDropdown = activeDropdown === type ? null : type;
@@ -40,9 +41,11 @@
   <div class="flex items-center justify-between px-6 py-3">
     <!-- Logo -->
     <div class="text-2xl font-bold tracking-wide flex items-center gap-2">
-      <a href="/" class="hover:underline">Duuuuu.</a>
+      <a href="/" class="hover:underline">
+        <img src="/images/image.png" alt="Duuuuu Logo" class="h-12 w-12 object-cover" />  
+      </a>
     </div>
-
+    
     <!-- Search -->
     <div class="flex-1 max-w-xs mx-2 relative">
       <input
@@ -54,18 +57,26 @@
       <Search class="absolute right-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" />
     </div>
 
-    <!-- Icons & Login -->
-    <div class="flex items-center gap-4">
-      <button
-        type="button"
-        on:click={() => goto('/wishlists')}
-        class="w-5 h-5 cursor-pointer hover:text-red-500 transition"
-        aria-label="Wishlists"
-      >
-        <Heart class="w-full h-full" />
-      </button>
+    <!-- Inside Icons & Login section -->
+<div class="flex items-center gap-4">
+ <!-- Wishlist button with badge -->
+<div class="relative">
+  <button
+    type="button"
+    on:click={() => goto('/wishlists')}
+    class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
+    aria-label="Wishlists"
+  >
+    <Heart class="w-full h-full" />
+    {#if $wishlist.length > 0}
+      <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
+        {$wishlist.length}
+      </span>
+    {/if}
+  </button>
+</div>
 
-      <Bell class="w-5 h-5" aria-label="Notifications" />
+      
 
       <button
         on:click={goToProflies}
@@ -99,7 +110,7 @@
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablet">Tablet</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Computer</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Laptop</a></li>
               <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">TV</a></li>
             </ul>
           {/if}
