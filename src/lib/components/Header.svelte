@@ -99,7 +99,6 @@
             aria-haspopup="true"
             aria-expanded={activeDropdown === 'profile'}
           >
-            <!-- If user has avatar, show it, otherwise show User icon -->
             {#if $user.avatar}
               <img 
                 src={$user.avatar || "/placeholder.svg"} 
@@ -109,7 +108,7 @@
             {:else}
               <User class="w-4 h-4" />
             {/if}
-            {$user.name}
+            {$user.name.charAt(0)}
           </button>
 
           {#if activeDropdown === 'profile'}
