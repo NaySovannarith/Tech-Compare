@@ -1,0 +1,32 @@
+<script>
+    
+  import UserTable from '$lib/components/admin/UserTable.svelte';
+
+  let users = [
+    { id: 1, name: 'Alice Johnson', email: 'alice@example.com' },
+    { id: 2, name: 'Bob Smith', email: 'bob@example.com' },
+  ];
+</script>
+
+<h1 class="text-2xl font-bold mb-6">Users</h1>
+<table class="min-w-full bg-white rounded-lg shadow overflow-hidden">
+  <thead class="bg-gray-100 text-gray-600 text-left">
+    <tr>
+      <th class="p-4">Name</th>
+      <th class="p-4">Email</th>
+      <th class="p-4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {#each users as user}
+      <tr class="border-t">
+        <td class="p-4">{user.name}</td>
+        <td class="p-4">{user.email}</td>
+        <td class="p-4">
+          <button class="text-blue-600 hover:underline">Edit</button>
+          <button class="text-red-600 hover:underline ml-4">Delete</button>
+        </td>
+      </tr>
+    {/each}
+  </tbody>
+</table>

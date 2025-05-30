@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { goto } from '$app/navigation';
   import { addToWishlist, removeFromWishlist, wishlist } from '$lib/wishlist/wishlist';
   import {
@@ -112,6 +114,8 @@
 
       <div class="actions">
         {#each actions as action (action.label)}
+          <!-- svelte-ignore a11y_no_static_element_interactions -->
+          <!-- svelte-ignore a11y_click_events_have_key_events -->
           <div
             class="action"
             on:click={action.click}
@@ -205,12 +209,6 @@
     justify-content: center;
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    color: #222;
-  }
-
   .text .label {
     font-size: 13px;
     color: #555;
@@ -272,10 +270,6 @@
   .icon-circle img {
     width: 24px;
     height: 24px;
-  }
-
-  .icon-circle svg {
-    color: #194640;
   }
 
   .action:hover span {

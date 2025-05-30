@@ -17,6 +17,10 @@
   const toggleDropdown = (type: 'product' | 'accessory' | 'brand') => {
     activeDropdown = activeDropdown === type ? null : type;
   };
+  
+  function closeDropdown() {
+    activeDropdown = null;
+  }
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as Node;
@@ -33,6 +37,7 @@
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   });
+
 </script>
 
 <!-- Fixed Header -->
@@ -94,27 +99,36 @@
     <nav class="flex items-center justify-between px-6 py-2 text-sm font-medium">
       <div class="flex items-center space-x-12 flex-grow justify-center">
         
-        <!-- Products -->
-        <div class="relative" bind:this={productRef}>
-          <button
-            on:click={() => toggleDropdown('product')}
-            class={`flex items-center gap-1 px-1.5 py-0.5 text-sm font-medium rounded-md transition 
-              ${activeDropdown === 'product' ? 'bg-white text-[#00332e]' : 'text-white hover:bg-[#6B9071]'}`}
-            aria-haspopup="true"
-            aria-expanded={activeDropdown === 'product'}
-          >
-            Products ▼
-          </button>
+        
+<!-- Products -->
+<div class="relative" bind:this={productRef}>
+  <button
+    on:click={() => toggleDropdown('product')}
+    class={`flex items-center gap-1 px-1.5 py-0.5 text-sm font-medium rounded-md transition 
+      ${activeDropdown === 'product' ? 'bg-white text-[#00332e]' : 'text-white hover:bg-[#6B9071]'}`}
+    aria-haspopup="true"
+    aria-expanded={activeDropdown === 'product'}
+  >
+    Products ▼
+  </button>
 
-          {#if activeDropdown === 'product'}
-            <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/smartphones">Smartphone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tablet">Tablet</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/computers">Laptop</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/product_list/tvs">TV</a></li>
-            </ul>
-          {/if}
-        </div>
+  {#if activeDropdown === 'product'}
+    <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
+      <li class="px-4 py-2 hover:bg-gray-200">
+        <a href="/product_list/smartphones" on:click={closeDropdown}>Smartphone</a>
+      </li>
+      <li class="px-4 py-2 hover:bg-gray-200">
+        <a href="/product_list/tablet" on:click={closeDropdown}>Tablet</a>
+      </li>
+      <li class="px-4 py-2 hover:bg-gray-200">
+        <a href="/product_list/computers" on:click={closeDropdown}>Laptop</a>
+      </li>
+      <li class="px-4 py-2 hover:bg-gray-200">
+        <a href="/product_list/tvs" on:click={closeDropdown}>TV</a>
+      </li>
+    </ul>
+  {/if}
+</div>
 
         <!-- Accessories -->
         <div class="relative" bind:this={accessoryRef}>
@@ -130,11 +144,11 @@
 
           {#if activeDropdown === 'accessory'}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/cameras">Camera</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/earbuds">Earbuds</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/headphones">Headphone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/smartwatches">Smartwatch</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/powerbanks">Powerbank</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/cameras" on:click={closeDropdown}>Camera</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/earbuds" on:click={closeDropdown}>Earbuds</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/headphones" on:click={closeDropdown}>Headphone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/smartwatches" on:click={closeDropdown}>Smartwatch</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/accessories/powerbanks" on:click={closeDropdown}>Powerbank</a></li>
             </ul>
           {/if}
         </div>
@@ -153,11 +167,11 @@
 
           {#if activeDropdown === 'brand'}
             <ul class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10 text-sm">
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/iphone">iPhone</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/samsung">Samsung</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/google">Google</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/huawei">Huawei</a></li>
-              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/vivo">Vivo</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/iphone" on:click={closeDropdown}>iPhone</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/samsung" on:click={closeDropdown}>Samsung</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/google" on:click={closeDropdown}>Google</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/huawei" on:click={closeDropdown}>Huawei</a></li>
+              <li class="px-4 py-2 hover:bg-gray-200"><a href="/brands/vivo" on:click={closeDropdown}>Vivo</a></li>
             </ul>
           {/if}
         </div>
