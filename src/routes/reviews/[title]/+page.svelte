@@ -31,7 +31,8 @@
 </script>
 
 <div class="  mt-[105px] bg-gray-100 min-h-screen ">
-
+	 
+     <div class="form-grid max-w-7xl mx-auto px-4">
 	<div class="mt-[95px] flex flex-col items-start mb-4 p-4">
 	
 	<!-- Go Back Button -->
@@ -128,5 +129,5 @@
 			</form>
 		</div>
 	</div>
-	
+	</div>
 </div>

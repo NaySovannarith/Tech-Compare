@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
+  import { Heart } from "lucide-svelte";
 
     export let product;
     export let onClose;
@@ -9,7 +10,11 @@
   <div class="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
     <div class="bg-white p-6 rounded-lg w-[90%] max-w-xl shadow-xl relative">
       <button class="absolute top-2 right-3 text-xl" on:click={onClose}>×</button>
-      <h2 class="text-xl font-semibold mb-4">Added to Wish List</h2>
+      <div class="mb-4 flex items-center gap-2">
+        <h2 class="text-xl font-semibold ">Added to Wish List</h2> 
+        <Heart class="w-4 h-4 animate-pulse text-pink-500" />
+      </div>
+
        
       <div class="bg-[#2c2c2c] text-sm flex items-center gap-2 p-3 rounded mb-5">
         <span class="text-green-400 text-lg">●</span>
@@ -36,7 +41,7 @@
   
       <!-- svelte-ignore a11y_no_static_element_interactions -->
       <div class="mt-8 flex justify-end gap-6">
-        <button on:click={onClose} class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Stay Here     </button>
+        <button on:click={onClose} class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Stay Here</button>
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <!-- svelte-ignore a11y_missing_attribute -->

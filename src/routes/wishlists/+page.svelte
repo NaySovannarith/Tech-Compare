@@ -14,16 +14,20 @@
 </script>
 
 <div class="mt-[105px] bg-gray-100 min-h-screen">
-	<div class="flex flex-col md:flex-row items-center justify-between mb-4 p-4">
-		<button
-			on:click={goBack}
-			class="mb-4 md:mb-0 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-black border-2 border-gray-500 rounded-lg"
-		>
-			← Go Back
-		</button>
-		<h1 class="text-2xl font-bold text-center mb-4 md:mb-0">My Wishlist</h1>
-		<div class="w-[112px]"></div>
-	</div>
+	<div class="form-grid max-w-7xl mx-auto px-4">
+
+<div class="relative flex items-center justify-center mb-4 p-4">
+	<!-- Back button -->
+	<button
+		on:click={goBack}
+		class="absolute eft-4 sm:left-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-black border-2 border-gray-500 rounded-lg"
+	>
+		← Go Back
+	</button>
+
+	<!-- Centered heading -->
+	<h1 class="text-2xl font-bold text-center">My Wishlist ❤️</h1>
+</div>
 
 	<div class="flex flex-col sm:flex-row justify-center items-center gap-2 text-xl text-center mb-8 mt-4 px-4">
 		<span>Save your favorite products with our WishList Feature.</span>
@@ -77,15 +81,19 @@
 			<Empty />
 		{/if}
 	</div>
+	</div>
 </div>
 
 <style>
-	.container01 {
-		border: 1px solid #e5e7eb;
-		padding: 1rem;
-		border-radius: 0.25rem;
-		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-					0 1px 2px 0 rgba(0, 0, 0, 0.06);
-		background-color: white;
-	}
+.container01 {
+	width: 100%;
+	border: 1px solid #e5e7eb;
+	padding: 1rem;
+	border-radius: 0.25rem;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+				0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	background-color: white;
+}
+
+	
 </style>

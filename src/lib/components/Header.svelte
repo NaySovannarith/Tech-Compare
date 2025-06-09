@@ -80,10 +80,10 @@
           class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
           aria-label="Wishlists"
         >
-          <Heart class="w-full h-full" />
+          <Heart class="w-full h-full animate-pulse text-pink-500" />
           {#if $wishlist.length > 0}
             <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
-              {$wishlist.length}
+              {$wishlist.length}  
             </span>
           {/if}
         </button>
