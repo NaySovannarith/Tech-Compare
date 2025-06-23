@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { run, preventDefault } from 'svelte/legacy';
-
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { wishlist } from '$lib/wishlist/wishlist';
   import { user } from '$lib/data/auth';
   import type { User } from '$lib/data/auth';
   import { derived } from 'svelte/store';
+  import { get } from 'svelte/store';
 
-  let editableUserInfo: User = $state({
+  // Initialize editableUserInfo with empty or default values
+  let editableUserInfo: User = {
     id: '',
     name: "Jane Doe",
     email: "jane.doe@example.com",
@@ -17,8 +17,9 @@
     address: "123 Main Street, Anytown, USA",
     avatar: "/placeholder.svg?height=200&width=200",
     profilePicture: undefined
-  });
+  };
 
+  // Derived store to sync with user store
   const userInfoDerived = derived(user, ($user) => {
     if ($user) {
       return {
@@ -35,17 +36,25 @@
     return editableUserInfo;
   });
 
-  let isEditing = $state(false);
+  let isEditing = false;
+  let recentSearches = [
+    { id: 1, term: "wireless earbuds", date: "2023-11-10" },
+    { id: 2, term: "fitness tracker", date: "2023-11-08" },
+    { id: 3, term: "portable charger", date: "2023-11-05" }
+  ];
+
+  // Sync editableUserInfo with user data when component mounts or user changes
+  $: {
+    const currentUser = get(userInfoDerived);
+    if (currentUser) {
+      editableUserInfo = { ...currentUser };
+    }
+  }
 
   onMount(() => {
-    if (!$user) {
+    const currentUser = get(user);
+    if (!currentUser) {
       goto('/login');
-    }
-  });
-
-  run(() => {
-    if ($userInfoDerived) {
-      editableUserInfo = { ...$userInfoDerived };
     }
   });
 
@@ -54,7 +63,7 @@
   }
 
   function saveUserInfo() {
-    if ($user) {
+    if (get(user)) {
       user.update({
         name: editableUserInfo.name,
         email: editableUserInfo.email,
@@ -100,12 +109,6 @@
   }
 
   const goToProductDetail = () => goto('/product_list/product_detail');
-  
-  let recentSearches = $state([
-    { id: 1, term: "wireless earbuds", date: "2023-11-10" },
-    { id: 2, term: "fitness tracker", date: "2023-11-08" },
-    { id: 3, term: "portable charger", date: "2023-11-05" }
-  ]);
 </script>
 
 <div class="max-w-6xl mx-auto p-4 bg-white mt-16">
@@ -117,7 +120,7 @@
       <div class="border rounded-lg shadow-sm overflow-hidden">
         <div class="flex justify-between items-center p-4 border-b">
           <h2 class="text-lg font-semibold">Personal Information</h2>
-          <button onclick={toggleEdit} class="px-3 py-1 rounded-lg text-sm bg-blue-600 text-white">
+          <button on:click={toggleEdit} class="px-3 py-1 rounded-lg text-sm bg-blue-600 text-white">
             {isEditing ? 'Cancel' : 'Edit'}
           </button>
         </div>
@@ -132,13 +135,13 @@
               />
             </div>
             {#if isEditing}
-              <input type="file" accept="image/*" onchange={handleProfilePictureChange} class="mt-4" />
+              <input type="file" accept="image/*" on:change={handleProfilePictureChange} class="mt-4" />
             {/if}
             <h3 class="font-medium">{editableUserInfo.name}</h3>
             <p class="text-sm text-gray-500">{editableUserInfo.email}</p>
           </div>
 
-          <form onsubmit={preventDefault(saveUserInfo)} class="p-6">
+          <form on:submit|preventDefault={saveUserInfo} class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -147,7 +150,9 @@
                   id="name" 
                   bind:value={editableUserInfo.name} 
                   disabled={!isEditing}
-                  class="w-full p-3 border rounded-lg {isEditing ? 'bg-white' : 'bg-gray-50'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class:bg-white={isEditing}
+                  class:bg-gray-50={!isEditing}
                 />
               </div>
               <div>
@@ -157,7 +162,9 @@
                   id="email" 
                   bind:value={editableUserInfo.email} 
                   disabled={!isEditing}
-                  class="w-full p-3 border rounded-lg {isEditing ? 'bg-white' : 'bg-gray-50'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class:bg-white={isEditing}
+                  class:bg-gray-50={!isEditing}
                 />
               </div>
               <div>
@@ -167,7 +174,9 @@
                   id="phone" 
                   bind:value={editableUserInfo.phone} 
                   disabled={!isEditing}
-                  class="w-full p-3 border rounded-lg {isEditing ? 'bg-white' : 'bg-gray-50'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class:bg-white={isEditing}
+                  class:bg-gray-50={!isEditing}
                 />
               </div>
               <div>
@@ -177,7 +186,9 @@
                   id="birthday" 
                   bind:value={editableUserInfo.birthday} 
                   disabled={!isEditing}
-                  class="w-full p-3 border rounded-lg {isEditing ? 'bg-white' : 'bg-gray-50'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class:bg-white={isEditing}
+                  class:bg-gray-50={!isEditing}
                 />
               </div>
               <div class="md:col-span-2">
@@ -187,7 +198,9 @@
                   id="address" 
                   bind:value={editableUserInfo.address} 
                   disabled={!isEditing}
-                  class="w-full p-3 border rounded-lg {isEditing ? 'bg-white' : 'bg-gray-50'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  class:bg-white={isEditing}
+                  class:bg-gray-50={!isEditing}
                 />
               </div>
             </div>
@@ -203,7 +216,7 @@
         <!-- Logout Button -->
         <div class="p-4 border-t">
           <button
-            onclick={handleLogout}
+            on:click={handleLogout}
             class="w-full py-3 bg-red-50 text-red-600 border border-red-200 rounded-lg hover:bg-red-100 flex items-center justify-center gap-2 font-medium"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -231,7 +244,7 @@
                   <div class="flex items-center justify-between p-2">
                     <!-- Clickable product info -->
                     <button 
-                      onclick={() => goToProductDetail()}
+                      on:click={() => goToProductDetail()}
                       class="flex items-center flex-1 text-left hover:bg-gray-100 p-2 rounded-lg transition-colors"
                     >
                       <div class="w-10 h-10 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
@@ -245,7 +258,7 @@
                     
                     <!-- Remove button -->
                     <button 
-                      onclick={() => removeFromWishlist(product.id)}
+                      on:click={() => removeFromWishlist(product.id)}
                       class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50"
                       aria-label="Remove from wishlist"
                     >
@@ -281,7 +294,7 @@
               <p class="text-gray-600 text-sm">Recent Searches</p>
             </div>
             {#if recentSearches.length > 0}
-              <button onclick={clearAllSearches} class="text-sm text-blue-600 hover:text-blue-800">
+              <button on:click={clearAllSearches} class="text-sm text-blue-600 hover:text-blue-800">
                 Clear All
               </button>
             {/if}
@@ -297,7 +310,7 @@
                     <p class="text-xs text-gray-500 mt-0.5">{search.date}</p>
                   </div>
                   <button 
-                    onclick={() => clearRecentSearch(search.id)}
+                    on:click={() => clearRecentSearch(search.id)}
                     class="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100"
                     aria-label="Clear search"
                   >
