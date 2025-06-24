@@ -13,7 +13,7 @@
       class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
     <img
-      src="/images/tv.jpg"
+      src="/images/ipad.jpg"
       alt="Phone 2"
       class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
@@ -28,12 +28,12 @@
   ></video>
   
     <img
-      src="/images/ipad.jpg"
+      src="/images/iphone.jpg"
       alt="Phone 3"
       class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
     <img
-      src="/images/iphone.jpg"
+      src="/images/tv.jpg"
       alt="Phone 3"
       class="h-[400px] w-auto rounded-2xl object-cover flex-shrink-0"
     />
@@ -49,15 +49,20 @@
 <!-- Product Grid -->
 <div class="min-h-screen bg-[#e3eadd] p-6 rounded-t-3xl">
   <BrandBar />
+</div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
+<!-- Product Grid Section with light green background -->
+<div class="min-h-screen bg-[#e3eadd] px-6 py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
     {#each products as product}
       <ProductCard {...product} />
     {/each}
   </div>
 
   <div class="mt-6 text-center">
-    <button class="bg-white px-4 py-2 rounded-md shadow hover:bg-gray-200">View All Phones</button>
+    <button class="bg-white px-4 py-2 rounded-md shadow hover:bg-gray-200">
+      View All Phones
+    </button>
   </div>
 </div>
 
@@ -67,7 +72,7 @@
     display: none;
   }
   .hide-scrollbar {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;     /* Firefox */
   }
 </style>

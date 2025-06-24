@@ -57,7 +57,7 @@
         <img src="/images/image.png" alt="Duuuuu Logo" class="h-12 w-12 object-cover" />  
       </a>
     </div>
-
+    
     <!-- Search -->
     <div class="flex-1 max-w-xs mx-2 relative">
       <input
@@ -70,23 +70,23 @@
     </div>
 
     <!-- Inside Icons & Login section -->
-    <div class="flex items-center gap-4">
-      <!-- Wishlist button with badge -->
-      <div class="relative">
-        <button
-          type="button"
-          on:click={() => goto('/wishlists')}
-          class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
-          aria-label="Wishlists"
-        >
-          <Heart class="w-full h-full" />
-          {#if $wishlist.length > 0}
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
-              {$wishlist.length}
-            </span>
-          {/if}
-        </button>
-      </div>
+<div class="flex items-center gap-4">
+ <!-- Wishlist button with badge -->
+<div class="relative">
+  <button
+    type="button"
+    on:click={() => goto('/wishlists')}
+    class="w-5 h-5 cursor-pointer hover:text-red-500 transition relative"
+    aria-label="Wishlists"
+  >
+    <Heart class="w-full h-full" />
+    {#if $wishlist.length > 0}
+      <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full transition-transform transform scale-100">
+        {$wishlist.length}
+      </span>
+    {/if}
+  </button>
+</div>
 
       <!-- Conditional rendering based on authentication state -->
       {#if $user}
