@@ -54,7 +54,7 @@
     max-width: 750px;
     margin: auto;
     font-family: 'Segoe UI', sans-serif;
-    border: 1px solid #00332e;
+    border: 1px solid #00332e;                   
   }
 
   .history-title {

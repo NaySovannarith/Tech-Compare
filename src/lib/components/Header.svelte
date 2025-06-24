@@ -99,7 +99,6 @@
             aria-haspopup="true"
             aria-expanded={activeDropdown === 'profile'}
           >
-            <!-- If user has avatar, show it, otherwise show User icon -->
             {#if $user.avatar}
               <img 
                 src={$user.avatar || "/placeholder.svg"} 
@@ -109,7 +108,7 @@
             {:else}
               <User class="w-4 h-4" />
             {/if}
-            {$user.name}
+            {$user.name.charAt(0)}
           </button>
 
           {#if activeDropdown === 'profile'}
@@ -120,8 +119,9 @@
                   My Profile
                 </a>
               </li>
+                <!-- Here is the compare history-->
               <li class="px-4 py-2 hover:bg-gray-200">
-                <a href="/orders" class="flex items-center gap-2">
+                <a href="/history" class="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -130,7 +130,7 @@
                   My Compare
                 </a>
               </li>
-              <li class="px-4 py-2 hover:bg-gray-200">
+              <!-- <li class="px-4 py-2 hover:bg-gray-200">
                 <a href="/settings" class="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                     <circle cx="12" cy="12" r="3"></circle>
@@ -138,7 +138,7 @@
                   </svg>
                   Settings
                 </a>
-              </li>
+              </li> -->
               <li class="border-t">
                 <button 
                   on:click={handleLogout}

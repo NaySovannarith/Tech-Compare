@@ -1,6 +1,13 @@
-export const brands = [
+// logo.ts - Keep your brands array and add helper functions
+
+export interface Brand {
+  name: string;
+  logo: string;
+}
+
+export const brands: Brand[] = [
   { name: 'Samsung', logo: '/images/samsung.png' },
-  { name: 'Apple', logo: '/images/apple.jpg' },
+  { name: 'iPhone', logo: '/images/apple.jpg' },
   { name: 'Oppo', logo: '/images/oppo.png' },
   { name: 'Vivo', logo: '/images/vivo.jpg' },
   { name: 'Huawei', logo: '/images/huawei.jpg' },
@@ -17,4 +24,7 @@ export const brands = [
   { name: 'Acer', logo: '/images/acer.jpg' },
   { name: 'Dell', logo: '/images/dell.png' },
 ];
- 
+
+export const getBrandRoute = (brandName: string): string => {
+  return `/brands/${brandName.toLowerCase()}`;
+};
