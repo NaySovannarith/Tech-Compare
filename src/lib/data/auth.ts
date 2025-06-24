@@ -1,83 +1,59 @@
-// src/lib/data/auth.ts
 import { writable } from 'svelte/store';
 
-// Define the User type
 export type User = {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  avatar?: string;
   phone?: string;
   birthday?: string;
   address?: string;
+  avatar?: string;
   profilePicture?: string;
 };
 
-// Create a store for authentication state
+// Safe check for browser
+const isBrowser = typeof localStorage !== 'undefined';
+
 function createUserStore() {
-  // Initialize from localStorage if available
-  const initialUser = getInitialUserState();
+  const initialUser: User | null = isBrowser
+    ? JSON.parse(localStorage.getItem('user') || 'null')
+    : null;
+
   const { subscribe, set, update } = writable<User | null>(initialUser);
 
   return {
     subscribe,
-    login: (email: string, password: string) => {
-      // In a real app, you would validate credentials with your backend
-      // This is a mock implementation
-      const userData: User = {
-        id: '123',
-        email: email,
-        name: email.split('@')[0], // Use part of email as name
-        avatar: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=0D8ABC&color=fff`
-      };
-      
-      // Save to store
-      set(userData);
-      
-      // Save to localStorage for persistence
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('user', JSON.stringify(userData));
+
+    set: (userData: User | null) => {
+      if (isBrowser) {
+        if (userData === null) {
+          localStorage.removeItem('user');
+        } else {
+          localStorage.setItem('user', JSON.stringify(userData));
+        }
       }
-      
-      return userData;
+      set(userData);
     },
+
+    update: (fields: Partial<User>) => {
+      update((current) => {
+        if (!current) return current;
+        const updated = { ...current, ...fields };
+        if (isBrowser) {
+          localStorage.setItem('user', JSON.stringify(updated));
+        }
+        return updated;
+      });
+    },
+
     logout: () => {
-      set(null);
-      if (typeof localStorage !== 'undefined') {
+      if (isBrowser) {
+        localStorage.removeItem('token');
         localStorage.removeItem('user');
       }
-    },
-    update: (userData: Partial<User>) => {
-      update(currentUser => {
-        if (!currentUser) return null;
-        
-        const updatedUser = { ...currentUser, ...userData };
-        
-        // Save to localStorage
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-        }
-        
-        return updatedUser;
-      });
+      set(null);
     }
   };
-}
-
-// Initialize from localStorage if available
-function getInitialUserState(): User | null {
-  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      try {
-        return JSON.parse(savedUser);
-      } catch (e) {
-        console.error('Failed to parse saved user data', e);
-        return null;
-      }
-    }
-  }
-  return null;
 }
 
 export const user = createUserStore();

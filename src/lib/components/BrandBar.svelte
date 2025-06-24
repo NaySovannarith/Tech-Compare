@@ -1,5 +1,11 @@
-<script>
+<script lang="ts">
+  import { goto } from '$app/navigation';
   import { brands } from '$lib/data/logo';
+
+  const handleBrandClick = (brandName: string): void => {
+    const route = `/brands/${brandName.toLowerCase()}`;
+    goto(route);
+  };
 </script>
 
 
