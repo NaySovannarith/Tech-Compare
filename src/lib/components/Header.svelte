@@ -1,11 +1,13 @@
 <!-- src/routes/+layout.svelte (or wherever your navigation component is) -->
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
+  import type { UserType } from '$lib/types'; // Optional: define a type
   import { Search, Heart, Bell, User, LogOut } from 'lucide-svelte';
   import { goto } from '$app/navigation';
   import { wishlist } from '$lib/wishlist/wishlist';
-  // Import the user store
-  import { user } from '$lib/data/auth';
+
+  export let user: any = null; // Accept user from layout
+  const dispatch = createEventDispatcher();
 
   let searchQuery = '';
   let activeDropdown: 'product' | 'accessory' | 'brand' | 'profile' | null = null;
@@ -36,7 +38,7 @@
   };
 
   const handleLogout = () => {
-    user.logout();
+    dispatch('logout'); // tell parent to clear user/token
     activeDropdown = null;
     goto('/');
   };
