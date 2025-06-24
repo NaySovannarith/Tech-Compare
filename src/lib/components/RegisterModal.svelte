@@ -284,18 +284,18 @@
 
         <!-- Terms and Conditions -->
         <div class="flex items-start gap-2.5 text-sm pt-1">
-          <input 
-            type="checkbox"
-            bind:checked={acceptTerms}
-            class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 mt-0.5"
-          />
-          <label class="text-gray-600 leading-relaxed">
-            I agree to the 
-            <a href="/terms" class="text-green-600 hover:text-green-700 font-medium transition-colors">Terms of Service</a>
-            and 
-            <a href="/privacy" class="text-green-600 hover:text-green-700 font-medium transition-colors">Privacy Policy</a>
-          </label>
-        </div>
+  <input 
+    type="checkbox"
+    bind:checked={acceptTerms}
+    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 mt-0.5"
+  />
+      <p class="text-gray-600 leading-relaxed">
+        I agree to the 
+        <a href="/terms" class="text-green-600 hover:text-green-700 font-medium transition-colors">Terms of Service</a>
+        and 
+        <a href="/privacy" class="text-green-600 hover:text-green-700 font-medium transition-colors">Privacy Policy</a>
+       </p>
+      </div>
 
         <!-- Register Button -->
         <button

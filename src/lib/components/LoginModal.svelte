@@ -26,44 +26,16 @@
     errorMessage = "";
 
     try {
-      const res = await fetch("http://localhost:8000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        errorMessage = data.message || "Login failed. Please try again.";
-        return;
-      }
-
-      localStorage.setItem("token", data.token);
-
-      const profileRes = await fetch("http://localhost:8000/api/user", {
-        headers: {
-          Authorization: `Bearer ${data.token}`
-        }
-      });
-
-      if (profileRes.ok) {
-        const profileData = await profileRes.json();
-        user.set(profileData);
+      const result = await user.login(email, password);
+      
+      if (result.success) {
+        alert("Login successful!");
+        goto("/");
       } else {
-        user.set(null);
-        localStorage.removeItem("token");
-        errorMessage = "Failed to fetch user data.";
-        return;
+        errorMessage = result.error || "Login failed. Please try again.";
       }
-
-      alert("Login successful!");
-      goto("/");
-
     } catch (error) {
-      console.error(error);
+      console.error('Login error:', error);
       errorMessage = "Server error. Please try again.";
     } finally {
       isLoading = false;
@@ -77,6 +49,7 @@
   }
 </script>
 
+<!-- Rest of your existing HTML remains the same -->
 <div class="fixed inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 backdrop-blur-sm flex items-center justify-center z-50 p-3 overflow-y-auto">
   <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl w-full max-w-sm relative border border-white/20 animate-in fade-in duration-300 my-4">
     
@@ -211,7 +184,7 @@
             Signing in...
           {:else}
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3v1" />
             </svg>
             Sign In
           {/if}
