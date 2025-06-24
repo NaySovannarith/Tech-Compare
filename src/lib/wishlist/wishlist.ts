@@ -23,3 +23,8 @@ export function addToWishlist(product: WishlistItem) {
 		return [...items, product];
 	});
 }
+
+// ✅ Add type annotation for productId
+export function removeFromWishlist(productId: string) {
+	wishlist.update(items => items.filter(item => item.id !== productId));
+}
