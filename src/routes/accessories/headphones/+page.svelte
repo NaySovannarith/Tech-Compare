@@ -7,7 +7,7 @@
 
   const earbudsAccessories = [
     {
-      title: "Sony WH-1000XM4 Wireless",
+      title: "Sony WH-1000XM4 ",
       brand: "Sony",
       image: "/headphone/Sony WH-1000XM4 Wireless.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -15,7 +15,7 @@
       price: 349,
     },
     {
-      title: "Apple AirPods Max (2nd generation)",
+      title: "Apple AirPods Max (2nd gen)",
       brand: "Apple",
       image: "/headphone/Apple AirPods Max (2nd generation).jpg",
       bluetooth: "Bluetooth 5.3",
@@ -23,7 +23,7 @@
       price: 599,
     },
     {
-      title: "Sennheiser Momentum 4 Wireless",
+      title: "Sennheiser Momentum 4 ",
       brand: "Sennheiser",
       image: "/headphone/Sennheiser Momentum 4 Wireless.jpg",
       bluetooth: "Bluetooth 5.2",
@@ -31,7 +31,7 @@
       price: 349,
     },
     {
-      title: "Sony WH-1000XM5 Wireless",
+      title: "Sony WH-1000XM5",
       brand: "Sony",
       image: "/headphone/Sony WH-1000XM4 Wireless.jpg",
       bluetooth: "Bluetooth 5.2",
@@ -39,7 +39,7 @@
       price: 399,
     },
     {
-      title: "Bose Noise Cancelling Headphones 700",
+      title: "Bose Headphones 700",
       brand: "Bose",
       image: "/headphone/Bose Noise Cancelling Headphones 700.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -56,7 +56,7 @@
     },
 
     {
-      title: "Jabra Elite 85h Wireless",
+      title: "Jabra Elite 85h ",
       brand: "Jabra",
       image: "/headphone/Jabra Elite 85h Wireless.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -72,7 +72,7 @@
       price: 299,
     },
     {
-      title: "Anker Soundcore Space Q45 Wireless",
+      title: "Anker Soundcore Space Q45 ",
       brand: "Anker",
       image: "/headphone/Anker Soundcore Space Q45 Wireless.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -112,7 +112,7 @@
       price: 399,
     },
     {
-      title: "Marshall Monitor II ANC Wireless",
+      title: "Marshall Monitor II ANC ",
       brand: "Marshall",
       image: "/headphone/Marshall Monitor II ANC Wireless.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -136,7 +136,7 @@
       price: 299,
     },
     {
-      title: "Plantronics BackBeat Go 810 Wireless",
+      title: "Plantronics BackBeat Go 810 ",
       brand: "Plantronics",
       image: "/headphone/Plantronics BackBeat Go 810 Wireless.jpg",
       bluetooth: "Bluetooth 4.1",
@@ -144,7 +144,7 @@
       price: 149,
     },
     {
-      title: "Skullcandy Crusher ANC Wireless",
+      title: "Skullcandy Crusher ANC ",
       brand: "Skullcandy",
       image: "/headphone/Skullcandy Crusher ANC Wireless.jpg",
       bluetooth: "Bluetooth 5.0",
@@ -154,7 +154,7 @@
   ];
 </script>
 
-<div class="mt-[80px] px-6 py-4 space-y-6">
+<div class="mt-[100px] px-6 py-4 space-y-6">
   <!-- Price Range -->
   <div class="bg-white rounded-lg shadow p-4 text-center">
     <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -187,15 +187,6 @@
         price={product.price}
       />
     {/each}
-    {#each earbudsAccessories as product}
-      <ProductCard
-        title={product.title}
-        brand={product.brand}
-        image={product.image}
-        bluetooth={product.bluetooth}
-        battery={product.battery}
-        price={product.price}
-      />
-    {/each}
+   
   </div>
 </div>

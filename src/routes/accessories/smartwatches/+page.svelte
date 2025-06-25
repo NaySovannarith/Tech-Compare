@@ -1,90 +1,113 @@
 <script lang="ts">
-  import ProductCard from '$lib/components/ProductCard.svelte';
+  import ProductCard from '$lib/components/SmartwatchCard.svelte';
 
   let minPrice = 0;
   let maxPrice = 5000;
 
-  const iphoneProducts = [
+  const smartwatchesProducts = [
     {
-      title: 'iPhone 16 series',
+      title: 'Apple Watch Series 10',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+16',
-      storage: '128GB',
-      memory: '8GB',
+      image: '/smartwatch/Apple Watch Series 10.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '18 hours',
       price: 790
     },
     {
-      title: 'iPhone 15 series',
+      title: 'Samsung Galaxy Watch 5 Pro',
+      brand: 'Samsung',
+      image: '/smartwatch/Samsung Galaxy Watch 5 Pro.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '80 hours',
+      price: 590
+    },
+    {
+      title: 'Garmin Fenix 7X Solar',
+      brand: 'Garmin',
+      image: '/smartwatch/Garmin Fenix 7X Solar.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '28 days',
+      price: 990
+    },
+    {
+      title: 'Apple Watch Series 9',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+15',
-      storage: '128GB',
-      memory: '6GB',
+      image: '/smartwatch/Apple Watch Series 9.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '18 hours',
       price: 690
     },
     {
-      title: 'iPhone 12 series',
+      title: 'Apple Watch Ultra 2',
       brand: 'Apple',
-      image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone12',
-      storage: '128GB',
-      memory: '6GB',
-      price: 690
-    }
-      ,
-      {
-          title: 'iPhone 11 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+11',
-          storage: '128GB',
-          memory: '4GB',
-          price: 590
-      },
-      {
-          title: 'iPhone SE series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+SE',
-          storage: '64GB',
-          memory: '3GB',
-          price: 490
-      },
-      {
-          title: 'iPhone 13 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+13',
-          storage: '128GB',
-          memory: '6GB',
-          price: 690
-      },
-      {
-          title: 'iPhone 14 series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14',
-          storage: '128GB',
-          memory: '6GB',
-          price: 790
-      }
-      ,
-      {
-          title: 'iPhone 14 Pro series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro',
-          storage: '128GB',
-          memory: '6GB',
-          price: 990
-      },
-      {
-          title: 'iPhone 14 Pro Max series',
-          brand: 'Apple',
-          image: 'https://dummyimage.com/150x200/ccc/000&text=iPhone+14+Pro+Max',
-          storage: '128GB',
-          memory: '6GB',
-          price: 1090
-      }
-      
+      image: '/smartwatch/Apple Watch Ultra 2.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '36 hours',
+      price: 1090
+    },
+    {
+      title: 'Samsung Galaxy Watch 6 Classic',
+      brand: 'Samsung',
+      image: '/smartwatch/Samsung Galaxy Watch 6 Classic.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '40 hours',
+      price: 490
+    },
+    {
+      title: 'Samsung Galaxy Watch 6',
+      brand: 'Samsung',
+      image: '/smartwatch/Samsung Galaxy Watch 6.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '40 hours',
+      price: 390
+    },
+    
+    {
+      title: 'Garmin Venu 3',
+      brand: 'Garmin',
+      image: '/smartwatch/Garmin Venu 3.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '14 days',
+      price: 490
+    },
+    {
+      title: 'Garmin Forerunner 265',
+      brand: 'Garmin',
+      image: '/smartwatch/Garmin Forerunner 265.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '13 days',
+      price: 390
+    },
+    {
+      title: 'Fitbit Sense 2',
+      brand: 'Fitbit',
+      image: '/smartwatch/Fitbit Sense 2.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '6 days',
+      price: 290
+    },
+    {
+      title: 'Fitbit Versa 4',
+      brand: 'Fitbit',
+      image: '/smartwatch/Fitbit Versa 4.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '6 days',
+      price: 190
+    },
+    {
+      title: 'Amazfit GTR 4',
+      brand: 'Amazfit',
+      image: '/smartwatch/Amazfit GTR 4.jpg',
+      functions : 'GPS,Heatlh check ....',
+      battery: '14 days',
+      price: 290
+    },
+   
   ];
 
 </script>
 
-<div class="mt-[80px] px-6 py-4 space-y-6">
+<div class="mt-[100px] px-6 py-4 space-y-6">
   <!-- Price Range -->
   <div class="bg-white rounded-lg shadow p-4 text-center">
     <h2 class="text-lg font-semibold mb-2">Price range</h2>
@@ -101,25 +124,16 @@
 
   <!-- Products -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
-      {#each iphoneProducts as product}
+      {#each smartwatchesProducts as product}
         <ProductCard
           title={product.title}
           brand={product.brand}
           image={product.image}
-          storage={product.storage}
-          memory={product.memory}
+          functions={product.functions}
+          battery={product.battery}
           price={product.price}
         />
       {/each}
-      {#each iphoneProducts as product}
-        <ProductCard
-          title={product.title}
-          brand={product.brand}
-          image={product.image}
-          storage={product.storage}
-          memory={product.memory}
-          price={product.price}
-        />
-      {/each}
+     
     </div>
 </div>
