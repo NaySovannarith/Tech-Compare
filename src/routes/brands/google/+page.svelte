@@ -2,8 +2,7 @@
   import ProductCard from '$lib/components/ProductCard.svelte';
   
 
-  let minPrice = 0;
-  let maxPrice = 5000;
+ 
 
   const googleProducts = [
     {
@@ -81,11 +80,6 @@
     <div class="flex items-center justify-between mb-2">
       <span>Minimum Price</span>
       <span>Maximum Price</span>
-    </div>
-    <input type="range" min="0" max="5000" bind:value={minPrice} class="w-full mb-1" />
-    <div class="flex justify-between text-sm">
-      <span>{minPrice}$</span>
-      <span>{maxPrice}$</span>
     </div>
   </div>
 
