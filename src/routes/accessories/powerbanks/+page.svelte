@@ -1,150 +1,199 @@
+<!-- src/routes/accessories/powerbanks/+page.svelte -->
 <script lang="ts">
-    import ProductCard from '$lib/components/PowerbankCard.svelte';
-    import { brands } from '$lib/data/logo';
+  import { onMount } from 'svelte';
+  import PowerbankCard from '$lib/components/PowerbankCard.svelte';
+  import { productApi, type Product } from '$lib/api/productApi';
 
-  
-    let minPrice = 0;
-    let maxPrice = 5000;
-  
-    const powerbankAccessories = [
-      {
-        title: 'Nimble Champ (Series 2)',
-        brand: 'Nimble',
-        image: '/powerbank/Nimble Champ (Series 2).jpg',
-        wattage: '30W',
-        battery: '10,000mAh',
-        price: 49.95
+  let products: Product[] = [];
+  let loading = true;
+  let error = '';
+  let minPrice = 0;
+  let maxPrice = 5000;
+  let currentPage = 1;
+  let totalPages = 1;
+
+  // Filter products by category ID (powerbanks)
+  const POWERBANK_CATEGORY_ID = 9; // Adjust this based on your database
+
+  // Helper function to get wattage and battery from specs OR direct fields
+  function getSpecValue(product: Product, specName: string): string {
+    // First check if it's stored directly in the product
+    if (specName.toLowerCase() === 'wattage' && product.wattage) {
+      return product.wattage;
+    }
+    if (specName.toLowerCase() === 'battery' && product.battery) {
+      return product.battery;
+    }
     
-      },
-        {
-            title: 'Zendure SuperTank Pro',
-            brand: 'Zendure',
-            image: '/powerbank/Zendure SuperTank Pro.jpg',
-            wattage: '100W',
-            battery: '26,800mAh',
-            price: 199.99
-        },
-        {
-            title: 'Anker PowerCore III Elite',
-            brand: 'Anker',
-            image: '/powerbank/Anker PowerCore III Elite.jpg',
-            wattage: '60W',
-            battery: '26,800mAh',
-            price: 79.99
-        },
-        {
-            title: 'RAVPower PD Pioneer',
-            brand: 'RAVPower',
-            image: '/powerbank/Nimble Champ (Series 2).jpg',
-            wattage: '60W',
-            battery: '20,000mAh',
-            price: 49.99
-        },
-        {
-            title: 'Mophie Powerstation Plus XL',
-            brand: 'Mophie',
-            image: '/powerbank/Mophie Powerstation Plus XL.jpg',
-            wattage: '18W',
-            battery: '20,000mAh',
-            price: 69.95
-        },
-        {
-            title: 'Zendure A2 Portable Charger',
-            brand: 'Zendure',
-            image: '/powerbank/Zendure A2 Portable Charger.jpg',
-            wattage: '12W',
-            battery: '6,700mAh',
-            price: 39.99
-        },
-        {
-            title: 'Aukey  Power Bank with PD 3.0',
-            brand: 'Aukey',
-            image: '/powerbank/Aukey  Power Bank with PD 3.0.jpg',
-            wattage: '18W',
-            battery: '20,000mAh',
-            price: 39.99
-        },
-        {
-            title: 'RAVPower with PD 3.0',
-            brand: 'RAVPower',
-            image: '/powerbank/RAVPower with PD 3.0.jpg',
-            wattage: '30W',
-            battery: '26,800mAh',
-            price: 59.99
-        },
-        {
-            title: 'Zendure SuperMini  ',
-            brand: 'Zendure',
-            image: '/powerbank/Zendure SuperMini.jpg',
-            wattage: '18W',
-            battery: '10,000mAh',
-            price: 39.99
-        },
-        {
-            title: 'Anker PowerCore Slim ',
-            brand: 'Anker',
-            image: '/powerbank/Anker PowerCore Slim.jpg',
-            wattage: '12W',
-            battery: '10,000mAh',
-            price: 29.99
-        },
-        {
-            title: 'Mophie Powerstation Wireless  ',
-            brand: 'Mophie',
-            image: '/powerbank/Mophie Powerstation Wireless XL.jpg',
-            wattage: '10W',
-            battery: '20,000mAh',
-            price: 79.95
-        },
-        {
-            title: 'Aukey with PD 3.0',
-            brand: 'Aukey',
-            image: '/powerbank/Aukey with PD 3.0.jpg',
-            wattage: '18W',
-            battery: '10,000mAh',
-            price: 29.99
-        },
-        {
-            title: 'RAVPower with PD 3.0',
-            brand: 'RAVPower',
-            image: '/powerbank/RAVPower with PD 3.0.jpg',
-            wattage: '18W',
-            battery: '10,000mAh',
-            price: 29.99
-        },
+    // Then check specs array
+    if (!product.specs) return 'N/A';
+    const spec = product.specs.find(s => 
+      s.name.toLowerCase().includes(specName.toLowerCase()) ||
+      s.name.toLowerCase().includes('power') && specName.toLowerCase() === 'wattage' ||
+      s.name.toLowerCase().includes('capacity') && specName.toLowerCase() === 'battery'
+    );
+    return spec ? spec.value : 'N/A';
+  }
 
-    ];
-  
-  </script>
-  
-  <div class="mt-[100px] px-6 py-4 space-y-6">
-    <!-- Price Range -->
-    <div class="bg-white rounded-lg shadow p-4 text-center">
-      <h2 class="text-lg font-semibold mb-2">Price range</h2>
-      <div class="flex items-center justify-between mb-2">
-        <span>Minimum Price</span>
-        <span>Maximum Price</span>
-      </div>
-      <input type="range" min="0" max="5000" bind:value={minPrice} class="w-full mb-1" />
-      <div class="flex justify-between text-sm">
-        <span>{minPrice}$</span>
-        <span>{maxPrice}$</span>
-      </div>
-    </div>
-  
-    <!-- Products -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
-        {#each powerbankAccessories as product}
-          <ProductCard
-            title={product.title}
-            brand={product.brand}
-            image={product.image}
-            battery={product.battery}
-            wattage={product.wattage}
-            price={product.price}
-          />
-        {/each}
+  // Helper function to get brand name
+  function getBrandName(product: Product): string {
+    return product.brand?.name || 'Unknown';
+  }
+
+  // Helper function to get image URL
+  function getImageUrl(product: Product): string {
+    if (product.image_url) return product.image_url;
+
+    if (product.image) {
+      if (product.image.startsWith('http')) return product.image;
+      return `http://localhost:8000/storage/products/${encodeURIComponent(product.image)}`;
+    }
+
+    return '/placeholder-powerbank.jpg';
+  }
+
+  // Filtered products based on price range
+  $: filteredProducts = products.filter(product => 
+    product.price >= minPrice && product.price <= maxPrice
+  );
+
+  async function loadProducts(page: number = 1) {
+    try {
+      loading = true;
+      error = '';
       
-      </div>
+      const response = await productApi.getProducts(page, POWERBANK_CATEGORY_ID);
+      products = response.data;
+      currentPage = response.current_page;
+      totalPages = response.last_page;
+      
+      // Update maxPrice based on loaded products
+      if (products.length > 0) {
+        const prices = products.map(p => p.price);
+        maxPrice = Math.max(...prices);
+      }
+    } catch (err) {
+      error = 'Failed to load products. Please try again.';
+      console.error('Error loading products:', err);
+    } finally {
+      loading = false;
+    }
+  }
+
+  function nextPage() {
+    if (currentPage < totalPages) {
+      loadProducts(currentPage + 1);
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 1) {
+      loadProducts(currentPage - 1);
+    }
+  }
+
+  onMount(() => {
+    loadProducts();
+  });
+</script>
+
+<div class="mt-[100px] px-6 py-4 space-y-6">
+  <!-- Price Range Filter -->
+  <div class="bg-white rounded-lg shadow p-4 text-center">
+    <h2 class="text-lg font-semibold mb-2">Price range</h2>
+    <div class="flex items-center justify-between mb-2">
+      <span>Minimum Price</span>
+      <span>Maximum Price</span>
+    </div>
+    <div class="flex items-center gap-4 mb-2">
+      <input 
+        type="range" 
+        min="0" 
+        max={maxPrice} 
+        bind:value={minPrice} 
+        class="flex-1" 
+      />
+      <input 
+        type="range" 
+        min="0" 
+        max={maxPrice} 
+        bind:value={maxPrice} 
+        class="flex-1" 
+      />
+    </div>
+    <div class="flex justify-between text-sm">
+      <span>${minPrice}</span>
+      <span>${maxPrice}</span>
+    </div>
   </div>
-  
+
+  <!-- Loading State -->
+  {#if loading}
+    <div class="flex justify-center items-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00332e]"></div>
+      <span class="ml-3 text-lg">Loading products...</span>
+    </div>
+  {/if}
+
+  <!-- Error State -->
+  {#if error}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center">
+      {error}
+      <button 
+        on:click={() => loadProducts()} 
+        class="ml-4 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+      >
+        Retry
+      </button>
+    </div>
+  {/if}
+
+  <!-- Products Grid -->
+  {#if !loading && !error}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
+      {#each filteredProducts as product (product.id)}
+        <PowerbankCard
+          id={product.id}
+          title={product.title}
+          brand={getBrandName(product)}
+          image={getImageUrl(product)}
+          wattage={getSpecValue(product, 'wattage')}
+          battery={getSpecValue(product, 'battery')}
+          price={product.price}
+        />
+      {/each}
+    </div>
+
+    <!-- No products message -->
+    {#if filteredProducts.length === 0 && products.length > 0}
+      <div class="text-center py-8">
+        <p class="text-gray-600">No products found in the selected price range.</p>
+      </div>
+    {/if}
+
+    <!-- Pagination -->
+    {#if totalPages > 1}
+      <div class="flex justify-center items-center gap-4 mt-8">
+        <button
+          on:click={prevPage}
+          disabled={currentPage <= 1}
+          class="px-4 py-2 bg-[#00332e] text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-[#00584f] transition-colors"
+        >
+          Previous
+        </button>
+        
+        <span class="text-gray-600">
+          Page {currentPage} of {totalPages}
+        </span>
+        
+        <button
+          on:click={nextPage}
+          disabled={currentPage >= totalPages}
+          class="px-4 py-2 bg-[#00332e] text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-[#00584f] transition-colors"
+        >
+          Next
+        </button>
+      </div>
+    {/if}
+  {/if}
+</div>
