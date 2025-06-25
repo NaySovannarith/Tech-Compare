@@ -1,11 +1,13 @@
 <script lang="ts">
   import ProductCard from '$lib/components/ProductCard.svelte';
+  export let slug;
 
   let minPrice = 0;
   let maxPrice = 5000;
 
   const iphoneProducts = [
     {
+      slug: "iphone-16",
       title: 'iPhone 16 series',
       brand: 'Apple',
       image: '/iphones/iPhone 16.jpg',
@@ -14,6 +16,7 @@
       price: 790
     },
     {
+      slug: "samsung-m14",
       title: 'Samsung Galaxy M14',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy M14.jpg',
@@ -22,6 +25,7 @@
       price: 290
     },
     {
+      slug: "samsung-s24-ultra",
       title: 'Samsung Galaxy S24 Ultra',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24 Ultra.jpg',
@@ -30,6 +34,7 @@
       price: 1190
     },
     {
+      slug: "samsung-s24plus",
       title: 'Samsung Galaxy S24+',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24+.jpg',
@@ -38,6 +43,7 @@
       price: 990
     },
     {
+      slug: "samsung-s24",
       title: 'Samsung Galaxy S24',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24.jpg',
@@ -46,6 +52,7 @@
       price: 790
     },
     {
+      slug: "samsung-zfold5",
       title: 'Samsung Galaxy Z Fold 5',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy Z Fold 5.jpg',
@@ -54,6 +61,7 @@
       price: 1790
     },
     {
+      slug: "samsung-zflip5",
       title: 'Samsung Galaxy Z Flip 5',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy Z Flip 5.jpg',
@@ -62,6 +70,7 @@
       price: 990
     },
     {
+      slug: "samsung-a54",
       title: 'Samsung Galaxy A54',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy A54.jpg',
@@ -70,6 +79,7 @@
       price: 490
     },
     {
+      slug: "samsung-a34",
       title: 'Samsung Galaxy A34',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy A34.jpg',
@@ -78,6 +88,7 @@
       price: 390
     },
     {
+      slug: "samsung-a14",
       title: 'Samsung Galaxy A14',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy A14.jpg',
@@ -202,6 +213,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
       {#each iphoneProducts as product}
         <ProductCard
+          slug={product.slug}
           title={product.title}
           brand={product.brand}
           image={product.image}
@@ -210,6 +222,16 @@
           price={product.price}
         />
       {/each}
-     
+      {#each iphoneProducts as product}
+        <ProductCard
+          slug={product.slug}
+          title={product.title}
+          brand={product.brand}
+          image={product.image}
+          storage={product.storage}
+          memory={product.memory}
+          price={product.price}
+        />
+      {/each}
     </div>
 </div>

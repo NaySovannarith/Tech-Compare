@@ -1,11 +1,13 @@
 <script lang="ts">
     import ProductCard from '$lib/components/ProductCard.svelte';
+    export let slug;
   
     let minPrice = 0;
     let maxPrice = 5000;
   
     const iphoneProducts = [
       {
+        slug: "iphone-16",
         title: 'iPhone 16 series',
         brand: 'Apple',
         image: '/iphones/iPhone 16.jpg',
@@ -14,6 +16,7 @@
         price: 790
       },
       {
+        slug: "iphone-15",
         title: 'iPhone 15 series',
         brand: 'Apple',
         image: '/iphones/iphone 15.jpg',
@@ -22,6 +25,7 @@
         price: 690
       },
       {
+        slug: "iphone-12",
         title: 'iPhone 12 series',
         brand: 'Apple',
         image: '/iphones/iphone 12.jpg',
@@ -31,6 +35,7 @@
       }
         ,
         {
+            slug: "iphone-11",
             title: 'iPhone 11 series',
             brand: 'Apple',
             image: '/iphones/iPhone 11.jpg',
@@ -47,6 +52,7 @@
             price: 490
         },
         {
+            slug: "iphone-13",
             title: 'iPhone 13 series',
             brand: 'Apple',
             image: '/iphones/iPhone 13.jpg',
@@ -55,6 +61,7 @@
             price: 690
         },
         {
+            slug: "iphone-14",
             title: 'iPhone 14 series',
             brand: 'Apple',
             image: '/iphones/iPhone 14.jpg',
@@ -103,6 +110,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
         {#each iphoneProducts as product}
           <ProductCard
+            slug={product.slug}
             title={product.title}
             brand={product.brand}
             image={product.image}
@@ -111,7 +119,17 @@
             price={product.price}
           />
         {/each}
-       
+        {#each iphoneProducts as product}
+          <ProductCard
+            slug={product.slug}
+            title={product.title}
+            brand={product.brand}
+            image={product.image}
+            storage={product.storage}
+            memory={product.memory}
+            price={product.price}
+          />
+        {/each}
       </div>
   </div>
   
