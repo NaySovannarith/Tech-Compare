@@ -5,7 +5,7 @@
 </script>
 
 <!-- Horizontally scrollable image section -->
-<div class="w-full overflow-x-auto hide-scrollbar mt-[100px]">
+<div class="w-full overflow-x-auto hide-scrollbar mt-[50px]">
   <div class="flex gap-4 px-4 py-6 w-max">
     <img
       src="/images/product.jpg"
@@ -54,10 +54,6 @@
     {#each products as product}
       <ProductCard {...product} />
     {/each}
-  </div>
-
-  <div class="mt-6 text-center">
-    <button class="bg-white px-4 py-2 rounded-md shadow hover:bg-gray-200">View All Phones</button>
   </div>
 </div>
 

@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation";
 
     function addmore() {
-		history.length > 1 ? history.back() : goto('/');
+		 goto('/');
 	}
   </script>
 <div class="flex flex-col items-center justify-center min-h-700px] py-24 px-4 bg-gray-100 rounded-lg shadow max-w-3xl mx-auto text-center">
