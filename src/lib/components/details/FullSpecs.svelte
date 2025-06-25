@@ -1,25 +1,24 @@
 <script lang="ts">
-    import { products } from '$lib/data';
-    const specs = products[0].fullSpecs;
+  export let fullSpecs;
 </script>
-  
+
 <div class="full-specs-wrapper">
-    <div class="full-specs-header">Full Specification</div> 
-    {#each specs as spec}
-        <div class="category-row">
-            <div class="category-block">
-                {spec.category}
-            </div>
-            <div class="specs-items">
-                {#each spec.items as item}
-                    <div class="spec-row">
-                        <div class="label-block">{item.label || ''}</div>
-                        <div class="value-block">{item.value}</div>
-                    </div>
-                {/each}
-            </div>
-        </div>
-    {/each}
+  <div class="full-specs-header">Full Specification</div>
+  {#each fullSpecs as spec}
+    <div class="category-row">
+      <div class="category-block">
+        {spec.category}
+      </div>
+      <div class="specs-items">
+        {#each spec.items as item}
+          <div class="spec-row">
+            <div class="label-block">{item.label || ''}</div>
+            <div class="value-block">{item.value}</div>
+          </div>
+        {/each}
+      </div>
+    </div>
+  {/each}
 </div>
   
 <style>

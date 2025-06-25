@@ -35,6 +35,8 @@
       wishlist.update(items => items.filter(item => item.id !== id));
     }
   }
+
+  export let slug;
 </script>
 
 <div class="flex justify-center items-center w-full py-2">
@@ -60,8 +62,8 @@
       <!-- Button and Heart -->
       <div class="mt-4 flex justify-between items-center">
         <a
-          href="/product_list/product_detail"
-          class="px-5 py-1.5 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] transition-all duration-200 shadow-sm flex items-center gap-1"
+          href={`/product_list/product_detail/${slug}`}
+          class="px-6 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] transition-all duration-200 shadow-sm flex items-center gap-1"
         >
           More Detail →
         </a>

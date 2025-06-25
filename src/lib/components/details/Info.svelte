@@ -1,133 +1,79 @@
-<script>
-  import { goto } from '$app/navigation';
-  import { addToWishlist, removeFromWishlist, wishlist } from '$lib/wishlist/wishlist';
-  import {
-    Monitor,
-    Cpu,
-    Camera,
-    Smartphone,
-    Globe,
-    MemoryStick,
-    Database,
-    Share,
-  } from 'lucide-svelte';
+<script lang="ts">
+    export let title;
+    export let image;
+    export let specs;
 
-  export let title;
-  export let brand;
-  export let image;
-  export let storage;
-  export let memory;
-  export let price;
-
-  const id = `${title}-${storage}-${memory}`;
-
-  const product = {
-    id,
-    title,
-    brand,
-    image:"/iphones/iPhone 16.jpg",
-    storage,
-    memory,
-    price,
-    thumbnail: image,
-    description: `${storage} Storage / ${memory} RAM`,
-  };
-
-  $: isWishlisted = $wishlist.some(item => item.id === id);
-
-  function toggleWishlist() {
-    isWishlisted ? removeFromWishlist(id) : addToWishlist(product);
-  }
-
-  const specs = [
-    { icon: Monitor, label: "Display", value: "6.10-inch", sub: "1179x2556" },
-    { icon: Cpu, label: "Processor", value: "Apple A18" },
-    { icon: Camera, label: "Rear Camera", value: "48MP + 12MP" },
-    { icon: Smartphone, label: "Front Camera", value: "12MP" },
-    { icon: Globe, label: "OS", value: "iOS 18" },
-    { icon: MemoryStick, label: "RAM", value: "8GB" },
-    { icon: Database, label: "Storage", value: "128GB, 256GB, 512GB" },
-  ];
-
-  $: actions = [
-    {
-      icon: isWishlisted ? '/details/wishlist.png' : '/details/wishlist.png',
-      label: isWishlisted ? 'Wishlisted' : 'Wishlist',
-      click: toggleWishlist
-    },
-    {
-      icon: '/details/review.png',
-      label: 'Review',
-      click: () => goto('/reviews')
-    },
-    {
-      icon: '/details/compare.png',
-      label: 'Compare',
-      click: () => goto('/compares')
-    },
-    {
-      icon: '/details/buy.png',
-      label: 'Buy',
-      click: () => goto('/buy')
-    },
-    {
-      icon: '/details/share.png',
-      label: 'Share',
-      click: () => navigator.share?.({ title, url: window.location.href })
-    }
-  ];
+    const actions = [
+      { icon: "/details/wishlist.png", label: "Wishlist" },
+      { icon: "/details/review.png", label: "Review" },
+      { icon: "/details/compare.png", label: "Compare" },
+      { icon: "/details/buy.png", label: "Buy" },
+      { icon: "/details/share.png", label: "Share" }
+    ];
 </script>
 
-<div class="container">
-  <div class="card">
-    <div class="left">
-      <img src={product.image} alt={product.title} />
-    </div>
+<div class="scale-wrapper">
+  <div class="info-actions-wrapper">
+    <div class="product-info">
+      <div class="image-wrapper">
+        <div class="image-frame">
+          <img src={image} alt={title} class="phone-image" />
+        </div>
+      </div>
 
-    <div class="right">
-      <h1>{product.title} iphone16</h1>
-      <hr />
-      <div class="spec-grid">
-        {#each specs as spec}
-          <div class="spec">
-            <div class="icon-box">
-              <svelte:component this={spec.icon} class="icon" />
-            </div>
-            <div class="text">
-              <p class="label">{spec.label}</p>
-              <p class="value">{spec.value}</p>
-              {#if spec.sub}
-                <p class="sub">{spec.sub}</p>
-              {/if}
+      <div class="details-wrapper">
+        <div class="title-bar">
+          <h1>{title}</h1>
+        </div>
+        <div class="spec-cards">
+          <div class="spec-card">
+            <img src="/details/display.png" alt="Display" class="spec-icon" />
+            <div class="spec-text">
+              {#each specs[0].lines as line, i}
+                <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
+              {/each}
             </div>
           </div>
-        {/each}
-      </div>
 
-      <div class="footer">
-        <span><strong>Market Status:</strong> Released</span>
-        <span><strong>Release Date:</strong> 9th September 2024</span>
-        <span><strong>Official Website:</strong> <a href="https://apple.com">apple.com</a></span>
-      </div>
+          <div class="spec-card">
+            <img src="/details/hardware.png" alt="Hardware" class="spec-icon" />
+            <div class="spec-text">
+              {#each specs[1].lines as line, i}
+                <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
+              {/each}
+            </div>
+          </div>
 
-      <div class="actions">
-        {#each actions as action (action.label)}
-          <div
-            class="action"
-            on:click={action.click}
-            style="cursor: pointer;"
-          >
-            <div class="icon-circle">
-              {#if typeof action.icon === 'string'}
-                <img src={action.icon} alt={action.label} width="24" height="24" />
-              {:else}
-                <svelte:component this={action.icon} size={24} />
-              {/if}
+          <div class="spec-card">
+            <img src="/details/battery.png" alt="Battery" class="spec-icon" />
+            <div class="spec-text">
+              {#each specs[2].lines as line, i}
+                <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
+              {/each}
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <img src="/details/memory.png" alt="Memory" class="spec-icon" />
+            <div class="spec-text">
+              {#each specs[3].lines as line, i}
+                <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
+              {/each}
+
             </div>
             <span>{action.label}</span>
           </div>
         {/each}
       </div>
+    </div>
+
+    <div class="actions-bar">
+      {#each actions as action, idx}
+        <div class="action-button {idx !== 0 ? 'with-border' : ''}">
+          <img src={action.icon} alt={action.label} class="action-icon" />
+          <span>{action.label}</span>
+        </div>
+      {/each}
     </div>
   </div>
 </div>
