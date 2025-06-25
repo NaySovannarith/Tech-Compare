@@ -11,3 +11,8 @@ declare global {
 }
 
 export {};
+export const goto = (url) => {
+  // This is a placeholder for the actual navigation logic.
+  // In a real SvelteKit app, this would use the router to navigate to the given URL.
+  window.location.href = url
+}
