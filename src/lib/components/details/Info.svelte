@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { products } from '$lib/data';
+    export let title;
+    export let image;
+    export let specs;
 
-    const product = products[0];
     const actions = [
       { icon: "/details/wishlist.png", label: "Wishlist" },
       { icon: "/details/review.png", label: "Review" },
@@ -16,46 +17,46 @@
     <div class="product-info">
       <div class="image-wrapper">
         <div class="image-frame">
-          <img src={product.image} alt={product.title} class="phone-image" />
+          <img src={image} alt={title} class="phone-image" />
         </div>
       </div>
-  
+
       <div class="details-wrapper">
         <div class="title-bar">
-          <h1>{product.title}</h1>
+          <h1>{title}</h1>
         </div>
         <div class="spec-cards">
           <div class="spec-card">
             <img src="/details/display.png" alt="Display" class="spec-icon" />
             <div class="spec-text">
-              {#each product.specs[0].lines as line, i}
+              {#each specs[0].lines as line, i}
                 <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
               {/each}
             </div>
           </div>
-  
+
           <div class="spec-card">
             <img src="/details/hardware.png" alt="Hardware" class="spec-icon" />
             <div class="spec-text">
-              {#each product.specs[1].lines as line, i}
+              {#each specs[1].lines as line, i}
                 <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
               {/each}
             </div>
           </div>
-  
+
           <div class="spec-card">
             <img src="/details/battery.png" alt="Battery" class="spec-icon" />
             <div class="spec-text">
-              {#each product.specs[2].lines as line, i}
+              {#each specs[2].lines as line, i}
                 <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
               {/each}
             </div>
           </div>
-  
+
           <div class="spec-card">
             <img src="/details/memory.png" alt="Memory" class="spec-icon" />
             <div class="spec-text">
-              {#each product.specs[3].lines as line, i}
+              {#each specs[3].lines as line, i}
                 <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
               {/each}
             </div>
@@ -63,7 +64,7 @@
         </div>
       </div>
     </div>
-  
+
     <div class="actions-bar">
       {#each actions as action, idx}
         <div class="action-button {idx !== 0 ? 'with-border' : ''}">
