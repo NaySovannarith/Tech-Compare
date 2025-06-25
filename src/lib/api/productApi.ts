@@ -13,6 +13,13 @@ export interface Product {
   image?: string | null; // Raw database field
   storage?: string | null;
   memory?: string | null;
+  cpu?: string | null;
+  ram?: string | null;
+  resolution?: string; 
+  battery?: string; 
+  bluetooth?: string;
+  wattage?: string;
+  functions?: string;
   brand_id: number | null;
   category_id: number;
   created_at: string;
