@@ -1,6 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
-  import { addToWishlist, remove, wishlist } from '$lib/wishlist/wishlist'; // fixed import
+  import { addToWishlist, removeFromWishlist, wishlist } from '$lib/wishlist/wishlist';
   import {
     Monitor,
     Cpu,
@@ -19,33 +19,24 @@
   export let memory;
   export let price;
 
-  // Use template literals with backticks to build id and description
-  const id = ${title}-${storage}-${memory};
+  const id = `${title}-${storage}-${memory}`;
 
   const product = {
     id,
     title,
     brand,
-    image: image || "/iphones/iPhone 16.jpg",  // dynamic with fallback
+    image:"/iphones/iPhone 16.jpg",
     storage,
     memory,
     price,
     thumbnail: image,
-    description: ${storage} Storage / ${memory} RAM,
+    description: `${storage} Storage / ${memory} RAM`,
   };
 
-  // Reactive to wishlist store
-  $: isWishlisted = $wishlist.some(item => item.product.id === id);
+  $: isWishlisted = $wishlist.some(item => item.id === id);
 
   function toggleWishlist() {
-    if (isWishlisted) {
-      const itemToRemove = $wishlist.find(item => item.product.id === id);
-      if (itemToRemove) {
-        remove(itemToRemove.id);
-      }
-    } else {
-      addToWishlist(product);
-    }
+    isWishlisted ? removeFromWishlist(id) : addToWishlist(product);
   }
 
   const specs = [
