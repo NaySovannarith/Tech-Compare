@@ -1,11 +1,13 @@
 <script lang="ts">
   import ProductCard from '$lib/components/ProductCard.svelte';
+  export let slug;
 
   let minPrice = 0;
   let maxPrice = 5000;
 
   const samsungProducts = [
     {
+      slug: "samsung-s24-ultra",
       title: 'Samsung Galaxy S24 Ultra',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24 Ultra.jpg',
@@ -14,6 +16,7 @@
       price: 1190
     },
     {
+      slug: "samsung-s24plus",
       title: 'Samsung Galaxy S24+',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24+.jpg',
@@ -22,6 +25,7 @@
       price: 990
     },
     {
+      slug: "samsung-s24",
       title: 'Samsung Galaxy S24',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy S24.jpg',
@@ -30,6 +34,7 @@
       price: 790
     },
     {
+      slug: "samsung-zfold5",
       title: 'Samsung Galaxy Z Fold 5',
       brand: 'Samsung',
       image: '/samsung/Samsung Galaxy Z Fold 5.jpg',
@@ -167,6 +172,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-4">
       {#each samsungProducts as product}
         <ProductCard
+          slug={product.slug}
           title={product.title}
           brand={product.brand}
           image={product.image}
@@ -177,6 +183,7 @@
       {/each}
       {#each samsungProducts as product}
         <ProductCard
+          slug={product.slug}
           title={product.title}
           brand={product.brand}
           image={product.image}

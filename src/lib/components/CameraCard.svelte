@@ -61,7 +61,7 @@
         <!-- More Detail Button + Heart -->
         <div class="flex items-center justify-between mt-4">
     
-          <a href="/product_list/product_detail"
+          <a href={`/product_list/product_detail/${slug}`}
       class="mt-4 self-start px-5 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] flex items-center gap-2 transition"
     >
       More Detail
