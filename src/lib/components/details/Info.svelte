@@ -36,7 +36,7 @@
           </div>
 
           <div class="spec-card">
-            <img src="/details/ardware.png" alt="Hardware" class="spec-icon" />
+            <img src="/details/hardware.png" alt="Hardware" class="spec-icon" />
             <div class="spec-text">
               {#each specs[1].lines as line, i}
                 <p class={i === 0 ? 'first-line' : 'other-lines'}>{line}</p>
