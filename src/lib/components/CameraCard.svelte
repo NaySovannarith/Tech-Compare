@@ -2,7 +2,7 @@
     // @ts-nocheck
     
       import { goto } from '$app/navigation';
-      import { addToWishlist, wishlist } from '$lib/wishlist/wishlist';
+      import { wishlist } from '$lib/wishlist/wishlist';
       import { Heart, HeartOff } from 'lucide-svelte';
       import { get } from 'svelte/store';
     
