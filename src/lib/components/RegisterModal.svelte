@@ -1,30 +1,54 @@
-<script>
-    import { goto } from "$app/navigation";
+<script lang="ts">
+  import { goto } from "$app/navigation";
+  import { registerWithBackend } from '$lib/data/custom-auth';
 
-    let username = "";
-    let email = "";
-    let password = "";
-    let confirmPassword = "";
-    let showPassword = false;
-  
-    function togglePasswordVisibility() {
-      showPassword = !showPassword;
-    }
-    const gotoregister = () => goto('/profiles');
-    function goBack() {
+  let username = "";
+  let email = "";
+  let password = "";
+  let confirmPassword = "";
+  let showPassword = false;
+  let isLoading = false;
+  let errorMessage = "";
+
+  function togglePasswordVisibility() {
+    showPassword = !showPassword;
+  }
+
+  function goBack() {
     history.length > 1 ? history.back() : goto('/');
   }
-  
-    function register() {
-      if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-      }
-  
-      // Replace with actual registration logic
-      console.log("Registering:", { username, email, password });
+
+  async function register() {
+    if (!username || !email || !password || !confirmPassword) {
+      errorMessage = "Please fill in all fields.";
+      return;
     }
-  </script>
+
+    if (password !== confirmPassword) {
+      errorMessage = "Passwords do not match!";
+      return;
+    }
+
+    isLoading = true;
+    errorMessage = "";
+
+    try {
+      await registerWithBackend(username, email, password);
+      alert('Registration successful! You can now log in.');
+      goto('/login');
+    } catch (error) {
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else {
+        errorMessage = "Registration failed. Please try again.";
+      }
+      console.error(error);
+    } finally {
+      isLoading = false;
+    }
+  }
+</script>
+
   
   <div class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-xl shadow-2xl w-[90%] max-w-md relative">
@@ -96,7 +120,7 @@
   
         <!-- Register Button -->
         <button
-          on:click={gotoregister}
+          on:click={register}
           class="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition"
         >
           Register Now

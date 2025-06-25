@@ -1,13 +1,23 @@
 <script>
   import { goto } from "$app/navigation";
   import { Heart } from "lucide-svelte";
+  import { onMount, onDestroy } from 'svelte';
+
 
     export let product;
     export let onClose;
+
+      onMount(() => {
+    document.body.style.overflow = 'hidden'; // disable scroll
+  });
+
+  onDestroy(() => {
+    document.body.style.overflow = ''; // restore scroll
+  });
     
   </script>
   
-  <div class="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
+  <div class=" modal-backdrop fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
     <div class="bg-white p-6 rounded-lg w-[90%] max-w-xl shadow-xl relative">
       <button class="absolute top-2 right-3 text-xl" on:click={onClose}>×</button>
       <div class="mb-4 flex items-center gap-2">
@@ -50,4 +60,11 @@
       </div>
     </div>
   </div>
+
+   <style>
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50;
+  }
+</style>
+  
   

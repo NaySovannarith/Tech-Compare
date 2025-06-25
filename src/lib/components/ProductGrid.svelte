@@ -3,41 +3,41 @@
 
   const products = [
     {
-      
-      title: 'iPhone 13 Series',
-      brand: 'Apple',
-      image: '/images/iphone13.png',
-      storage: '128GB',
-      memory: '8GB',
-      price: 380
-    },
+        id: 115,
+          title: 'iPhone 13 series',
+          brand: 'Apple',
+          image: '/iphones/iPhone 13.jpg',
+          storage: '128GB',
+          memory: '6GB',
+          price: 690
+      },
     {
-      
-      title: 'iPhone 13 Series',
+      id: 101,
+      title: 'iPhone 16 series',
       brand: 'Apple',
-      image: '/iphones/iphone 16.jpg',
+      image: '/iphones/iPhone 16.jpg',
       storage: '128GB',
       memory: '8GB',
-      price: 380
+      price: 790
     },
-    {
-      
-      title: 'iPhone 13 Series',
-      brand: 'Apple',
-      image: '/iphones/iphone 14.jpg',
-      storage: '128GB',
-      memory: '8GB',
-      price: 380
-    },
-    {
-      
-      title: 'iPhone 13 Series',
-      brand: 'Apple',
-      image: '/iphones/iphone 16.jpg',
-      storage: '128GB',
-      memory: '8GB',
-      price: 380
-    }
+      {
+        id: 116,
+          title: 'iPhone 14 series',
+          brand: 'Apple',
+          image: '/iphones/iPhone 14.jpg',
+          storage: '128GB',
+          memory: '6GB',
+          price: 790
+      },
+      {
+        id: 119,
+          title: 'iPhone 14 Plus series',
+          brand: 'Apple',
+          image: '/iphones/iPhone 14 Pro.jpg',
+          storage: '128GB',
+          memory: '6GB',
+          price: 890
+      }
   ];
 </script>
 
@@ -45,6 +45,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
     {#each products as product}
       <ProductCard
+        id={product.id}
         title={product.title}
         brand={product.brand}
         image={product.image}

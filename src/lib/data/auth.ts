@@ -1,5 +1,7 @@
 // src/lib/data/auth.ts
 import { writable } from 'svelte/store';
+import { loginWithBackend } from '$lib/data/custom-auth';
+
 
 // Define the User type
 export type User = {
@@ -21,6 +23,7 @@ function createUserStore() {
 
   return {
     subscribe,
+    set,
     login: (email: string, password: string) => {
       // In a real app, you would validate credentials with your backend
       // This is a mock implementation

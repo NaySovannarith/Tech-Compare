@@ -79,7 +79,7 @@
   }
 
   function removeFromWishlist(productId: string | number) {
-    wishlist.update(items => items.filter(product => product.id !== productId));
+    wishlist.update(items => items.filter(product => product.id !== productId));  
   }
 
   function clearRecentSearch(searchId: number) {

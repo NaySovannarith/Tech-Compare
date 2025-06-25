@@ -1,44 +1,50 @@
-<!-- src/routes/login/+page.svelte -->
+<!-- src/lib/components/LoginModal.svelte -->
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { loginWithBackend } from '$lib/data/custom-auth';
   import { user } from '$lib/data/auth';
-  
+
   let email = "";
   let password = "";
   let showPassword = false;
   let errorMessage = "";
   let isLoading = false;
+
   function togglePasswordVisibility() {
     showPassword = !showPassword;
   }
 
-  function handleLogin() {
+  async function handleLogin() {
     if (!email || !password) {
       errorMessage = "Please enter both email and password";
       return;
     }
-    
+
     isLoading = true;
     errorMessage = "";
-    
+
     try {
-      // Call the login function from our store
-      user.login(email, password);
-      
-      // Navigate to home page after successful login
+      await loginWithBackend(email, password);
       goto('/');
     } catch (error) {
-      errorMessage = "Login failed. Please try again.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      } else {
+        errorMessage = "Login failed. Please try again.";
+      }
       console.error(error);
     } finally {
       isLoading = false;
     }
   }
-  
+
   function goBack() {
     history.length > 1 ? history.back() : goto('/');
   }
 </script>
+
 
 <div class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
   <div class="bg-white p-6 rounded-xl shadow-2xl w-[90%] max-w-md relative">
