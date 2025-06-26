@@ -64,6 +64,7 @@
       maximumFractionDigits: 0,
     }).format(price);
   }
+  export let slug;
 </script>
 
 <div class="flex justify-center items-center w-full py-2">
@@ -114,7 +115,7 @@
       <div class="mt-5 flex justify-between items-center">
         <!-- More Detail Button -->
         <a
-          href="/product_list/product_detail/{id}"
+          href={`/product_list/product_detail/${slug}`}
           class="px-6 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] transition-all duration-200 shadow-sm flex items-center gap-1"
         >
           More Detail →

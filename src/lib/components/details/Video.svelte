@@ -1,7 +1,7 @@
 <script lang="ts">
     import { products } from '$lib/data';
   
-    const videoUrl = products[0].videoUrl;
+    export let videoUrl;
     function getYouTubeID(url: string) {
       const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
       return match ? match[1] : null;
