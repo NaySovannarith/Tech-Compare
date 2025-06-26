@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { Pencil } from 'lucide-svelte';
 
 	function goBack() {
 		history.length > 1 ? history.back() : goto('/');
@@ -29,7 +30,11 @@
 	}
 </script>
 
-<div class="  mt-[95px] bg-gray-100 min-h-screen p-4">
+<div class="  mt-[105px] bg-gray-100 min-h-screen ">
+	 
+     <div class="form-grid max-w-7xl mx-auto px-4">
+	<div class="mt-[95px] flex flex-col items-start mb-4 p-4">
+	
 	<!-- Go Back Button -->
 	<button
 	on:click={goBack}
@@ -37,7 +42,15 @@
 >
 	← Go Back
 </button>
+<h1 class="text-2xl font-bold text-center mb-4 mt-2 mx-auto">
+	<span class="inline-flex items-center gap-2">
+		Write your content here
+		<Pencil class="animate-bounce text-blue-600 w-6 h-6" />
+	</span>
+</h1>
 
+
+</div>
 	<div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-5">
 		
 		<!-- Product Info -->
@@ -88,6 +101,7 @@
 		<div class="mt-10 border-t pt-6">
 			<h3 class="text-xl font-semibold mb-4">Write a Review</h3>
 			<form class="space-y-4" on:submit|preventDefault={submitReview}>
+				<!-- svelte-ignore a11y_label_has_associated_control -->
 				<label class="block font-semibold">Rating (1-5)</label>
 				<input
 					type="number"
@@ -97,6 +111,7 @@
 					class="w-full border p-2 rounded"
 				/>
 
+				<!-- svelte-ignore a11y_label_has_associated_control -->
 				<label class="block font-semibold">Your Review</label>
 				<textarea
 					bind:value={reviewText}
@@ -113,5 +128,6 @@
 				</button>
 			</form>
 		</div>
+	</div>
 	</div>
 </div>
