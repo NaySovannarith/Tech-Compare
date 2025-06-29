@@ -104,7 +104,7 @@ const validItems = data
     await load();
   }
 
-  async function remove(wishlistId: number) {
+  async function removeWishlist(wishlistId: number) {
     console.log(`[Wishlist] Removing item ID ${wishlistId}...`);
 
     const res = await fetch(
@@ -125,7 +125,7 @@ const validItems = data
     subscribe,
     load,
     addToWishlist,
-    remove
+    removeWishlist,
   };
 }
 

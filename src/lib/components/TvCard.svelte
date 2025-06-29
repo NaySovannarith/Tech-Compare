@@ -40,7 +40,7 @@
         ? allItems.find(item => Number(item?.product?.id) === id)
         : null;
       if (item) {
-        await wishlist.remove(item.id);
+        await wishlist.removeWishlist(item.id);
       }
       showModal = false;
     }

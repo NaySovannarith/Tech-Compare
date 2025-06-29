@@ -4,14 +4,72 @@
   import { quintOut, elasticOut } from 'svelte/easing';
   import { onMount } from 'svelte';
 
+  import { writable } from 'svelte/store';
+  const showModal = writable(false);
+
+  // Features and demoData for modal comparison table
+ type FeatureKey = 'price' | 'description' | 'rating' | 'cpu' | 'ram' | 'storage';
+const features: { label: string; key: FeatureKey }[] = [
+  { label: 'Price', key: 'price' },
+  { label: 'Description', key: 'description' },
+  { label: 'Rating', key: 'rating' },
+  { label: 'CPU', key: 'cpu' },
+  { label: 'RAM', key: 'ram' },
+  { label: 'Storage', key: 'storage' }
+];
+
+  // demoData maps product IDs to their feature values
+  type DemoData = Record<string, {
+    price: string;
+    description: string;
+    rating: string;
+    cpu: string;
+    ram: string;
+    storage: string;
+  }>;
+  let demoData: DemoData = {
+    [$compareSheet[0]?.id]: {
+      price: '$199',
+      description: 'High performance',
+      rating: '4.5/5',
+      cpu: 'Intel i7',
+      ram: '16GB',
+      storage: '512GB SSD'
+    },
+    [$compareSheet[1]?.id]: {
+      price: '$149',
+      description: 'Affordable and reliable',
+      rating: '4.0/5',
+      cpu: 'Intel i5',
+      ram: '8GB',
+      storage: '256GB SSD'
+    },
+    [$compareSheet[2]?.id]: {
+      price: '$299',
+      description: 'Premium quality',
+      rating: '4.8/5',
+      cpu: 'Intel i9',
+      ram: '32GB',
+      storage: '1TB SSD'
+    },
+    [$compareSheet[3]?.id]: {
+      price: '$99',
+      description: 'Budget friendly',
+      rating: '3.9/5',
+      cpu: 'Intel i3',
+      ram: '4GB',
+      storage: '128GB SSD'
+    }
+  };
+
   async function handleCompare() {
     if ($compareSheet.length > 1) {
       compareHistory.update(current => [{
         id: Date.now(),
-        products: $compareSheet.map(p => p.name),
+        products: $compareSheet.filter(p => p != null && p !== undefined).map(p => p.name),
         created_at: new Date().toISOString()
       }, ...current]);
-      compareSheet.set([]);
+      showModal.set(true);
     }
   }
 
@@ -44,7 +102,7 @@
         Build your comparison list and analyze products side by side
       </p>
     </div>
-
+  </div>
     <!-- Main Compare Sheet Container -->
     <div class="compare-sheet-container">
       
@@ -95,121 +153,150 @@
             <span class="text-xs text-slate-500">Max: 4 products</span>
           </div>
         </div>
+    </div>
+
+  <!-- Content Area -->
+  <div class="sheet-content">
+  </div>
+</div>
+{#if $compareSheet.length === 0}
+  <!-- Empty State -->
+  <div class="empty-state" in:fade={{ duration: 600 }}>
+    <div class="empty-icon">
+      <svg class="w-20 h-20 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+      </svg>
+    </div>
+    <h4 class="text-xl font-semibold text-slate-700 mb-2">No Products Selected</h4>
+    <p class="text-slate-500 mb-6 max-w-md mx-auto">
+      Start building your comparison by adding products from the search section above.
+    </p>
+    <div class="empty-features">
+      <div class="feature-item">
+        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+        <span>Add products</span>
       </div>
-
-      <!-- Content Area -->
-      <div class="sheet-content">
-        {#if $compareSheet.length === 0}
-          <!-- Empty State -->
-          <div class="empty-state" in:fade={{ duration: 600 }}>
-            <div class="empty-icon">
-              <svg class="w-20 h-20 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-              </svg>
-            </div>
-            <h4 class="text-xl font-semibold text-slate-700 mb-2">No Products Selected</h4>
-            <p class="text-slate-500 mb-6 max-w-md mx-auto">
-              Start building your comparison by adding products from the search section above.
-            </p>
-            <div class="empty-features">
-              <div class="feature-item">
-                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span>Add products</span>
-              </div>
-              <div class="feature-item">
-                <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span>Compare features</span>
-              </div>
-              <div class="feature-item">
-                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span>Make decisions</span>
-              </div>
-            </div>
-          </div>
-        {:else}
-          <!-- Products List -->
-          <div class="products-grid">
-            {#each $compareSheet as item, index (item.id)}
-              <div 
-                class="product-card"
-                in:fly={{ y: 50, duration: 400, delay: index * 100, easing: quintOut }}
-                out:scale={{ duration: 300 }}
-              >
-                <!-- Card Header -->
-                <div class="card-header">
-                  <div class="card-header-content">
-                    <div class="product-number">
-                      {index + 1}
-                    </div>
-                    <div class="product-info">
-                      <h4 class="product-name">{item.name}</h4>
-                      <p class="product-meta">
-                        Product • Added to comparison
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <!-- Remove Button -->
-                  <button
-                    onclick={() => removeFromCompare(item.id)}
-                    class="remove-btn"
-                    aria-label="Remove {item.name} from comparison"
-                  >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- Card Content -->
-                <div class="card-content">
-                  <div class="content-row">
-                    <div class="content-left">
-                      <span class="price-tag">Ready</span>
-                    </div>
-                    <div class="status-badge">
-                      Ready
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Card Overlay -->
-                <div class="card-overlay"></div>
-              </div>
-            {/each}
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="action-section">
-            {#if $compareSheet.length > 1}
-              <button
-                onclick={handleCompare}
-                class="compare-btn"
-                aria-label="Compare selected products"
-                in:scale={{ duration: 300, easing: elasticOut }}
-              >
-                <div class="btn-content">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                  </svg>
-                  <span>Compare {$compareSheet.length} Products</span>
-                </div>
-                <div class="btn-shine"></div>
-              </button>
-            {:else}
-              <div class="compare-hint" in:fade={{ duration: 300 }}>
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <span>Add at least one more product to enable comparison</span>
-              </div>
-            {/if}
-          </div>
-        {/if}
+      <div class="feature-item">
+        <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+        <span>Compare features</span>
+      </div>
+      <div class="feature-item">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+        <span>Make decisions</span>
       </div>
     </div>
   </div>
+  {:else}
+    <!-- Products List -->
+    <div class="products-grid">
+      {#each $compareSheet.filter(item => item != null && item !== undefined) as item, index (item.id)}
+        <div 
+          class="product-card"
+          in:fly={{ y: 50, duration: 400, delay: index * 100, easing: quintOut }}
+          out:scale={{ duration: 300 }}
+        >
+          <!-- Card Header -->
+          <div class="card-header">
+            <div class="card-header-content">
+              <div class="product-number">
+                {index + 1}
+              </div>
+              <div class="product-info">
+                <h4 class="product-name">{item.name}</h4>
+                <p class="product-meta">
+                  Product • Added to comparison
+                </p>
+              </div>
+            </div>
+            
+            <!-- Remove Button -->
+            <button
+              onclick={() => removeFromCompare(item.id)}
+              class="remove-btn"
+              aria-label="Remove {item.name} from comparison"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content">
+            <div class="content-row">
+              <div class="content-left">
+                <span class="price-tag">Ready</span>
+              </div>
+              <div class="status-badge">
+                Ready
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Overlay -->
+          <div class="card-overlay"></div>
+        </div>
+      {/each}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-section">
+      {#if $compareSheet.length > 1}
+        <button
+          onclick={handleCompare}
+          class="compare-btn"
+          aria-label="Compare selected products"
+          in:scale={{ duration: 300, easing: elasticOut }}
+        >
+          <div class="btn-content">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span>Compare {$compareSheet.length} Products</span>
+          </div>
+          <div class="btn-shine"></div>
+        </button>
+        {#if $showModal}
+          <div class="modal-backdrop" onclick={() => showModal.set(false)}>
+            <div class="modal-content" onclick={(e) => e.stopPropagation()}>
+              <h3 class="text-xl font-bold mb-4">Comparison Table</h3>
+
+              <table class="w-full border text-left text-sm">
+                <thead>
+                  <tr>
+                    <th class="border px-4 py-2">Feature</th>
+                    {#each $compareSheet.filter(product => product != null && product !== undefined) as product}
+                      <th class="border px-4 py-2">{product.name}</th>
+                    {/each}
+                  </tr>
+                </thead>
+                <tbody>
+                  {#each features as feature}
+                    <tr>
+                      <td class="border px-4 py-2 font-semibold">{feature.label}</td>
+                      {#each $compareSheet.filter(product => product != null && product !== undefined) as product}
+                        <td class="border px-4 py-2">
+                          {demoData[product.id]?.[feature.key] || 'N/A'}
+                        </td>
+                      {/each}
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+
+              <div class="mt-6 text-right">
+                <button onclick={() => showModal.set(false)} class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        {/if}
+      {/if}
+    </div>
+  {/if}
 </div>
+<!-- Close .compare-sheet-container -->
 
 <style>
   /* Main Container */
@@ -599,5 +686,26 @@
       flex-direction: column;
       gap: 12px;
     }
+  }
+  
+  /* Modal Styles */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   }
 </style>

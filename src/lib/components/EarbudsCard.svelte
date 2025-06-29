@@ -43,7 +43,7 @@
         : null;
 
       if (item) {
-        await wishlist.remove(item.id);
+        await wishlist.removeWishlist(item.id);
       }
 
       showModal = false;
