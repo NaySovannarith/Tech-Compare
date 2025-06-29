@@ -15,11 +15,14 @@
 
   let showModal = false;
   let imageError = false;
+  export let slug: string;
+
 
   const product = {
     id,
     title,
     brand,
+    slug,
     image,
     storage,
     memory,
