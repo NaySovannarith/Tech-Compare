@@ -67,7 +67,7 @@
       maximumFractionDigits: 0,
     }).format(price);
   }
-  export let slug;
+  
 </script>
 
 <div class="flex justify-center items-center w-full py-2">
