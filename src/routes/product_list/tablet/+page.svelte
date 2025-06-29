@@ -158,6 +158,7 @@ function getImageUrl(product: Product): string {
           storage={getSpecValue(product, 'storage')}
           memory={getSpecValue(product, 'memory')}
           price={product.price}
+          slug={product.slug} 
         />
       {/each}
     </div>
