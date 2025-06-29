@@ -1,6 +1,8 @@
 <script>
+// @ts-nocheck
+
   import { goto } from '$app/navigation';
-  import { addToWishlist, removeFromWishlist, wishlist } from '$lib/wishlist/wishlist';
+  import { addWishlist, removeWishlist, wishlist } from '$lib/wishlist/wishlist';
   import {
     Monitor,
     Cpu,
@@ -36,7 +38,7 @@
   $: isWishlisted = $wishlist.some(item => item.id === id);
 
   function toggleWishlist() {
-    isWishlisted ? removeFromWishlist(id) : addToWishlist(product);
+    isWishlisted ? removeWishlist(id) : addWishlist(product);
   }
 
   const specs = [
