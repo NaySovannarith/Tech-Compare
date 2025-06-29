@@ -97,11 +97,11 @@
         <div class="mt-3 space-y-2 text-[1.15rem] text-gray-700 font-medium">
           <p class="flex justify-between">
             <span>Storage</span>
-            <span class="text-[#00332e] font-semibold">{storage}</span>
+            <span class="text-[#00332e] font-semibold">{storage || 'N/A'}</span>
           </p>
           <p class="flex justify-between">
             <span>Memory (RAM)</span>
-            <span class="text-[#00332e] font-semibold">{memory}</span>
+            <span class="text-[#00332e] font-semibold">{memory || 'N/A'}</span>
           </p>
           <p class="flex justify-between">
             <span>Price</span>

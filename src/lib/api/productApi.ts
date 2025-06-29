@@ -75,10 +75,57 @@ class ProductApiService {
 
       const result = await response.json();
       
-      // The response should now match our expected format
       return result;
     } catch (error) {
       console.error('Error fetching products:', error);
+      throw error;
+    }
+  }
+
+  // NEW METHOD: Get products by brand name
+// Get products by brand name (e.g. "Apple", "Samsung")
+async getProductsByBrand(brandName: string, page: number = 1): Promise<ProductsResponse> {
+  try {
+    const url = `${API_BASE_URL}/products?brand_name=${encodeURIComponent(brandName)}&page=${page}`;
+    
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeaders(),
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching products by brand:', error);
+    throw error;
+  }
+}
+
+
+  // NEW METHOD: Get products by brand ID
+  async getProductsByBrandId(brandId: number, page: number = 1): Promise<ProductsResponse> {
+    try {
+      const url = `${API_BASE_URL}/products?brand_id=${brandId}&page=${page}`;
+      
+      const response = await fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...this.getAuthHeaders(),
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching products by brand ID:', error);
       throw error;
     }
   }
