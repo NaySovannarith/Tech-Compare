@@ -20,7 +20,7 @@
     previousBrand = brandName;
   });
 
-  // ✅ React to brand change when navigating between pages (sveltekit does not reload component)
+  //  React to brand change when navigating between pages (sveltekit does not reload component)
   afterUpdate(async () => {
     if (brandName !== previousBrand) {
       previousBrand = brandName;
@@ -30,7 +30,7 @@
     }
   });
 
-  // ✅ Reactive filtered products
+  //  Reactive filtered products
   $: filteredProducts = products.filter(
     product => product.price >= minPrice && product.price <= maxPrice
   );
@@ -150,6 +150,7 @@
           storage={getStorage(product)}
           memory={getMemory(product)}
           price={product.price}
+          slug={product.slug}
         />
       {/each}
     </div>
