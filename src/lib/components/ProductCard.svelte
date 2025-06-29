@@ -12,10 +12,11 @@
   export let storage: string;
   export let memory: string;
   export let price: number;
+   export let slug: string;
 
   let showModal = false;
   let imageError = false;
-  export let slug: string;
+ 
 
 
   const product = {

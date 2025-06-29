@@ -9,7 +9,8 @@
           image: '/iphones/iPhone 13.jpg',
           storage: '128GB',
           memory: '6GB',
-          price: 690
+          price: 690,
+          
       },
     {
       id: 101,
@@ -18,7 +19,8 @@
       image: '/iphones/iPhone 16.jpg',
       storage: '128GB',
       memory: '8GB',
-      price: 790
+      price: 790,
+      
     },
       {
         id: 116,
@@ -27,7 +29,8 @@
           image: '/iphones/iPhone 14.jpg',
           storage: '128GB',
           memory: '6GB',
-          price: 790
+          price: 790,
+           
       },
       {
         id: 119,
@@ -36,7 +39,9 @@
           image: '/iphones/iPhone 14 Pro.jpg',
           storage: '128GB',
           memory: '6GB',
-          price: 890
+          price: 890,
+          
+
       }
   ];
 </script>
@@ -52,6 +57,7 @@
         storage={product.storage}
         memory={product.memory}
         price={product.price}
+        
       />
     {/each}
   </div>
