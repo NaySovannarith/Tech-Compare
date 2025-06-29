@@ -7,7 +7,7 @@
 
     <div class="details">
       <div class="item">
-        <span class="icon">📧</span> <span class="text">duuu_z@gmail.com</span>
+        <span class="icon">📧</span> <span class="text">bunnithafk@gmail.com</span>
       </div>
       <div class="item">
         <span class="icon">📞</span> <span class="text">Support: +855 11969451</span>

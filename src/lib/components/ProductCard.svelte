@@ -12,14 +12,18 @@
   export let storage: string;
   export let memory: string;
   export let price: number;
+   export let slug: string;
 
   let showModal = false;
   let imageError = false;
+ 
+
 
   const product = {
     id,
     title,
     brand,
+    slug,
     image,
     storage,
     memory,
@@ -64,6 +68,7 @@
       maximumFractionDigits: 0,
     }).format(price);
   }
+  
 </script>
 
 <div class="flex justify-center items-center w-full py-2">
@@ -97,11 +102,11 @@
         <div class="mt-3 space-y-2 text-[1.15rem] text-gray-700 font-medium">
           <p class="flex justify-between">
             <span>Storage</span>
-            <span class="text-[#00332e] font-semibold">{storage}</span>
+            <span class="text-[#00332e] font-semibold">{storage || 'N/A'}</span>
           </p>
           <p class="flex justify-between">
             <span>Memory (RAM)</span>
-            <span class="text-[#00332e] font-semibold">{memory}</span>
+            <span class="text-[#00332e] font-semibold">{memory || 'N/A'}</span>
           </p>
           <p class="flex justify-between">
             <span>Price</span>
@@ -114,7 +119,7 @@
       <div class="mt-5 flex justify-between items-center">
         <!-- More Detail Button -->
         <a
-          href="/product_list/product_detail/{id}"
+          href={`/product_list/product_detail/${slug}`}
           class="px-6 py-2 bg-[#00332e] text-white text-sm rounded-full hover:bg-[#00584f] transition-all duration-200 shadow-sm flex items-center gap-1"
         >
           More Detail →
