@@ -7,19 +7,68 @@
   let message = '';
   let emailError = '';
   let messageError = '';
+  let isSubmitting = false;
+  let submitMessage = '';
+  let submitError = '';
 
-  function handleSubmit() {
-    alert('Message sent successfully!');
+  // Your API base URL - update this to match your Laravel backend URL
+  const API_BASE_URL = 'http://localhost:8000/api'; // Change this to your actual backend URL
 
-    // Clear all form fields
-    fullName = '';
-    email = '';
-    country = '';
-    message = '';
+  async function handleSubmit() {
+    if (!isValid) return;
 
-    // Reset errors
-    emailError = '';
-    messageError = '';
+    isSubmitting = true;
+    submitMessage = '';
+    submitError = '';
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          country,
+          message
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success
+        submitMessage = data.message || 'Message sent successfully!';
+        
+        // Clear all form fields
+        fullName = '';
+        email = '';
+        country = '';
+        message = '';
+
+        // Reset errors
+        emailError = '';
+        messageError = '';
+      } else {
+        // Handle validation errors from backend
+        if (data.errors) {
+          let errorMessages = [];
+          for (const field in data.errors) {
+            errorMessages.push(...data.errors[field]);
+          }
+          submitError = errorMessages.join(' ');
+        } else {
+          submitError = data.message || 'Failed to send message. Please try again.';
+        }
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      submitError = 'Network error. Please check your connection and try again.';
+    } finally {
+      isSubmitting = false;
+    }
   }
 
   // Regex for validating a basic email format
@@ -36,14 +85,26 @@
 </script>
 
 <form class="form-card" on:submit|preventDefault={handleSubmit}>
-  <h3>We’d love to hear from you!<br />Let’s get in touch</h3>
+  <h3>We'd love to hear from you!<br />Let's get in touch</h3>
+
+  {#if submitMessage}
+    <div class="success-message">
+      <p>{submitMessage}</p>
+    </div>
+  {/if}
+
+  {#if submitError}
+    <div class="error-message">
+      <p>{submitError}</p>
+    </div>
+  {/if}
 
   <FormField label="Full Name" bind:value={fullName} required />
   <FormField label="Email" type="email" bind:value={email} required />
   {#if emailError}<p class="error">{emailError}</p>{/if}
 
   <!-- Choose Country -->
-  <div class="form-field">
+  <div class="form-field text-black">
     <label for="country">Choose Country</label>
     <select id="country" bind:value={country} required>
       <option value="" disabled>Select your country</option>
@@ -51,6 +112,12 @@
       <option value="CA">Canada</option>
       <option value="GB">United Kingdom</option>
       <option value="KH">Cambodia</option>
+      <option value="AU">Australia</option>
+      <option value="DE">Germany</option>
+      <option value="FR">France</option>
+      <option value="JP">Japan</option>
+      <option value="SG">Singapore</option>
+      <option value="TH">Thailand</option>
       <!-- Add more as needed -->
     </select>
   </div>
@@ -58,76 +125,36 @@
   <FormField label="Your Message" type="textarea" bind:value={message} required />
   {#if messageError}<p class="error">{messageError}</p>{/if}
 
-  <button class="submit-btn" type="submit" disabled={!isValid}>
-    Send Message
+  <button class="submit-btn" type="submit" disabled={!isValid || isSubmitting}>
+    {#if isSubmitting}
+      Sending...
+    {:else}
+      Send Message
+    {/if}
   </button>
 </form>
 
 <style>
-  .form-card {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    max-width: 600px;
-    width: 100%;
-    color: #111827;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
   }
 
-  h3 {
-    font-size: 22px;
-    margin-bottom: 8px;
-    color: #111827;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  .submit-btn {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    background-color: #00332e;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 12px;
-  }
-
-  .submit-btn:hover:enabled {
-    background-color: #2e1f56;
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
   }
 
   .submit-btn:disabled {
-    background-color: #cbd5e1;
+    opacity: 0.6;
     cursor: not-allowed;
-  }
-
-  .form-field select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    background-color: #f9fafb;
-    margin-top: 8px;
-  }
-
-  .form-field label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #111827;
-  }
-
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: -8px;
-    margin-bottom: 8px;
   }
 </style>
