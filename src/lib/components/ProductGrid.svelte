@@ -57,7 +57,7 @@
         storage={product.storage}
         memory={product.memory}
         price={product.price}
-        
+          
       />
     {/each}
   </div>

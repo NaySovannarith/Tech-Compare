@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import ComputerCard from '$lib/components/ComputerCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
+  import { API_CONFIG } from '$lib/config';
 
   let products: Product[] = [];
   let loading = true;
@@ -13,7 +14,7 @@
   let totalPages = 1;
 
   // Filter products by category ID (computers/laptops)
-  const COMPUTER_CATEGORY_ID = 3; // Adjust this based on your database
+  const COMPUTER_CATEGORY_ID = 2; // Adjust this based on your database
 
   // Helper function to get CPU and RAM from specs OR direct fields
   function getSpecValue(product: Product, specName: string): string {
@@ -41,16 +42,16 @@
   }
 
   // Helper function to get image URL
-  function getImageUrl(product: Product): string {
-    if (product.image_url) return product.image_url;
+function getImageUrl(product: Product): string {
+  if (product.image_url) return product.image_url;
 
-    if (product.image) {
-      if (product.image.startsWith('http')) return product.image;
-      return `http://localhost:8000/storage/products/${encodeURIComponent(product.image)}`;
-    }
-
-    return '/placeholder-laptop.jpg';
+  if (product.image) {
+    if (product.image.startsWith('http')) return product.image;
+    return `${API_CONFIG.BASE_URL.replace('/api', '')}/storage/products/${encodeURIComponent(product.image)}`;
   }
+
+  return '/placeholder-phone.jpg';
+}
 
   // Filtered products based on price range
   $: filteredProducts = products.filter(product => 

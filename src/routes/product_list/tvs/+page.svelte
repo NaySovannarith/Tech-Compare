@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import TvCard from '$lib/components/TvCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
+  import { API_CONFIG } from '$lib/config';
 
   let products: Product[] = [];
   let loading = true;
@@ -11,7 +12,7 @@
   let currentPage = 1;
   let totalPages = 1;
 
-  const TV_CATEGORY_ID = 5; // Adjust to match your DB
+  const TV_CATEGORY_ID = 4; // Adjust to match your DB
 
 function getSpecValue(product: Product, specName: string): string {
   if (!product.specs) return 'N/A';
@@ -30,14 +31,16 @@ function getSpecValue(product: Product, specName: string): string {
     return product.brand?.name || 'Unknown';
   }
 
-  function getImageUrl(product: Product): string {
-    if (product.image_url) return product.image_url;
-    if (product.image) {
-      if (product.image.startsWith('http')) return product.image;
-      return `http://localhost:8000/storage/products/${encodeURIComponent(product.image)}`;
-    }
-    return '/placeholder-tv.jpg';
+function getImageUrl(product: Product): string {
+  if (product.image_url) return product.image_url;
+
+  if (product.image) {
+    if (product.image.startsWith('http')) return product.image;
+    return `${API_CONFIG.BASE_URL.replace('/api', '')}/storage/products/${encodeURIComponent(product.image)}`;
   }
+
+  return '/placeholder-phone.jpg';
+}
 
   $: filteredProducts = products.filter(product =>
     product.price >= minPrice && product.price <= maxPrice

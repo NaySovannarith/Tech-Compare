@@ -2,6 +2,7 @@
   import { onMount, afterUpdate, tick } from 'svelte';
   import ProductCard from './ProductCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
+  import { getImageUrl } from '$lib/config';
 
   export let brandName: string;
 
@@ -12,7 +13,7 @@
   let maxPrice = 5000;
   let currentPage = 1;
   let totalPages = 1;
-  let previousBrand = ''; // track to detect brand change
+  let previousBrand = '';
 
   // Load products initially
   onMount(() => {
@@ -20,17 +21,17 @@
     previousBrand = brandName;
   });
 
-  //  React to brand change when navigating between pages (sveltekit does not reload component)
+  // React to brand change when navigating between pages
   afterUpdate(async () => {
     if (brandName !== previousBrand) {
       previousBrand = brandName;
       currentPage = 1;
-      await tick(); // wait for reactivity to settle
+      await tick();
       await loadProducts();
     }
   });
 
-  //  Reactive filtered products
+  // Reactive filtered products
   $: filteredProducts = products.filter(
     product => product.price >= minPrice && product.price <= maxPrice
   );
@@ -40,20 +41,21 @@
       loading = true;
       error = '';
       const response = await productApi.getProductsByBrand(brandName, currentPage);
-      products = response.data;
-      totalPages = response.last_page;
+      products = response.data || [];
+      totalPages = response.last_page || 1;
 
       if (products.length > 0) {
         const prices = products.map(p => p.price);
         minPrice = 0;
-        maxPrice = Math.max(...prices);
+        maxPrice = Math.max(...prices, 5000); // Ensure minimum maxPrice
       } else {
         minPrice = 0;
         maxPrice = 5000;
       }
     } catch (err) {
       console.error('Error loading products:', err);
-      error = 'Failed to load products. Please try again later.';
+      error = err instanceof Error ? err.message : 'Failed to load products. Please try again later.';
+      products = [];
     } finally {
       loading = false;
     }
@@ -67,7 +69,7 @@
   }
 
   function getProductImage(product: Product): string {
-    return product.image_url || product.image || '/placeholder-phone.jpg';
+    return getImageUrl(product);
   }
 
   function getStorage(product: Product): string {

@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import PowerbankCard from '$lib/components/PowerbankCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
+  import { API_CONFIG } from '$lib/config';
 
   let products: Product[] = [];
   let loading = true;
@@ -13,7 +14,7 @@
   let totalPages = 1;
 
   // Filter products by category ID (powerbanks)
-  const POWERBANK_CATEGORY_ID = 9; // Adjust this based on your database
+  const POWERBANK_CATEGORY_ID = 8; // Adjust this based on your database
 
   // Helper function to get wattage and battery from specs OR direct fields
   function getSpecValue(product: Product, specName: string): string {
@@ -41,16 +42,16 @@
   }
 
   // Helper function to get image URL
-  function getImageUrl(product: Product): string {
-    if (product.image_url) return product.image_url;
+function getImageUrl(product: Product): string {
+  if (product.image_url) return product.image_url;
 
-    if (product.image) {
-      if (product.image.startsWith('http')) return product.image;
-      return `http://localhost:8000/storage/products/${encodeURIComponent(product.image)}`;
-    }
-
-    return '/placeholder-powerbank.jpg';
+  if (product.image) {
+    if (product.image.startsWith('http')) return product.image;
+    return `${API_CONFIG.BASE_URL.replace('/api', '')}/storage/products/${encodeURIComponent(product.image)}`;
   }
+
+  return '/placeholder-camera.jpg';
+}
 
   // Filtered products based on price range
   $: filteredProducts = products.filter(product => 

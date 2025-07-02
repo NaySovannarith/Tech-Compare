@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { getApiUrl } from "$lib/config";
 
   let username = $state("");
   let email = $state("");
@@ -24,7 +25,6 @@
   }
 
   async function register() {
-    // Validation
     if (!username || !email || !password || !confirmPassword) {
       errorMessage = "Please fill in all fields";
       return;
@@ -49,11 +49,13 @@
     errorMessage = "";
 
     try {
-      const res = await fetch("http://localhost:8000/api/register", {
+      const res = await fetch(getApiUrl("/register"), {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
+        credentials: 'include', // Added for CORS
         body: JSON.stringify({
           name: username,
           email,
@@ -62,19 +64,40 @@
         })
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        errorMessage = data.message || "Registration failed. Please try again.";
+        const errorText = await res.text();
+        let errorData;
+        try {
+          errorData = JSON.parse(errorText);
+        } catch {
+          throw new Error(`Registration failed: ${res.status} ${res.statusText}`);
+        }
+
+        if (errorData.errors) {
+          const errorMessages = [];
+          for (const field in errorData.errors) {
+            errorMessages.push(...errorData.errors[field]);
+          }
+          errorMessage = errorMessages.join(' ');
+        } else {
+          errorMessage = errorData.message || "Registration failed. Please try again.";
+        }
         return;
       }
 
-      localStorage.setItem("token", data.token);
+      const data = await res.json();
+
+      // Fixed: Store token with consistent key
+      if (data.token) {
+        localStorage.setItem("auth_token", data.token);
+        localStorage.setItem("authToken", data.token); // For backward compatibility
+      }
+
       alert("Registration successful! Welcome aboard!");
       goto("/login");
     } catch (err) {
       console.error("Registration error:", err);
-      errorMessage = "Server error. Please try again.";
+      errorMessage = err instanceof Error ? err.message : "Server error. Please try again.";
     } finally {
       isLoading = false;
     }
