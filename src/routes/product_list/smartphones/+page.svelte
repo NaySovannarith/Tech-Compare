@@ -4,6 +4,7 @@
   import ProductCard from '$lib/components/ProductCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
   import { API_CONFIG } from '$lib/config';
+  import { getImageUrl } from '$lib/config';
 
   let products: Product[] = [];
   let loading = true;
@@ -38,16 +39,17 @@
   }
 
   // Helper function to get image URL
-function getImageUrl(product: Product): string {
-  if (product.image_url) return product.image_url;
+// export function getImageUrl(product: Product): string {
+//   if (product.image_url) return product.image_url;
 
-  if (product.image) {
-    if (product.image.startsWith('http')) return product.image;
-    return `${API_CONFIG.BASE_URL.replace('/api', '')}/storage/products/${encodeURIComponent(product.image)}`;
-  }
+//   if (product.image) {
+//     if (product.image.startsWith('http')) return product.image;
+//     return `${API_CONFIG.BASE_URL.replace('/api', '')}/image/${encodeURIComponent(product.image)}`;
+//   }
 
-  return '/placeholder-phone.jpg';
-}
+//   return '/placeholder-image.jpg';
+// }
+
 
 
   // Filtered products based on price range
