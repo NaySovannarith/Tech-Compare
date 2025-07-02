@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import SmartwatchCard from '$lib/components/SmartwatchCard.svelte';
   import { productApi, type Product } from '$lib/api/productApi';
+  import { API_CONFIG } from '$lib/config';
 
   let products: Product[] = [];
   let loading = true;
@@ -13,7 +14,7 @@
   let totalPages = 1;
 
   // Filter products by category ID (smartwatches)
-  const SMARTWATCH_CATEGORY_ID = 7; // Adjust this based on your database
+  const SMARTWATCH_CATEGORY_ID = 6; // Adjust this based on your database
 
   // Helper function to get functions and battery from specs OR direct fields
   function getSpecValue(product: Product, specName: string): string {
@@ -41,16 +42,22 @@
   }
 
   // Helper function to get image URL
-  function getImageUrl(product: Product): string {
-    if (product.image_url) return product.image_url;
+function getImageUrl(product: Product): string {
+  if (product.image_url) return product.image_url;
 
-    if (product.image) {
-      if (product.image.startsWith('http')) return product.image;
-      return `http://localhost:8000/storage/products/${encodeURIComponent(product.image)}`;
-    }
+  if (product.image) {
+    if (product.image.startsWith('http')) return product.image;
 
-    return '/placeholder-smartwatch.jpg';
+    // Encode each segment separately to avoid encoding slashes
+    const parts = product.image.split('/');
+    const encoded = parts.map(part => encodeURIComponent(part)).join('/');
+
+    return `${API_CONFIG.BASE_URL.replace('/api', '')}/storage/products/${encoded}`;
   }
+
+  return '/placeholder-phone.jpg';
+}
+
 
   // Filtered products based on price range
   $: filteredProducts = products.filter(product => 
